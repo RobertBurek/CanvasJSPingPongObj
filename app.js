@@ -1,2 +1,2 @@
-const canvas = document.querySelector('canvas');
-console.log(canvas);
+const cnv = document.querySelector('canvas');
+console.log(cnv);
