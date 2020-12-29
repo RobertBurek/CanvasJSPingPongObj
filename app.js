@@ -1,6 +1,9 @@
 const cnv = document.querySelector('canvas');
-console.log(cnv);
+
 const ctx = cnv.getContext('2d');
-console.log(ctx);
-cnv.width = 1000;
-cnv.height = 500;
+
+const cnvW = cnv.width = 1200;
+const cnvH = cnv.height = 600;
+
+console.log(cnvW);
+console.log(cnvH);
