@@ -21,4 +21,10 @@ function Ball(ballSize, colorBall, positionXBall, positionYBall){
     this.center = ballSize / 2;
 }
 
+const ball1 = new Ball(ballSize,'lime',250,450);
+
+
+ctx.fillStyle = ball1.color;
+ctx.arc(ball1.positionX,ball1.positionY, ball1.radius, 0, 2*Math.PI);
+ctx.fill();
 
