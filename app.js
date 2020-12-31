@@ -21,6 +21,18 @@ function Ball(ballSize, colorBall, positionXBall, positionYBall){
     this.center = ballSize / 2;
 }
 
+function PPRocket(widthRocket, heightRocket, colorRocket, positionXRocket, positionYRocket){
+    this.width = widthRocket;
+    this.height = heightRocket;
+    this.color = colorRocket;
+    this.positionX = positionXRocket;
+    this.positionY = positionYRocket;
+    this.speed = 4;
+    this.directionX = true;
+    this.directionY = true;
+    this.center = heightRocket / 2;
+}
+
 const ball1 = new Ball(ballSize,'lime',250,450);
 
 
