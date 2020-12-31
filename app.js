@@ -35,10 +35,13 @@ function PPRocket(widthRocket, heightRocket, colorRocket, positionXRocket, posit
 
 const ball1 = new Ball(ballSize,'lime',250,450);
 const playerRocket = new PPRocket(20, 150, 'blue', 40, 250);
+const computerRocket = new PPRocket(20, 150, 'red', 1140, 150);
 
 ctx.fillStyle = playerRocket.color;
 ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
 
+ctx.fillStyle = computerRocket.color;
+ctx.fillRect(computerRocket.positionX, computerRocket.positionY, computerRocket.width, computerRocket.height);
 
 ctx.fillStyle = ball1.color;
 ctx.arc(ball1.positionX,ball1.positionY, ball1.radius, 0, 2*Math.PI);
