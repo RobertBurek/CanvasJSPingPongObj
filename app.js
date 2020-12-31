@@ -34,6 +34,10 @@ function PPRocket(widthRocket, heightRocket, colorRocket, positionXRocket, posit
 }
 
 const ball1 = new Ball(ballSize,'lime',250,450);
+const playerRocket = new PPRocket(20, 150, 'blue', 40, 250);
+
+ctx.fillStyle = playerRocket.color;
+ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
 
 
 ctx.fillStyle = ball1.color;
