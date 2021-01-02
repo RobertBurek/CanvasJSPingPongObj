@@ -22,7 +22,6 @@ class Ball {
         }
 
     draw() {
-        console.log('ball');
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.positionX,this.positionY, this.radius, 0, 2*Math.PI);
@@ -31,7 +30,7 @@ class Ball {
       }
 }
 
-class  PPRocket {
+class  Rocket {
     constructor (widthRocket, heightRocket, colorRocket, positionXRocket, positionYRocket){
         this.width = widthRocket;
         this.height = heightRocket;
@@ -56,22 +55,10 @@ function court() {
 }
 
 const ball1 = new Ball(ballSize,'lime',250,450);
-const playerRocket = new PPRocket(20, 150, 'blue', 40, 250);
-const computerRocket = new PPRocket(20, 150, 'red', 1140, 150);
+const playerRocket = new Rocket(20, 150, 'blue', 40, 250);
+const computerRocket = new Rocket(20, 150, 'red', 1140, 150);
 
 court();
-
-const ball2 = new Ball(ballSize,'red',150,350);
-ball2.draw();
-
-// ctx.fillStyle = playerRocket.color;
-// ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
+ball1.draw();
 playerRocket.draw();
-
-ctx.fillStyle = computerRocket.color;
-ctx.fillRect(computerRocket.positionX, computerRocket.positionY, computerRocket.width, computerRocket.height);
-
-ctx.fillStyle = ball1.color;
-ctx.arc(ball1.positionX,ball1.positionY, ball1.radius, 0, 2*Math.PI);
-ctx.fill();
-
+computerRocket.draw();
