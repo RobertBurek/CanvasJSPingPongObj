@@ -33,9 +33,16 @@ function PPRocket(widthRocket, heightRocket, colorRocket, positionXRocket, posit
     this.center = heightRocket / 2;
 }
 
+function court() {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0,cnvW,cnvH);
+}
+
 const ball1 = new Ball(ballSize,'lime',250,450);
 const playerRocket = new PPRocket(20, 150, 'blue', 40, 250);
 const computerRocket = new PPRocket(20, 150, 'red', 1140, 150);
+
+court();
 
 ctx.fillStyle = playerRocket.color;
 ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
