@@ -8,17 +8,27 @@ const cnvH = cnv.height = 600;
 
 const ballSize = 16;
 
+class Ball {
+    constructor (ballSize, colorBall, positionXBall, positionYBall){
+        this.color = colorBall;
+        this.positionX = positionXBall;
+        this.positionY = positionYBall;
+        this.radius = ballSize / 2;
+        this.speedX = 4;
+        this.speedY = 4;
+        this.directionX = true;
+        this.directionY = true;
+        this.center = ballSize / 2;
+        }
 
-function Ball(ballSize, colorBall, positionXBall, positionYBall){
-    this.color = colorBall;
-    this.positionX = positionXBall;
-    this.positionY = positionYBall;
-    this.radius = ballSize / 2;
-    this.speedX = 4;
-    this.speedY = 4;
-    this.directionX = true;
-    this.directionY = true;
-    this.center = ballSize / 2;
+    draw() {
+        console.log('ball');
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.arc(this.positionX,this.positionY, this.radius, 0, 2*Math.PI);
+        ctx.fill(); 
+        ctx.closePath();
+      }
 }
 
 function PPRocket(widthRocket, heightRocket, colorRocket, positionXRocket, positionYRocket){
@@ -43,6 +53,9 @@ const playerRocket = new PPRocket(20, 150, 'blue', 40, 250);
 const computerRocket = new PPRocket(20, 150, 'red', 1140, 150);
 
 court();
+
+const ball2 = new Ball(ballSize,'red',150,350);
+ball2.draw();
 
 ctx.fillStyle = playerRocket.color;
 ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
