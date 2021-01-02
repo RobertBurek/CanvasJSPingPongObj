@@ -31,16 +31,23 @@ class Ball {
       }
 }
 
-function PPRocket(widthRocket, heightRocket, colorRocket, positionXRocket, positionYRocket){
-    this.width = widthRocket;
-    this.height = heightRocket;
-    this.color = colorRocket;
-    this.positionX = positionXRocket;
-    this.positionY = positionYRocket;
-    this.speed = 4;
-    this.directionX = true;
-    this.directionY = true;
-    this.center = heightRocket / 2;
+class  PPRocket {
+    constructor (widthRocket, heightRocket, colorRocket, positionXRocket, positionYRocket){
+        this.width = widthRocket;
+        this.height = heightRocket;
+        this.color = colorRocket;
+        this.positionX = positionXRocket;
+        this.positionY = positionYRocket;
+        this.speed = 4;
+        this.directionX = true;
+        this.directionY = true;
+        this.center = heightRocket / 2;
+    }
+
+    draw(){
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
+    }
 }
 
 function court() {
@@ -57,8 +64,9 @@ court();
 const ball2 = new Ball(ballSize,'red',150,350);
 ball2.draw();
 
-ctx.fillStyle = playerRocket.color;
-ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
+// ctx.fillStyle = playerRocket.color;
+// ctx.fillRect(playerRocket.positionX, playerRocket.positionY, playerRocket.width, playerRocket.height);
+playerRocket.draw();
 
 ctx.fillStyle = computerRocket.color;
 ctx.fillRect(computerRocket.positionX, computerRocket.positionY, computerRocket.width, computerRocket.height);
