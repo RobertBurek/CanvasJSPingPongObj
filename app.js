@@ -27,6 +27,8 @@ class Ball {
         ctx.arc(this.positionX,this.positionY, this.radius, 0, 2*Math.PI);
         ctx.fill(); 
         ctx.closePath();
+        this.positionX += 2;
+        this.positionY += -2;
       }
 }
 
@@ -58,7 +60,11 @@ const ball1 = new Ball(ballSize,'lime',250,450);
 const playerRocket = new Rocket(20, 150, 'blue', 40, 250);
 const computerRocket = new Rocket(20, 150, 'red', 1140, 150);
 
+function start(){
 court();
 ball1.draw();
 playerRocket.draw();
 computerRocket.draw();
+}
+
+setInterval(start, 15);
