@@ -61,10 +61,10 @@ const playerRocket = new Rocket(20, 150, 'blue', 40, 250);
 const computerRocket = new Rocket(20, 150, 'red', 1140, 150);
 
 function start(){
-court();
-ball1.draw();
-playerRocket.draw();
-computerRocket.draw();
+    court();
+    ball1.draw();
+    playerRocket.draw();
+    computerRocket.draw();
 }
 
 setInterval(start, 15);
