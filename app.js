@@ -18,6 +18,8 @@ class Ball {
         this.speedX = 4;
         this.speedY = 4;
         this.directionX = directionXB;
+        if (!directionXB) this.speedX *= -1;
+        if (!directionYB) this.speedY *= -1;
         this.directionY = directionYB;
         this.center = radiusB;
         }
