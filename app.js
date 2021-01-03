@@ -60,11 +60,26 @@ const ball1 = new Ball(ballSize,'lime',250,450);
 const playerRocket = new Rocket(20, 150, 'blue', 40, 250);
 const computerRocket = new Rocket(20, 150, 'red', 1140, 150);
 
-function start(){
+const gameElements = [];
+
+gameElements.push(ball1,playerRocket,computerRocket);
+
+function start(gameElements){
     court();
-    ball1.draw();
-    playerRocket.draw();
-    computerRocket.draw();
+    gameElements.forEach(element => {
+        element.draw();
+    });
 }
 
-setInterval(start, 15);
+function game(){
+    start(gameElements);
+}
+
+// function start(){
+//     court();
+//     ball1.draw();
+//     playerRocket.draw();
+//     computerRocket.draw();
+// }
+
+setInterval(game, 20);
