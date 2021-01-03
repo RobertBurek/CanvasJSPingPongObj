@@ -4,9 +4,10 @@ const ctx = cnv.getContext('2d');
 
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
-
-
 const ballSize = 16;
+const widthRocket = 20;
+const heightRocket = 150;
+const deltaRocket = 30;
 
 class Ball {
     constructor (ballSize, colorBall, positionXBall, positionYBall){
@@ -33,16 +34,16 @@ class Ball {
 }
 
 class  Rocket {
-    constructor (widthRocket, heightRocket, colorRocket, positionXRocket, positionYRocket){
-        this.width = widthRocket;
-        this.height = heightRocket;
-        this.color = colorRocket;
-        this.positionX = positionXRocket;
-        this.positionY = positionYRocket;
+    constructor (widthR, heightR, colorR, positionXR, positionYR){
+        this.width = widthR;
+        this.height = heightR;
+        this.color = colorR;
+        this.positionX = positionXR;
+        this.positionY = positionYR;
         this.speed = 4;
         this.directionX = true;
         this.directionY = true;
-        this.center = heightRocket / 2;
+        this.center = heightR / 2;
     }
 
     draw(){
@@ -57,8 +58,8 @@ function court() {
 }
 
 const ball1 = new Ball(ballSize,'lime',250,450);
-const playerRocket = new Rocket(20, 150, 'blue', 40, 250);
-const computerRocket = new Rocket(20, 150, 'red', 1140, 150);
+const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 250);
+const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
 
 const gameElements = [];
 
