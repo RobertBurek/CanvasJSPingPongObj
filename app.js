@@ -8,7 +8,7 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-const interval = 2000;
+let interval = 200;
 let collisionElements = [];
 
 class CollisionElement{
@@ -75,17 +75,19 @@ class Ball {
                             collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
                             break;
                         } 
-                        // else {
-                        //     collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
-                        //     break;
-                        // }
                     }
                 };
             }
         }
     }
 
-    collision(){
+    reaction(collisionElement){
+        this.positionX +=this.speedX;
+        this.positionY +=this.speedY;
+        collisionElement.Element2.positionX += collisionElement.Element2.speedX;
+        collisionElement.Element2.positionY += collisionElement.Element2.speedY;
+        this.collisionX();
+        collisionElement.Element2.collisionX();
         //     switch (this.direction()){
         //     case "leftTop":
         //         switch (e.direction()){
@@ -194,6 +196,9 @@ function start(gameElements){
     //     }
     //     // console.log(collisionList);
     // });
+    collisionElements.forEach(element =>{
+        element.Element1.reaction(element);
+    });
     collisionElements = [];
     gameElements.forEach(element =>{
         if (element.positionY <= radiusBall || element.positionY >= cnv.height - radiusBall) element.collisionY();
