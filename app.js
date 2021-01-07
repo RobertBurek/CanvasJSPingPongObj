@@ -71,12 +71,14 @@ class Ball {
                 if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
                 else {
                     for(let i = 0; i <= collisionElements.length-1; i++){
-                        if (((this===collisionElements[i].Element2)&&(collisionElements[i].Element1===e))||((e===collisionElements[i].Element2)&&(collisionElements[i].Element1===this))){
-                            break;
-                        } else {
+                        if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
                             collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
                             break;
-                        }
+                        } 
+                        // else {
+                        //     collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
+                        //     break;
+                        // }
                     }
                 };
             }
@@ -159,10 +161,11 @@ const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - delt
 const gameElements = [];
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
-// gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
+// gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
+gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball4, ball8,ball10, ball13);
 // gameElements.push(ball1, ball2);
-gameElements.push(ball1, ball3);
+// gameElements.push(ball1, ball3);
 
 let k = 0;
 
