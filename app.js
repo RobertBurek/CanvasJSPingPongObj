@@ -8,7 +8,7 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 15;
+let interval = 50;
 let collisionElements = [];
 
 class CollisionElement{
@@ -102,10 +102,17 @@ class Ball {
                         // this.positionY -=this.speedY;
                         // collisionElement.Element2.positionX -= collisionElement.Element2.speedX;
                         // collisionElement.Element2.positionY -= collisionElement.Element2.speedY;
+                        if (collisionElement.deltaY >= 0) {
+                            // this.positionX += 2 * this.radius - collisionElement.deltaX;
+                            this.positionY += 2 * this.radius - collisionElement.deltaY;
+                        } else {
+                            // collisionElement.Element2.positionX += 2 * this.radius + collisionElement.deltaX;
+                            collisionElement.Element2.positionY += 2 * this.radius + collisionElement.deltaY;
+                        }
                         let tempX = this.speedX;
                         let tempY = this.speedY;
-                        this.speedX = collisionElement.Element2.speedY;
-                        this.speedY = collisionElement.Element2.speedX;
+                        this.speedX = collisionElement.Element2.speedX;
+                        this.speedY = collisionElement.Element2.speedY;
                         collisionElement.Element2.speedX = tempY;
                         collisionElement.Element2.speedY = tempX;
                         break;
