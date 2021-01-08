@@ -8,7 +8,7 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 200;
+let interval = 15;
 let collisionElements = [];
 
 class CollisionElement{
@@ -98,9 +98,17 @@ class Ball {
                         collisionElement.Element2.collisionX();
                         break;
                     case "leftTop":
-                        // this.collisionX();
-                        // collisionElement.Element2.collisionX();
-                        // break;
+                        // this.positionX -=this.speedX;
+                        // this.positionY -=this.speedY;
+                        // collisionElement.Element2.positionX -= collisionElement.Element2.speedX;
+                        // collisionElement.Element2.positionY -= collisionElement.Element2.speedY;
+                        let tempX = this.speedX;
+                        let tempY = this.speedY;
+                        this.speedX = collisionElement.Element2.speedY;
+                        this.speedY = collisionElement.Element2.speedX;
+                        collisionElement.Element2.speedX = tempY;
+                        collisionElement.Element2.speedY = tempX;
+                        break;
                 } // koniec 2 switcha
         } // koniec 1 switcha
     }
@@ -141,7 +149,7 @@ function court() {
 const ball1 = new Ball(radiusBall, 'white', 150, 350, 6, 6);
 const ball2 = new Ball(radiusBall, 'yellow', 150, 250, 6, -6);
 const ball3 = new Ball(radiusBall, 'red', 100, 250, -6, 6);
-const ball4 = new Ball(radiusBall, 'blue', 50, 300, 0, 4);
+const ball4 = new Ball(radiusBall, 'blue', 150, 400, 6, 3);
 const ball5 = new Ball(radiusBall, 'green', 470, 257, 5, -5);
 const ball6 = new Ball(radiusBall, 'red', 550, 350, 4, -6);
 const ball7 = new Ball(radiusBall, 'blue', 655, 450, 5, 6);
@@ -163,8 +171,9 @@ const gameElements = [];
 // gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball4, ball8,ball10, ball13);
-gameElements.push(ball1, ball2);
+// gameElements.push(ball1, ball2);
 // gameElements.push(ball1, ball3);
+gameElements.push(ball1, ball4);
 
 let k = 0;
 
