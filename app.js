@@ -12,13 +12,14 @@ let interval = 1000;
 let collisionElements = [];
 
 class CollisionElement{
-    constructor (Element1, Element2, directionEl1, directionEl2, deltaX, deltaY) {
+    constructor (Element1, Element2, directionEl1, directionEl2, deltaX, deltaY, distance) {
         this.Element1 = Element1;
         this.Element2 = Element2;
         this.directionEl1 = directionEl1;
         this.directionEl2 = directionEl2;
         this.deltaX = deltaX;
         this.deltaY = deltaY;
+        this.distance = distance;
     }
 }
 
@@ -62,17 +63,18 @@ class Ball {
             if (this === e) continue;
             let deltaX = this.positionX - e.positionX;
             let deltaY = this.positionY - e.positionY;
-            let distance = Math.pow(deltaX, 2) + Math.pow(deltaY, 2);
-            if (distance <= Math.pow(2 * this.radius, 2)) {
+            let distance = Math .sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+            if (distance <= 2 * this.radius) {
                 this.positionX -= this.speedX;
                 this.positionY -= this.speedY;
                 e.positionX -= e.speedX;
                 e.positionY -= e.speedY;
-                if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
+                if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
                 else {
                     for(let i = 0; i <= collisionElements.length-1; i++){
                         if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
-                            collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY));
+                            collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
+                            console.log(distance);
                             break;
                         } 
                     }
@@ -82,8 +84,10 @@ class Ball {
     }
 
     reaction(collisionElement){
-        let x = 2 * this.radius * collisionElement.deltaX / Math.sqrt(Math.pow(collisionElement.deltaX, 2) + Math.pow(collisionElement.deltaY, 2));
-        let y = 2 * this.radius * collisionElement.deltaY / Math.sqrt(Math.pow(collisionElement.deltaX, 2) + Math.pow(collisionElement.deltaY, 2));
+        // let x = 2 * this.radius * collisionElement.deltaX / Math.sqrt(Math.pow(collisionElement.deltaX, 2) + Math.pow(collisionElement.deltaY, 2));
+        // let y = 2 * this.radius * collisionElement.deltaY / Math.sqrt(Math.pow(collisionElement.deltaX, 2) + Math.pow(collisionElement.deltaY, 2));
+        let x = 2 * this.radius * collisionElement.deltaX / collisionElement.distance;
+        let y = 2 * this.radius * collisionElement.deltaY / collisionElement.distance;
         console.log(Math.round(x));
         console.log(Math.round(y));
         this.positionX +=this.speedX;
