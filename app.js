@@ -8,7 +8,7 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 200;
+let interval = 50;
 let collisionElements = [];
 
 class CollisionElement{
@@ -71,8 +71,32 @@ class Ball {
                 // e.positionY -= e.speedY;
                 let newDeltaX = Math.ceil(2 * this.radius * deltaX / distance);
                 let newDeltaY = Math.ceil(2 * this.radius * deltaY / distance);
-                this.positionX = newDeltaX + e.positionX;
-                this.positionY = newDeltaY + e.positionY;
+                if (newDeltaY < 0) newDeltaY -= 1;
+                if (newDeltaX < 0) newDeltaX -= 1;
+                // let newDeltaX = (2 * this.radius * deltaX / distance);
+                // let newDeltaY = (2 * this.radius * deltaY / distance);
+
+                console.log(deltaX);
+                console.log(deltaY);
+                console.log(Math .sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
+                console.log(newDeltaX);
+                console.log(newDeltaY);
+                console.log(Math .sqrt(Math.pow(newDeltaX, 2) + Math.pow(newDeltaY, 2)));
+                if (deltaX >=0) {
+                    e.positionX = this.positionX - newDeltaX;
+                    // if (deltaY >= 0) {
+                        e.positionY = this.positionY - newDeltaY;//ok
+                    // } else {
+                        // e.positionY = this.positionY - newDeltaY; //ok
+                    // }
+                } else {
+                    e.positionX = this.positionX - newDeltaX;
+                    // if (deltaY >= 0) {
+                        e.positionY = this.positionY - newDeltaY; //ok
+                        // } else {
+                        // e.positionY = this.positionY - newDeltaY;//ok
+                        // }
+                }
                 if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
                 else {
                     for(let i = 0; i <= collisionElements.length-1; i++){
@@ -102,8 +126,9 @@ class Ball {
         // this.positionY +=this.speedY;
         // collisionElement.Element2.positionX += collisionElement.Element2.speedX;
         // collisionElement.Element2.positionY += collisionElement.Element2.speedY;
-        console.log(this);
-        console.log(collisionElement.Element2);
+ //       console.log("Przed: ");
+ //       console.log(this);
+ //       console.log(collisionElement.Element2);
         // this.positionX = newDeltaX + collisionElement.Element2.positionX;
         // this.positionY = newDeltaY + collisionElement.Element2.positionY;
         switch (this.direction()){
@@ -118,17 +143,6 @@ class Ball {
                         collisionElement.Element2.collisionX();
                         break;
                     case "leftTop":
-                        // console.log(this);
-                        // console.log(collisionElement.Element2);
-       //                 this.positionX = newDeltaX + collisionElement.Element2.positionX;
-       //                 this.positionY = newDeltaY + collisionElement.Element2.positionY;
-                        // if (collisionElement.deltaY >= 0) {
-                        //     // this.positionX += 2 * this.radius - collisionElement.deltaX;
-                        //     this.positionY += 2 * this.radius - collisionElement.deltaY;
-                        // } else {
-                        //     // collisionElement.Element2.positionX += 2 * this.radius + collisionElement.deltaX;
-                        //     collisionElement.Element2.positionY += 2 * this.radius + collisionElement.deltaY;
-                        // }
                         let tempX = this.speedX;
                         let tempY = this.speedY;
                         this.speedX = collisionElement.Element2.speedX;
@@ -139,20 +153,23 @@ class Ball {
                         // console.log(collisionElement.Element2);
                         break;
                 } // koniec 2 switcha
-                case "rightTop":
-                    switch (collisionElement.Element2.direction()){
-                        case "leftBottom":
-                            this.collisionY();
-                            collisionElement.Element2.collisionY();
-                            break;
-                        case "rightTop":
-                            this.collisionX();
-                            collisionElement.Element2.collisionX();
-                            break;
-                        case "leftTop":
-                            break;
-                    }
+            case "rightTop":
+                switch (collisionElement.Element2.direction()){
+                    case "leftBottom":
+                        this.collisionY();
+                        collisionElement.Element2.collisionY();
+                        break;
+                    case "rightBottom":
+                        this.collisionY();
+                        collisionElement.Element2.collisionY();
+                        break;
+                    case "leftTop":
+                        break;
+                }
         } // koniec 1 switcha
+//        console.log("Po odbiciu: ");
+//        console.log(this);
+//        console.log(collisionElement.Element2);
     }
 
       collisionX() {
@@ -188,14 +205,16 @@ function court() {
     ctx.fillRect(0,0,cnvW,cnvH);
 }
 
-const ball1 = new Ball(radiusBall, 'white', 153, 350, 6, 6);
-const ball2 = new Ball(radiusBall, 'yellow', 150, 250, 6, -6);
+const ball1 = new Ball(radiusBall, 'white', 145, 250, 6, 6);
+const ball2 = new Ball(radiusBall, 'yellow', 150, 300, 6, -6);
 const ball3 = new Ball(radiusBall, 'red', 100, 250, -6, 6);
-const ball4 = new Ball(radiusBall, 'blue', 150, 380, 6, 3);
-const ball5 = new Ball(radiusBall, 'green', 470, 257, 5, -5);
-const ball6 = new Ball(radiusBall, 'red', 550, 350, 4, -6);
-const ball7 = new Ball(radiusBall, 'blue', 655, 450, 5, 6);
-const ball8 = new Ball(radiusBall, 'green', 756, 250, 4, -3);
+const ball4P = new Ball(radiusBall, 'blue', 150, 280, 6, 3);
+const ball4L = new Ball(radiusBall, 'blue', 143, 280, 6, 3);
+const ball5 = new Ball(radiusBall, 'green', 233, 250, -5, 5);
+const ball6 = new Ball(radiusBall, 'lime', 90, 330, -5, -6);
+const ball7 = new Ball(radiusBall, 'blue', 110, 330, -6, -6);
+const ball8L = new Ball(radiusBall, 'green', 140, 220, 6, 8);
+const ball8P = new Ball(radiusBall, 'green', 148, 220, 6, 8);
 const ball9 = new Ball(radiusBall, 'lime', 780, 254, 4, 4);
 const ball10 = new Ball(radiusBall, 'yellow', 220, 387, 3, -5);
 const ball11 = new Ball(radiusBall, 'red', 790, 25, 5, 5);
@@ -212,12 +231,23 @@ const gameElements = [];
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
 // gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
-gameElements.push(ball4, ball2, ball3, ball1, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
+gameElements.push(ball4L, ball2, ball3, ball1, ball5, ball6, ball7,  ball8P, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball4, ball8, ball10, ball13);
 // gameElements.push(ball4, ball1, ball8, ball10, ball13);
-// gameElements.push(ball1, ball2);
-// gameElements.push(ball1, ball3);
-// gameElements.push(ball4, ball1);
+// gameElements.push(ball1, ball3);//ok
+// gameElements.push(ball4, ball1);//ok
+
+
+
+// gameElements.push(ball1, ball4P);//ok -x -y
+// gameElements.push(ball1, ball4L);//ok +x -y
+// gameElements.push(ball1, ball8L);//ok +x +y
+// gameElements.push(ball1, ball8P);//ok -x +y
+
+// gameElements.push(ball1, ball2);//ok
+// gameElements.push(ball1, ball5);//ok
+// gameElements.push(ball3, ball6);//ok
+// gameElements.push(ball3, ball7);//----
 
 let k = 0;
 
