@@ -8,7 +8,7 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 1000;
+let interval = 200;
 let collisionElements = [];
 
 class CollisionElement{
@@ -65,10 +65,14 @@ class Ball {
             let deltaY = this.positionY - e.positionY;
             let distance = Math .sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
             if (distance <= 2 * this.radius) {
-                this.positionX -= this.speedX;
-                this.positionY -= this.speedY;
-                e.positionX -= e.speedX;
-                e.positionY -= e.speedY;
+                // this.positionX -= this.speedX;
+                // this.positionY -= this.speedY;
+                // e.positionX -= e.speedX;
+                // e.positionY -= e.speedY;
+                let newDeltaX = Math.ceil(2 * this.radius * deltaX / distance);
+                let newDeltaY = Math.ceil(2 * this.radius * deltaY / distance);
+                this.positionX = newDeltaX + e.positionX;
+                this.positionY = newDeltaY + e.positionY;
                 if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
                 else {
                     for(let i = 0; i <= collisionElements.length-1; i++){
@@ -86,14 +90,22 @@ class Ball {
     reaction(collisionElement){
         // let x = 2 * this.radius * collisionElement.deltaX / Math.sqrt(Math.pow(collisionElement.deltaX, 2) + Math.pow(collisionElement.deltaY, 2));
         // let y = 2 * this.radius * collisionElement.deltaY / Math.sqrt(Math.pow(collisionElement.deltaX, 2) + Math.pow(collisionElement.deltaY, 2));
-        let x = 2 * this.radius * collisionElement.deltaX / collisionElement.distance;
-        let y = 2 * this.radius * collisionElement.deltaY / collisionElement.distance;
-        console.log(Math.round(x));
-        console.log(Math.round(y));
-        this.positionX +=this.speedX;
-        this.positionY +=this.speedY;
-        collisionElement.Element2.positionX += collisionElement.Element2.speedX;
-        collisionElement.Element2.positionY += collisionElement.Element2.speedY;
+        // let x = 2 * this.radius * collisionElement.deltaX / collisionElement.distance;
+        // let y = 2 * this.radius * collisionElement.deltaY / collisionElement.distance;
+        // let newDeltaX = Math.ceil(2 * this.radius * collisionElement.deltaX / collisionElement.distance);
+        // let newDeltaY = Math.ceil(2 * this.radius * collisionElement.deltaY / collisionElement.distance);
+        // console.log(Math.round(x));
+        // console.log(Math.round(y));
+        // console.log(newDeltaX);
+        // console.log(newDeltaY);
+        // this.positionX +=this.speedX;
+        // this.positionY +=this.speedY;
+        // collisionElement.Element2.positionX += collisionElement.Element2.speedX;
+        // collisionElement.Element2.positionY += collisionElement.Element2.speedY;
+        console.log(this);
+        console.log(collisionElement.Element2);
+        // this.positionX = newDeltaX + collisionElement.Element2.positionX;
+        // this.positionY = newDeltaY + collisionElement.Element2.positionY;
         switch (this.direction()){
             case "leftTop":
                 switch (collisionElement.Element2.direction()){
@@ -106,10 +118,10 @@ class Ball {
                         collisionElement.Element2.collisionX();
                         break;
                     case "leftTop":
-                        this.positionX -= this.speedX;
-                        this.positionY -= this.speedY;
-                        collisionElement.Element2.positionX -= collisionElement.Element2.speedX;
-                        collisionElement.Element2.positionY -= collisionElement.Element2.speedY;
+                        // console.log(this);
+                        // console.log(collisionElement.Element2);
+       //                 this.positionX = newDeltaX + collisionElement.Element2.positionX;
+       //                 this.positionY = newDeltaY + collisionElement.Element2.positionY;
                         // if (collisionElement.deltaY >= 0) {
                         //     // this.positionX += 2 * this.radius - collisionElement.deltaX;
                         //     this.positionY += 2 * this.radius - collisionElement.deltaY;
@@ -121,8 +133,10 @@ class Ball {
                         let tempY = this.speedY;
                         this.speedX = collisionElement.Element2.speedX;
                         this.speedY = collisionElement.Element2.speedY;
-                        collisionElement.Element2.speedX = tempY;
-                        collisionElement.Element2.speedY = tempX;
+                        collisionElement.Element2.speedX = tempX;
+                        collisionElement.Element2.speedY = tempY;
+                        // console.log(this);
+                        // console.log(collisionElement.Element2);
                         break;
                 } // koniec 2 switcha
                 case "rightTop":
@@ -136,23 +150,6 @@ class Ball {
                             collisionElement.Element2.collisionX();
                             break;
                         case "leftTop":
-                            // this.positionX -=this.speedX;
-                            // this.positionY -=this.speedY;
-                            // collisionElement.Element2.positionX -= collisionElement.Element2.speedX;
-                            // collisionElement.Element2.positionY -= collisionElement.Element2.speedY;
-                            if (collisionElement.deltaY >= 0) {
-                                // this.positionX += 2 * this.radius - collisionElement.deltaX;
-                                this.positionY += 2 * this.radius - collisionElement.deltaY;
-                            } else {
-                                // collisionElement.Element2.positionX += 2 * this.radius + collisionElement.deltaX;
-                                collisionElement.Element2.positionY += 2 * this.radius + collisionElement.deltaY;
-                            }
-                            let tempX = this.speedX;
-                            let tempY = this.speedY;
-                            this.speedX = collisionElement.Element2.speedX;
-                            this.speedY = collisionElement.Element2.speedY;
-                            collisionElement.Element2.speedX = tempY;
-                            collisionElement.Element2.speedY = tempX;
                             break;
                     }
         } // koniec 1 switcha
@@ -215,10 +212,12 @@ const gameElements = [];
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
 // gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
-// gameElements.push(ball1, ball4, ball8,ball10, ball13);
+gameElements.push(ball4, ball2, ball3, ball1, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
+// gameElements.push(ball1, ball4, ball8, ball10, ball13);
+// gameElements.push(ball4, ball1, ball8, ball10, ball13);
 // gameElements.push(ball1, ball2);
 // gameElements.push(ball1, ball3);
-gameElements.push(ball4, ball1);
+// gameElements.push(ball4, ball1);
 
 let k = 0;
 
