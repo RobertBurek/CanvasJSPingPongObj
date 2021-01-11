@@ -281,8 +281,22 @@ function start(gameElements){
     });
     collisionElements = [];
     gameElements.forEach(element =>{
-        if (element.positionY <= radiusBall || element.positionY >= cnv.height - radiusBall) element.collisionY();
-        if (element.positionX <= radiusBall || element.positionX >= cnv.width - radiusBall) element.collisionX();
+        if (element.positionY <= radiusBall) {
+            element.positionY = 2 * element.radius - element.positionY;
+            element.collisionY();
+        };
+        if (element.positionY >= cnv.height - radiusBall) {
+            element.positionY = element.positionY - 2 * element.radius + (cnv.height - element.positionY);
+            element.collisionY();
+        }
+        if (element.positionX <= radiusBall) {
+            element.positionX = 2 * element.radius - element.positionX;
+            element.collisionX();
+        };
+        if (element.positionX >= cnv.width - radiusBall) {
+            element.positionX = element.positionX - 2 * element.radius + (cnv.width - element.positionX);
+            element.collisionX();
+        }
     });
 }
 
