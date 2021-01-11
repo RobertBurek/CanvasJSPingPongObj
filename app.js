@@ -8,7 +8,7 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 50;
+let interval = 100;
 let collisionElements = [];
 
 class CollisionElement{
@@ -82,21 +82,21 @@ class Ball {
                 console.log(newDeltaX);
                 console.log(newDeltaY);
                 console.log(Math .sqrt(Math.pow(newDeltaX, 2) + Math.pow(newDeltaY, 2)));
-                if (deltaX >=0) {
+                // if (deltaX >=0) {
                     e.positionX = this.positionX - newDeltaX;
                     // if (deltaY >= 0) {
                         e.positionY = this.positionY - newDeltaY;//ok
                     // } else {
                         // e.positionY = this.positionY - newDeltaY; //ok
                     // }
-                } else {
-                    e.positionX = this.positionX - newDeltaX;
+                // } else {
+                    // e.positionX = this.positionX - newDeltaX;
                     // if (deltaY >= 0) {
-                        e.positionY = this.positionY - newDeltaY; //ok
+                        // e.positionY = this.positionY - newDeltaY; //ok
                         // } else {
                         // e.positionY = this.positionY - newDeltaY;//ok
                         // }
-                }
+                // }
                 if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
                 else {
                     for(let i = 0; i <= collisionElements.length-1; i++){
@@ -141,6 +141,12 @@ class Ball {
                     case "rightTop":
                         this.collisionX();
                         collisionElement.Element2.collisionX();
+                        break;
+                    case "rightBottom":
+                        this.collisionX();
+                        this.collisionY();
+                        collisionElement.Element2.collisionX();
+                        collisionElement.Element2.collisionY();
                         break;
                     case "leftTop":
                         let tempX = this.speedX;
