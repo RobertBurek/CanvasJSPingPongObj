@@ -279,6 +279,18 @@ const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 
+// Test rightTop
+const ball2RT = new Ball(radiusBall, 'white', 150, 300, -6, 3);
+const ball2RT2 = new Ball(radiusBall, 'red', 148, 270, -6, 6);
+const ball2LT = new Ball(radiusBall, 'lime', 70, 300, 5, 5);
+const ball2RB = new Ball(radiusBall, 'blue', 148, 380, -6, -6);
+const ball2LB = new Ball(radiusBall, 'yellow', 70, 350, 6, -6);
+// gameElements.push(ball2RT, ball2RT2);//ok +x +y
+// gameElements.push(ball2RT, ball2LT);//ok +x -y   // inna reakcja !!!
+// gameElements.push(ball2RT, ball2RB);//ok +x -y
+// gameElements.push(ball2RT, ball2LB);//ok +x =y    // inna reakcja!!!
+gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
+
 let k = 0;
 
 function start(gameElements){
