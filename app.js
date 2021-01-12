@@ -4,11 +4,11 @@ const ctx = cnv.getContext('2d');
 
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
-const radiusBall = 8;
+const radiusBall = 16;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 1000;
+let interval = 30;
 let collisionElements = [];
 
 class CollisionElement{
@@ -129,7 +129,7 @@ class Ball {
                         collisionElement.Element2.collisionX();
                         collisionElement.Element2.collisionY();
                         break;
-                    case "lefttTop":
+                    case "leftTop":
                         this.collisionX();
                         collisionElement.Element2.collisionX();
                         break;
@@ -232,14 +232,11 @@ function court() {
     ctx.fillRect(0,0,cnvW,cnvH);
 }
 
-const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
-const ball1LT2 = new Ball(radiusBall, 'blue', 150, 280, 6, 3);
-const ball1RB = new Ball(radiusBall, 'lime', 192, 280, -6, -4);
-const ball1LB = new Ball(radiusBall, 'red', 150, 320, 5, -4);
-const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 
-const ball2 = new Ball(radiusBall, 'yellow', 150, 300, 6, -6);
-const ball3 = new Ball(radiusBall, 'red', 100, 250, -6, 6);
+
+
+
+
 const ball4L = new Ball(radiusBall, 'blue', 143, 280, 6, 3);
 const ball5 = new Ball(radiusBall, 'green', 233, 250, -5, 5);
 const ball6 = new Ball(radiusBall, 'lime', 90, 330, -5, -6);
@@ -270,15 +267,17 @@ const gameElements = [];
 
 
 //Test leftTop
+const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
+const ball1LT2 = new Ball(radiusBall, 'blue', 150, 280, 6, 3);
+const ball1RB = new Ball(radiusBall, 'lime', 192, 280, -6, -4);
+const ball1LB = new Ball(radiusBall, 'red', 150, 320, 5, -4);
+const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 // gameElements.push(ball1LT, ball1LT2);//ok -x -y
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
-gameElements.push(ball1LT, ball1RT);//ok -x +y
+// gameElements.push(ball1LT, ball1RT);//ok -x +y
+gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
-// Test rightTop
-// gameElements.push(ball1, ball2);//ok -x -y
-// gameElements.push(ball1, ball5);//ok -x +y
-// gameElements.push(ball3, ball6);//ok +x -y
 
 let k = 0;
 
