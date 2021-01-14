@@ -241,9 +241,13 @@ class  Rocket {
         this.center = heightR / 2;
     }
 
-    draw(){
+    draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
+    }
+
+    isContact() {
+
     }
 }
 
@@ -273,6 +277,7 @@ const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - delt
 const gameElements = [];
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
+gameElements.push(playerRocket, computerRocket);
 // gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball4L, ball2, ball3, ball1, ball5, ball6, ball7,  ball8P, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
@@ -374,3 +379,9 @@ function game() {
 }
 
 setInterval(game, interval);
+
+document.addEventListener('keydown', (event) => {
+    console.log(event.code);
+    if (event.code === "KeyW") playerRocket.positionY -= playerRocket.speed;
+    else if (event.code === "KeyS") playerRocket.positionY += playerRocket.speed;
+  });
