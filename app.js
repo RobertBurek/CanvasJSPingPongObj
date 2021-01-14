@@ -8,10 +8,10 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 300;
+let interval = 200;
 let collisionElements = [];
 
-class CollisionElement{
+class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2, deltaX, deltaY, distance) {
         this.Element1 = Element1;
         this.Element2 = Element2;
@@ -32,6 +32,7 @@ class Ball {
         this.speedX = speedXB;
         this.speedY = speedYB;
         this.center = radiusB;
+        this.vector = Math.sqrt(Math.pow(this.speedY,2) + Math.pow(this.speedX,2));
         }
 
     draw() {
@@ -46,18 +47,18 @@ class Ball {
         // this.positionY += this.speedY;
       }
 
-    direction(){
-        if (this.speedX > 0 && this.speedY > 0 ) return "leftTop";
-        if (this.speedX < 0 && this.speedY > 0 ) return "rightTop";
-        if (this.speedX > 0 && this.speedY < 0 ) return "leftBottom";
+    direction() {
+        if (this.speedX >= 0 && this.speedY >= 0 ) return "leftTop";
+        if (this.speedX < 0 && this.speedY >= 0 ) return "rightTop";
+        if (this.speedX >= 0 && this.speedY < 0 ) return "leftBottom";
         if (this.speedX < 0 && this.speedY < 0 ) return "rightBottom";
-        if (this.speedX > 0 && this.speedY == 0 ) return "left";
-        if (this.speedX < 0 && this.speedY == 0 ) return "right";
-        if (this.speedX == 0 && this.speedY > 0 ) return "top";
-        if (this.speedX == 0 && this.speedY < 0 ) return "bottom";
+        // if (this.speedX > 0 && this.speedY == 0 ) return "left";
+        // if (this.speedX < 0 && this.speedY == 0 ) return "right";
+        // if (this.speedX == 0 && this.speedY > 0 ) return "top";
+        // if (this.speedX == 0 && this.speedY < 0 ) return "bottom";
     }
 
-    isContact(){
+    isContact() {
         for (let i = 0; i <= gameElements.length - 1; i++) {
             let e = gameElements[i];
             if (this === e) continue;
@@ -75,10 +76,29 @@ class Ball {
                     if (newDeltaY < 0) newDeltaY -= 1;
                     if (newDeltaX < 0) newDeltaX -= 1;
                 }
-                console.log(deltaX);
-                console.log(deltaY);
-                console.log(newDeltaX);
-                console.log(newDeltaY);
+                let thisDeltaX = Math.floor((newDeltaX - deltaX) / 2);
+                let thisDeltaY = Math.floor((newDeltaY - deltaY) / 2);
+                // let eDeltaX = newDeltaX - thisDeltaX;
+                // let eDeltaY = newDeltaY - thisDeltaY;
+                let alfa = Math.acos((this.speedX * e.speedX + this.speedY * e.speedY)/(this.vector * e.vector)) * 180 / Math.PI;
+
+                console.log(alfa);
+                // console.log((this.speedX * e.speedX + this.speedY * e.speedY)/(this.vector * e.vector));
+                // console.log((this.speedX * e.speedX + this.speedY * e.speedY));
+                // console.log((this.vector * e.vector));
+                // console.log(this.vector);
+                // console.log(e.vector);
+                // console.log(deltaX);
+                // console.log(deltaY);
+                // console.log(newDeltaX);
+                // console.log(newDeltaY);
+                // console.log(thisDeltaX);
+                // console.log(thisDeltaY);
+                // e.positionX = this.positionX - newDeltaX;
+                // e.positionY = this.positionY - newDeltaY;
+
+                this.positionX += thisDeltaX;
+                this.positionY += thisDeltaY;
                 e.positionX = this.positionX - newDeltaX;
                 e.positionY = this.positionY - newDeltaY;
                 if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
@@ -86,7 +106,7 @@ class Ball {
                     for(let i = 0; i <= collisionElements.length - 1; i++){
                         if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
                             collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
-                            console.log(distance);
+                            // console.log(distance);
                             break;
                         } 
                     }
@@ -95,108 +115,108 @@ class Ball {
         }
     }
 
-    reaction(collisionElement){
-            if (this.direction() == "leftTop") {
-                switch (collisionElement.Element2.direction()){
-                    case "leftBottom":
-                        this.collisionY();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "rightTop":
-                        this.collisionX();
-                        collisionElement.Element2.collisionX();
-                        break;
-                    case "rightBottom":
-                        this.collisionX();
-                        this.collisionY();
-                        collisionElement.Element2.collisionX();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "leftTop":
-                        let tempX = this.speedX;
-                        let tempY = this.speedY;
-                        this.speedX = collisionElement.Element2.speedX;
-                        this.speedY = collisionElement.Element2.speedY;
-                        collisionElement.Element2.speedX = tempX;
-                        collisionElement.Element2.speedY = tempY;
-                        break;
-                }
-            } else if (this.direction() == "rightTop") {
-                switch (collisionElement.Element2.direction()){
-                    case "leftBottom":
-                        this.collisionX();
-                        this.collisionY();
-                        collisionElement.Element2.collisionX();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "leftTop":
-                        this.collisionX();
-                        collisionElement.Element2.collisionX();
-                        break;
-                    case "rightBottom":
-                        this.collisionY();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "rightTop":
-                        let tempX = this.speedX;
-                        let tempY = this.speedY;
-                        this.speedX = collisionElement.Element2.speedX;
-                        this.speedY = collisionElement.Element2.speedY;
-                        collisionElement.Element2.speedX = tempX;
-                        collisionElement.Element2.speedY = tempY;
-                        break;
-                } 
-            } else if (this.direction() == "rightBottom") {
-                switch (collisionElement.Element2.direction()){
-                    case "leftTop":
-                        this.collisionX();
-                        this.collisionY();
-                        collisionElement.Element2.collisionX();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "leftBottom":
-                        this.collisionX();
-                        collisionElement.Element2.collisionX();
-                        break;
-                    case "rightTop":
-                        this.collisionY();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "rightBottom":
-                        let tempX = this.speedX;
-                        let tempY = this.speedY;
-                        this.speedX = collisionElement.Element2.speedX;
-                        this.speedY = collisionElement.Element2.speedY;
-                        collisionElement.Element2.speedX = tempX;
-                        collisionElement.Element2.speedY = tempY;
-                        break;
-                }
-            } else if (this.direction() == "leftBottom") {
-                switch (collisionElement.Element2.direction()){
-                    case "rightTop":
-                        this.collisionX();
-                        this.collisionY();
-                        collisionElement.Element2.collisionX();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "rightBottom":
-                        this.collisionX();
-                        collisionElement.Element2.collisionX();
-                        break;
-                    case "leftTop":
-                        this.collisionY();
-                        collisionElement.Element2.collisionY();
-                        break;
-                    case "leftBottom":
-                        let tempX = this.speedX;
-                        let tempY = this.speedY;
-                        this.speedX = collisionElement.Element2.speedX;
-                        this.speedY = collisionElement.Element2.speedY;
-                        collisionElement.Element2.speedX = tempX;
-                        collisionElement.Element2.speedY = tempY;
-                        break;
-                }
+    reaction(collisionElement) {
+        if (this.direction() == "leftTop") {
+            switch (collisionElement.Element2.direction()){
+                case "leftBottom":
+                    this.collisionY();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "rightTop":
+                    this.collisionX();
+                    collisionElement.Element2.collisionX();
+                    break;
+                case "rightBottom":
+                    this.collisionX();
+                    this.collisionY();
+                    collisionElement.Element2.collisionX();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "leftTop":
+                    let tempX = this.speedX;
+                    let tempY = this.speedY;
+                    this.speedX = collisionElement.Element2.speedX;
+                    this.speedY = collisionElement.Element2.speedY;
+                    collisionElement.Element2.speedX = tempX;
+                    collisionElement.Element2.speedY = tempY;
+                    break;
             }
+        } else if (this.direction() == "rightTop") {
+            switch (collisionElement.Element2.direction()){
+                case "leftBottom":
+                    this.collisionX();
+                    this.collisionY();
+                    collisionElement.Element2.collisionX();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "leftTop":
+                    this.collisionX();
+                    collisionElement.Element2.collisionX();
+                    break;
+                case "rightBottom":
+                    this.collisionY();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "rightTop":
+                    let tempX = this.speedX;
+                    let tempY = this.speedY;
+                    this.speedX = collisionElement.Element2.speedX;
+                    this.speedY = collisionElement.Element2.speedY;
+                    collisionElement.Element2.speedX = tempX;
+                    collisionElement.Element2.speedY = tempY;
+                    break;
+            } 
+        } else if (this.direction() == "rightBottom") {
+            switch (collisionElement.Element2.direction()){
+                case "leftTop":
+                    this.collisionX();
+                    this.collisionY();
+                    collisionElement.Element2.collisionX();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "leftBottom":
+                    this.collisionX();
+                    collisionElement.Element2.collisionX();
+                    break;
+                case "rightTop":
+                    this.collisionY();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "rightBottom":
+                    let tempX = this.speedX;
+                    let tempY = this.speedY;
+                    this.speedX = collisionElement.Element2.speedX;
+                    this.speedY = collisionElement.Element2.speedY;
+                    collisionElement.Element2.speedX = tempX;
+                    collisionElement.Element2.speedY = tempY;
+                    break;
+            }
+        } else if (this.direction() == "leftBottom") {
+            switch (collisionElement.Element2.direction()){
+                case "rightTop":
+                    this.collisionX();
+                    this.collisionY();
+                    collisionElement.Element2.collisionX();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "rightBottom":
+                    this.collisionX();
+                    collisionElement.Element2.collisionX();
+                    break;
+                case "leftTop":
+                    this.collisionY();
+                    collisionElement.Element2.collisionY();
+                    break;
+                case "leftBottom":
+                    let tempX = this.speedX;
+                    let tempY = this.speedY;
+                    this.speedX = collisionElement.Element2.speedX;
+                    this.speedY = collisionElement.Element2.speedY;
+                    collisionElement.Element2.speedX = tempX;
+                    collisionElement.Element2.speedY = tempY;
+                    break;
+            }
+        }
     }
 
       collisionX() {
@@ -263,16 +283,18 @@ const gameElements = [];
 
 
 //Test leftTop
-const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
+// const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
+const ball1LT = new Ball(radiusBall, 'white', 150, 250, 5, 4);
 const ball1LT2 = new Ball(radiusBall, 'blue', 150, 280, 6, 3);
 const ball1RB = new Ball(radiusBall, 'lime', 192, 280, -6, -4);
 const ball1LB = new Ball(radiusBall, 'red', 150, 320, 5, -4);
-const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
+// const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
+const ball1RT = new Ball(radiusBall, 'yellow', 157, 250, -6, 2);
 // gameElements.push(ball1LT, ball1LT2);//ok -x -y
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 
 // Test rightTop
@@ -285,7 +307,7 @@ const ball2LB = new Ball(radiusBall, 'yellow', 70, 350, 6, -6);
 // gameElements.push(ball2RT, ball2LT);//ok +x -y   // inna reakcja !!!
 // gameElements.push(ball2RT, ball2RB);//ok +x -y
 // gameElements.push(ball2RT, ball2LB);//ok +x =y    // inna reakcja!!!
-gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
+// gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
 
 
 // Test leftBottom
@@ -298,37 +320,36 @@ const ball3RT = new Ball(radiusBall, 'yellow', 680, 150, -6, 5);
 // gameElements.push(ball3LB, ball3LT);//ok +x +y
 // gameElements.push(ball3LB, ball3RB);//ok -x -y
 // gameElements.push(ball3LB, ball3RT);//ok -x +y
-gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie leftBottom
+// gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie leftBottom
 
 
 // Test rightBottom
 const ball4RB = new Ball(radiusBall, 'white', 750, 370, -6, -6);
 const ball4RB2 = new Ball(radiusBall, 'red', 740, 320, -6, -4);
 const ball4LT = new Ball(radiusBall, 'lime', 551, 170, 5, 5);
-const ball4LB = new Ball(radiusBall, 'blue', 650, 371, 5, -4);
+const ball4LB = new Ball(radiusBall, 'blue', 680, 371, 5, -4);
 const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
-// gameElements.push(ball4RB, ball4RB2);//ok +x +y
+gameElements.push(ball4RB, ball4RB2);//ok +x +y
 // gameElements.push(ball4RB, ball4LT);//ok +x +y
 // gameElements.push(ball4RB, ball4LB);//ok +x -y
 // gameElements.push(ball4RB, ball4RT);//ok -x +y
-gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
+// gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
 
-let k = 0;
 
-function start(gameElements){
+function start(gameElements) {
     court();
-    gameElements.forEach(element =>{
+    gameElements.forEach(element => {
         element.draw();
     });
-    gameElements.forEach(element =>{
+    gameElements.forEach(element => {
         element.isContact();
     });
-    if (collisionElements.length>0) console.log(collisionElements);
-    collisionElements.forEach(element =>{
+    if (collisionElements.length > 0) console.log(collisionElements);
+    collisionElements.forEach(element => {
         element.Element1.reaction(element);
     });
     collisionElements = [];
-    gameElements.forEach(element =>{
+    gameElements.forEach(element => {
         if (element.positionY <= radiusBall) {
             element.positionY = 2 * element.radius - element.positionY;
             element.collisionY();
@@ -348,7 +369,7 @@ function start(gameElements){
     });
 }
 
-function game(){
+function game() {
     start(gameElements);
 }
 
