@@ -380,8 +380,11 @@ function game() {
 
 setInterval(game, interval);
 
-document.addEventListener('keydown', (event) => {
+window.addEventListener('keydown', (event) => {
     console.log(event.code);
     if (event.code === "KeyW") playerRocket.positionY -= playerRocket.speed;
     else if (event.code === "KeyS") playerRocket.positionY += playerRocket.speed;
+
+    if (event.code === "ArrowUp") computerRocket.positionY -= computerRocket.speed;
+    else if (event.code === "ArrowDown") computerRocket.positionY += computerRocket.speed;
   });
