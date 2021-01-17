@@ -8,18 +8,15 @@ const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
-let interval = 200;
+let interval = 15;
 let collisionElements = [];
 
 class CollisionElement {
-    constructor (Element1, Element2, directionEl1, directionEl2, deltaX, deltaY, distance) {
+    constructor (Element1, Element2, directionEl1, directionEl2) {
         this.Element1 = Element1;
         this.Element2 = Element2;
         this.directionEl1 = directionEl1;
         this.directionEl2 = directionEl2;
-        this.deltaX = deltaX;
-        this.deltaY = deltaY;
-        this.distance = distance;
     }
 }
 
@@ -62,6 +59,7 @@ class Ball {
         for (let i = 0; i <= gameElements.length - 1; i++) {
             let e = gameElements[i];
             if (this === e) continue;
+            if (e.constructor.name != "Ball") continue;
             let deltaX = this.positionX - e.positionX;
             let deltaY = this.positionY - e.positionY;
             let distance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
@@ -101,11 +99,11 @@ class Ball {
                 this.positionY += thisDeltaY;
                 e.positionX = this.positionX - newDeltaX;
                 e.positionY = this.positionY - newDeltaY;
-                if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
+                if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction()));
                 else {
                     for(let i = 0; i <= collisionElements.length - 1; i++){
                         if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
-                            collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction(), deltaX, deltaY, distance));
+                            collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction()));
                             // console.log(distance);
                             break;
                         } 
@@ -246,14 +244,13 @@ class  Rocket {
         ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
     }
 
-    isContact() {
+    isContact() {}
 
-    }
 }
 
 function court() {
     ctx.fillStyle = 'black';
-    ctx.fillRect(0,0,cnvW,cnvH);
+    ctx.fillRect(0, 0, cnvW, cnvH);
 }
 
 
@@ -277,8 +274,9 @@ const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - delt
 const gameElements = [];
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
-gameElements.push(playerRocket, computerRocket);
+// gameElements.push(playerRocket, computerRocket);
 // gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
+// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT, playerRocket, computerRocket);
 // gameElements.push(ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball4L, ball2, ball3, ball1, ball5, ball6, ball7,  ball8P, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1, ball4, ball8, ball10, ball13);
@@ -300,7 +298,7 @@ const ball1RT = new Ball(radiusBall, 'yellow', 157, 250, -6, 2);
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
 // gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
-
+gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT, playerRocket, computerRocket);
 
 // Test rightTop
 const ball2RT = new Ball(radiusBall, 'white', 150, 300, -6, 3);
