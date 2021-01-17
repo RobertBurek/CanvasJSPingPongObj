@@ -40,8 +40,6 @@ class Ball {
         ctx.arc(this.positionX,this.positionY, this.radius, 0, 2*Math.PI);
         ctx.fill(); 
         ctx.closePath();
-        // this.positionX += this.speedX;
-        // this.positionY += this.speedY;
       }
 
     direction() {
@@ -49,10 +47,6 @@ class Ball {
         if (this.speedX < 0 && this.speedY >= 0 ) return "rightTop";
         if (this.speedX >= 0 && this.speedY < 0 ) return "leftBottom";
         if (this.speedX < 0 && this.speedY < 0 ) return "rightBottom";
-        // if (this.speedX > 0 && this.speedY == 0 ) return "left";
-        // if (this.speedX < 0 && this.speedY == 0 ) return "right";
-        // if (this.speedX == 0 && this.speedY > 0 ) return "top";
-        // if (this.speedX == 0 && this.speedY < 0 ) return "bottom";
     }
 
     isContact() {
@@ -76,25 +70,8 @@ class Ball {
                 }
                 let thisDeltaX = Math.floor((newDeltaX - deltaX) / 2);
                 let thisDeltaY = Math.floor((newDeltaY - deltaY) / 2);
-                // let eDeltaX = newDeltaX - thisDeltaX;
-                // let eDeltaY = newDeltaY - thisDeltaY;
                 let alfa = Math.acos((this.speedX * e.speedX + this.speedY * e.speedY)/(this.vector * e.vector)) * 180 / Math.PI;
-
                 console.log(alfa);
-                // console.log((this.speedX * e.speedX + this.speedY * e.speedY)/(this.vector * e.vector));
-                // console.log((this.speedX * e.speedX + this.speedY * e.speedY));
-                // console.log((this.vector * e.vector));
-                // console.log(this.vector);
-                // console.log(e.vector);
-                // console.log(deltaX);
-                // console.log(deltaY);
-                // console.log(newDeltaX);
-                // console.log(newDeltaY);
-                // console.log(thisDeltaX);
-                // console.log(thisDeltaY);
-                // e.positionX = this.positionX - newDeltaX;
-                // e.positionY = this.positionY - newDeltaY;
-
                 this.positionX += thisDeltaX;
                 this.positionY += thisDeltaY;
                 e.positionX = this.positionX - newDeltaX;
@@ -104,7 +81,6 @@ class Ball {
                     for(let i = 0; i <= collisionElements.length - 1; i++){
                         if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
                             collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction()));
-                            // console.log(distance);
                             break;
                         } 
                     }
@@ -253,13 +229,11 @@ class  Rocket {
             if ((deltaY <= e.radius) && (deltaY >= -(this.height + e.radius))) {
                 if (deltaX <= 0) {
                     if (deltaX > -(e.radius + this.width)) {
-                        // e.collisionX();
                         if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
                         else {
                             for(let i = 0; i <= collisionElements.length - 1; i++){
                                 if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
                                     collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
-                                    // console.log(collisionElements);
                                     break;
                                 } 
                             }
@@ -319,13 +293,11 @@ gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball
 
 
 //Test leftTop
-// const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
-const ball1LT = new Ball(radiusBall, 'white', 150, 250, 5, 4);
+const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
 const ball1LT2 = new Ball(radiusBall, 'blue', 150, 280, 6, 3);
 const ball1RB = new Ball(radiusBall, 'lime', 192, 280, -6, -4);
 const ball1LB = new Ball(radiusBall, 'red', 150, 320, 5, -4);
-// const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
-// const ball1RT = new Ball(radiusBall, 'yellow', 157, 250, -6, 2);
+const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 // gameElements.push(ball1LT, ball1LT2);//ok -x -y
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
