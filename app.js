@@ -58,6 +58,7 @@ class Ball {
             let deltaY = this.positionY - e.positionY;
             let distance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
             if (distance <= 2 * this.radius) {
+                console.log(this.constructor.name + " - " + e.constructor.name);
                 let newDeltaX = Math.round(2 * this.radius * deltaX / distance);
                 let newDeltaY = Math.round(2 * this.radius * deltaY / distance);
                 if (Math.sqrt(Math.pow(newDeltaX, 2) + Math.pow(newDeltaY, 2)) <= 2 * this.radius) {
@@ -229,6 +230,8 @@ class  Rocket {
             if ((deltaY <= e.radius) && (deltaY >= -(this.height + e.radius))) {
                 if (deltaX <= 0) {
                     if (deltaX > -(e.radius + this.width)) {
+                        console.log(this.constructor.name + " - " + e.constructor.name);
+                        e.positionX = this.positionX + this.width + e.radius;
                         if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
                         else {
                             for(let i = 0; i <= collisionElements.length - 1; i++){
@@ -238,7 +241,20 @@ class  Rocket {
                                 } 
                             }
                         };
-                        console.log(collisionElements);
+                    }
+                } else {
+                    if (deltaX <= e.radius) {
+                        console.log(this.constructor.name + " - " + e.constructor.name);
+                        e.positionX = this.positionX - e.radius;
+                        if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
+                        else {
+                            for(let i = 0; i <= collisionElements.length - 1; i++){
+                                if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
+                                    collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
+                                    break;
+                                } 
+                            }
+                        };
                     }
                 }
             }
