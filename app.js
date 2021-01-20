@@ -29,7 +29,7 @@ class Ball {
         this.speedX = speedXB;
         this.speedY = speedYB;
         this.center = radiusB;
-        this.vector = Math.sqrt(Math.pow(this.speedY,2) + Math.pow(this.speedX,2));
+        this.vector = Math.sqrt(Math.pow(this.speedY, 2) + Math.pow(this.speedX, 2));
         }
 
     draw() {
@@ -37,7 +37,7 @@ class Ball {
         this.positionY += this.speedY;
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.arc(this.positionX,this.positionY, this.radius, 0, 2*Math.PI);
+        ctx.arc(this.positionX, this.positionY, this.radius, 0, 2 * Math.PI);
         ctx.fill(); 
         ctx.closePath();
       }
@@ -214,6 +214,14 @@ class  Rocket {
         this.directionX = true;
         this.directionY = true;
         this.center = heightR / 2;
+        this.direction = "sleep";
+    }
+
+    sleep() {
+        setTimeout(()=>{
+            this.direction = "sleep";
+            console.log(this.direction);
+        }, 1000);
     }
 
     draw() {
@@ -221,7 +229,7 @@ class  Rocket {
         ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
     }
 
-    isContact() {        
+    isContact() {
         for (let i = 0; i <= gameElements.length - 1; i++) {
             let e = gameElements[i];
             if (e.constructor.name != "Ball") continue;
@@ -232,11 +240,11 @@ class  Rocket {
                     if (deltaX > -(e.radius + this.width)) {
                         console.log(this.constructor.name + " - " + e.constructor.name);
                         e.positionX = this.positionX + this.width + e.radius;
-                        if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
+                        if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                         else {
                             for(let i = 0; i <= collisionElements.length - 1; i++){
                                 if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
-                                    collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
+                                    collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                                     break;
                                 } 
                             }
@@ -246,11 +254,11 @@ class  Rocket {
                     if (deltaX <= e.radius) {
                         console.log(this.constructor.name + " - " + e.constructor.name);
                         e.positionX = this.positionX - e.radius;
-                        if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
+                        if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                         else {
                             for(let i = 0; i <= collisionElements.length - 1; i++){
                                 if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
-                                    collisionElements.push(new CollisionElement(this, e, undefined, e.direction()));
+                                    collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                                     break;
                                 } 
                             }
@@ -262,7 +270,10 @@ class  Rocket {
     }
 
     reaction(collisionElement) {
+        if (collisionElement.directionEl1 == "bottom" && (collisionElement.directionEl2 == "leftTop" || collisionElement.directionEl2 == "rightTop")) collisionElement.Element2.collisionY();
+        if (collisionElement.directionEl1 == "top" && (collisionElement.directionEl2 == "leftBottom" || collisionElement.directionEl2 == "rightBottom")) collisionElement.Element2.collisionY();
         collisionElement.Element2.collisionX();
+        console.log(collisionElement.directionEl1);
     }
 }
 
@@ -292,8 +303,8 @@ const gameElements = [];
 
 
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
-gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
-// gameElements.push(playerRocket, computerRocket, ball1);
+// gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
+gameElements.push(playerRocket, computerRocket, ball1);
 // gameElements.push(computerRocket, playerRocket, ball1);
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
@@ -400,9 +411,23 @@ setInterval(game, interval);
 
 window.addEventListener('keydown', (event) => {
     console.log(event.code);
-    if (event.code === "KeyW") playerRocket.positionY -= playerRocket.speed;
-    else if (event.code === "KeyS") playerRocket.positionY += playerRocket.speed;
+    if (event.code === "KeyW") {
+        playerRocket.positionY -= playerRocket.speed;
+        playerRocket.direction = "bottom";
+        playerRocket.sleep();
+    } else if (event.code === "KeyS") {
+        playerRocket.positionY += playerRocket.speed;
+        playerRocket.direction = "top";
+        playerRocket.sleep();
+    }
 
-    if (event.code === "ArrowUp") computerRocket.positionY -= computerRocket.speed;
-    else if (event.code === "ArrowDown") computerRocket.positionY += computerRocket.speed;
+    if (event.code === "ArrowUp") {
+        computerRocket.positionY -= computerRocket.speed;
+        computerRocket.direction = "bottom";
+        computerRocket.sleep();
+    } else if (event.code === "ArrowDown") {
+        computerRocket.positionY += computerRocket.speed;
+        computerRocket.direction = "top";
+        computerRocket.sleep();
+    }
   });
