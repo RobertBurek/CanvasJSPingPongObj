@@ -33,13 +33,15 @@ class Ball {
         }
 
     draw() {
-        this.positionX += this.speedX;
-        this.positionY += this.speedY;
+        // this.positionX += this.speedX;
+        // this.positionY += this.speedY;
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.positionX, this.positionY, this.radius, 0, 2 * Math.PI);
         ctx.fill(); 
         ctx.closePath();
+        this.positionX += this.speedX;
+        this.positionY += this.speedY;
       }
 
     direction() {
@@ -393,7 +395,6 @@ function start(gameElements) {
     gameElements.forEach(element => {
         isBorder(element);
         element.draw();
-        // isBorder(element);
     });
     gameElements.forEach(element => {
         element.isContact();
@@ -403,24 +404,6 @@ function start(gameElements) {
         element.Element1.reaction(element);
     });
     collisionElements = [];
-    // gameElements.forEach(element => {
-    //     if (element.positionY <= element.radius) {
-    //         element.positionY = element.radius;
-    //         element.collisionY();
-    //     };
-    //     if (element.positionY >= cnv.height - element.radius) {
-    //         element.positionY = cnv.height - element.radius;
-    //         element.collisionY();
-    //     }
-    //     if (element.positionX <= element.radius) {
-    //         element.positionX = element.radius;
-    //         element.collisionX();
-    //     };
-    //     if (element.positionX >= cnv.width - element.radius) {
-    //         element.positionX = cnv.width - element.radius;
-    //         element.collisionX();
-    //     }
-    // });
 }
 
 function game() {
