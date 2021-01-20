@@ -433,4 +433,12 @@ window.addEventListener('keydown', (event) => {
         computerRocket.direction = "top";
         computerRocket.sleep();
     }
+    
+    if (event.code === "Space") {
+        clearInterval(myInterval);
+    };
+
+    if (event.code === "KeyA") {
+        myInterval = setInterval(game, interval);
+    };
   });
