@@ -282,6 +282,24 @@ function court() {
     ctx.fillRect(0, 0, cnvW, cnvH);
 }
 
+function isBorder (element) {
+    if (element.positionY <= element.radius) {
+        element.positionY = element.radius;
+        element.collisionY();
+    };
+    if (element.positionY >= cnv.height - element.radius) {
+        element.positionY = cnv.height - element.radius;
+        element.collisionY();
+    }
+    if (element.positionX <= element.radius) {
+        element.positionX = element.radius;
+        element.collisionX();
+    };
+    if (element.positionX >= cnv.width - element.radius) {
+        element.positionX = cnv.width - element.radius;
+        element.collisionX();
+    }
+};
 
 const ball1 = new Ball(radiusBall, 'white', 143, 250, -5, 5);
 const ball3 = new Ball(radiusBall, 'green', 150, 280, 6, 3);
@@ -303,8 +321,8 @@ const gameElements = [];
 
 
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
-// gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
-gameElements.push(playerRocket, computerRocket, ball1);
+gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
+// gameElements.push(playerRocket, computerRocket, ball1);
 // gameElements.push(computerRocket, playerRocket, ball1);
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
@@ -329,7 +347,7 @@ const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 // Test rightTop
 const ball2RT = new Ball(radiusBall, 'white', 150, 300, -6, 3);
@@ -373,7 +391,9 @@ const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
 function start(gameElements) {
     court();
     gameElements.forEach(element => {
+        isBorder(element);
         element.draw();
+        // isBorder(element);
     });
     gameElements.forEach(element => {
         element.isContact();
@@ -383,31 +403,31 @@ function start(gameElements) {
         element.Element1.reaction(element);
     });
     collisionElements = [];
-    gameElements.forEach(element => {
-        if (element.positionY <= element.radius) {
-            element.positionY = element.radius;
-            element.collisionY();
-        };
-        if (element.positionY >= cnv.height - element.radius) {
-            element.positionY = cnv.height - element.radius;
-            element.collisionY();
-        }
-        if (element.positionX <= element.radius) {
-            element.positionX = element.radius;
-            element.collisionX();
-        };
-        if (element.positionX >= cnv.width - element.radius) {
-            element.positionX = cnv.width - element.radius;
-            element.collisionX();
-        }
-    });
+    // gameElements.forEach(element => {
+    //     if (element.positionY <= element.radius) {
+    //         element.positionY = element.radius;
+    //         element.collisionY();
+    //     };
+    //     if (element.positionY >= cnv.height - element.radius) {
+    //         element.positionY = cnv.height - element.radius;
+    //         element.collisionY();
+    //     }
+    //     if (element.positionX <= element.radius) {
+    //         element.positionX = element.radius;
+    //         element.collisionX();
+    //     };
+    //     if (element.positionX >= cnv.width - element.radius) {
+    //         element.positionX = cnv.width - element.radius;
+    //         element.collisionX();
+    //     }
+    // });
 }
 
 function game() {
     start(gameElements);
 }
 
-setInterval(game, interval);
+let myInterval = setInterval(game, interval);
 
 window.addEventListener('keydown', (event) => {
     console.log(event.code);
