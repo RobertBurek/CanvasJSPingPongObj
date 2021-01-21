@@ -46,9 +46,9 @@ class Ball {
 
     direction() {
         if (this.speedX >= 0 && this.speedY >= 0 ) return "leftTop";
-        if (this.speedX < 0 && this.speedY >= 0 ) return "rightTop";
-        if (this.speedX >= 0 && this.speedY < 0 ) return "leftBottom";
-        if (this.speedX < 0 && this.speedY < 0 ) return "rightBottom";
+        if (this.speedX <= 0 && this.speedY >= 0 ) return "rightTop";
+        if (this.speedX >= 0 && this.speedY <= 0 ) return "leftBottom";
+        if (this.speedX <= 0 && this.speedY <= 0 ) return "rightBottom";
     }
 
     isContact() {
@@ -323,8 +323,9 @@ const gameElements = [];
 
 
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
-gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
+// gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
 // gameElements.push(playerRocket, computerRocket, ball1);
+gameElements.push(playerRocket, computerRocket);
 // gameElements.push(computerRocket, playerRocket, ball1);
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
@@ -361,7 +362,7 @@ const ball2LB = new Ball(radiusBall, 'yellow', 70, 350, 6, -6);
 // gameElements.push(ball2RT, ball2LT);//ok +x -y   // inna reakcja !!!
 // gameElements.push(ball2RT, ball2RB);//ok +x -y
 // gameElements.push(ball2RT, ball2LB);//ok +x =y    // inna reakcja!!!
-// gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
+gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
 
 
 // Test leftBottom
@@ -374,7 +375,7 @@ const ball3RT = new Ball(radiusBall, 'yellow', 680, 150, -6, 5);
 // gameElements.push(ball3LB, ball3LT);//ok +x +y
 // gameElements.push(ball3LB, ball3RB);//ok -x -y
 // gameElements.push(ball3LB, ball3RT);//ok -x +y
-// gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie leftBottom
+gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie leftBottom
 
 
 // Test rightBottom
@@ -394,10 +395,12 @@ function start(gameElements) {
     court();
     gameElements.forEach(element => {
         isBorder(element);
+        // element.isContact();
         element.draw();
     });
     gameElements.forEach(element => {
         element.isContact();
+        // element.draw();
     });
     if (collisionElements.length > 0) console.log(collisionElements);
     collisionElements.forEach(element => {
@@ -406,9 +409,11 @@ function start(gameElements) {
     collisionElements = [];
 }
 
+
 function game() {
     start(gameElements);
 }
+
 
 let myInterval = setInterval(game, interval);
 
@@ -441,4 +446,19 @@ window.addEventListener('keydown', (event) => {
     if (event.code === "KeyA") {
         myInterval = setInterval(game, interval);
     };
+
+    if (event.code === "NumpadAdd") {
+        clearInterval(myInterval);
+        if (interval > 5) interval -=5;
+        console.log(interval);
+        myInterval = setInterval(game, interval);
+    };
+
+    if (event.code === "NumpadSubtract") {
+        clearInterval(myInterval);
+        interval +=5;
+        console.log(interval);
+        myInterval = setInterval(game, interval);
+    };
+
   });
