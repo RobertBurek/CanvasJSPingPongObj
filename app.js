@@ -234,6 +234,7 @@ class  Rocket {
     moveUp() {
         this.positionY -= this.speed;
         this.direction = "bottom";
+        if (this.positionY <= 0) this.positionY = 0;
     }
 
     moveDown() {
@@ -451,13 +452,13 @@ window.addEventListener('keydown', (event) => {
     };
     if (event.code === "NumpadAdd") {
         clearInterval(myInterval);
-        if (interval > 5) interval -=5;
+        if (interval > 5) interval -= 5;
         console.log(interval);
         myInterval = setInterval(game, interval);
     };
     if (event.code === "NumpadSubtract") {
         clearInterval(myInterval);
-        interval +=5;
+        interval += 5;
         console.log(interval);
         myInterval = setInterval(game, interval);
     };
