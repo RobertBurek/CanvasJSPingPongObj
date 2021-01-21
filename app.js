@@ -231,6 +231,11 @@ class  Rocket {
         ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
     }
 
+    moveDown() {
+        this.positionY += this.speed;
+        this.direction = "top";
+    }
+
     isContact() {
         for (let i = 0; i <= gameElements.length - 1; i++) {
             let e = gameElements[i];
@@ -370,7 +375,7 @@ const ball3LB = new Ball(radiusBall, 'white', 550, 270, 6, -4);
 const ball3LB2 = new Ball(radiusBall, 'red', 548, 350, 6, -6);
 const ball3LT = new Ball(radiusBall, 'lime', 551, 170, 5, 5);
 const ball3RB = new Ball(radiusBall, 'blue', 750, 271, -4, -4);
-const ball3RT = new Ball(radiusBall, 'yellow', 680, 150, -6, 5);
+const ball3RT = new Ball(radiusBall, 'yellow', 850, 50, -6, 5);
 // gameElements.push(ball3LB, ball3LB2);//ok +x -y
 // gameElements.push(ball3LB, ball3LT);//ok +x +y
 // gameElements.push(ball3LB, ball3RB);//ok -x -y
@@ -381,14 +386,14 @@ gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie left
 // Test rightBottom
 const ball4RB = new Ball(radiusBall, 'white', 750, 370, -6, -6);
 const ball4RB2 = new Ball(radiusBall, 'red', 740, 320, -6, -4);
-const ball4LT = new Ball(radiusBall, 'lime', 551, 170, 5, 5);
+const ball4LT = new Ball(radiusBall, 'lime', 551, 170, 6, 6);
 const ball4LB = new Ball(radiusBall, 'blue', 680, 371, 5, -4);
 const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
 // gameElements.push(ball4RB, ball4RB2);//ok +x +y
 // gameElements.push(ball4RB, ball4LT);//ok +x +y
 // gameElements.push(ball4RB, ball4LB);//ok +x -y
 // gameElements.push(ball4RB, ball4RT);//ok -x +y
-// gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
+gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
 
 
 function start(gameElements) {
@@ -424,41 +429,35 @@ window.addEventListener('keydown', (event) => {
         playerRocket.direction = "bottom";
         playerRocket.sleep();
     } else if (event.code === "KeyS") {
-        playerRocket.positionY += playerRocket.speed;
-        playerRocket.direction = "top";
+        playerRocket.moveDown();
         playerRocket.sleep();
     }
-
     if (event.code === "ArrowUp") {
         computerRocket.positionY -= computerRocket.speed;
         computerRocket.direction = "bottom";
         computerRocket.sleep();
     } else if (event.code === "ArrowDown") {
-        computerRocket.positionY += computerRocket.speed;
-        computerRocket.direction = "top";
+        computerRocket.moveDown();
         computerRocket.sleep();
     }
-    
     if (event.code === "Space") {
         clearInterval(myInterval);
     };
-
     if (event.code === "KeyA") {
         myInterval = setInterval(game, interval);
     };
-
     if (event.code === "NumpadAdd") {
         clearInterval(myInterval);
         if (interval > 5) interval -=5;
         console.log(interval);
         myInterval = setInterval(game, interval);
     };
-
     if (event.code === "NumpadSubtract") {
         clearInterval(myInterval);
         interval +=5;
         console.log(interval);
         myInterval = setInterval(game, interval);
     };
-
   });
+
+
