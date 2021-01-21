@@ -231,6 +231,11 @@ class  Rocket {
         ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
     }
 
+    moveUp() {
+        this.positionY -= this.speed;
+        this.direction = "bottom";
+    }
+
     moveDown() {
         this.positionY += this.speed;
         this.direction = "top";
@@ -425,16 +430,14 @@ let myInterval = setInterval(game, interval);
 window.addEventListener('keydown', (event) => {
     console.log(event.code);
     if (event.code === "KeyW") {
-        playerRocket.positionY -= playerRocket.speed;
-        playerRocket.direction = "bottom";
+        playerRocket.moveUp();
         playerRocket.sleep();
     } else if (event.code === "KeyS") {
         playerRocket.moveDown();
         playerRocket.sleep();
     }
     if (event.code === "ArrowUp") {
-        computerRocket.positionY -= computerRocket.speed;
-        computerRocket.direction = "bottom";
+        computerRocket.moveUp();
         computerRocket.sleep();
     } else if (event.code === "ArrowDown") {
         computerRocket.moveDown();
@@ -459,5 +462,3 @@ window.addEventListener('keydown', (event) => {
         myInterval = setInterval(game, interval);
     };
   });
-
-
