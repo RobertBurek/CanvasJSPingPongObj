@@ -240,6 +240,7 @@ class  Rocket {
     moveDown() {
         this.positionY += this.speed;
         this.direction = "top";
+        if (this.positionY >= cnvH - this.height) this.positionY = cnvH - this.height;
     }
 
     isContact() {
