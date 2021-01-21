@@ -33,13 +33,15 @@ class Ball {
         }
 
     draw() {
-        // this.positionX += this.speedX;
-        // this.positionY += this.speedY;
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.positionX, this.positionY, this.radius, 0, 2 * Math.PI);
         ctx.fill(); 
         ctx.closePath();
+        this.move();
+      }
+
+    move() {
         this.positionX += this.speedX;
         this.positionY += this.speedY;
       }
