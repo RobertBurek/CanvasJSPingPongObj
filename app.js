@@ -21,14 +21,13 @@ class CollisionElement {
 }
 
 class Ball {
-    constructor (radiusB, colorB, positionXB, positionYB, speedXB, speedYB){
-        this.color = colorB;
-        this.positionX = positionXB;
-        this.positionY = positionYB;
-        this.radius = radiusB;
-        this.speedX = speedXB;
-        this.speedY = speedYB;
-        this.center = radiusB;
+    constructor (radius, color, positionX, positionY, speedX, speedY){
+        this.color = color;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.radius = radius;
+        this.speedX = speedX;
+        this.speedY = speedY;
         this.vector = Math.sqrt(Math.pow(this.speedY, 2) + Math.pow(this.speedX, 2));
         }
 
@@ -208,16 +207,15 @@ class Ball {
 }
 
 class  Rocket {
-    constructor (widthR, heightR, colorR, positionXR, positionYR){
-        this.width = widthR;
-        this.height = heightR;
-        this.color = colorR;
-        this.positionX = positionXR;
-        this.positionY = positionYR;
+    constructor (width, height, color, positionX, positionY){
+        this.width = width;
+        this.height = height;
+        this.color = color;
+        this.positionX = positionX;
+        this.positionY = positionY;
         this.speed = 4;
         this.directionX = true;
         this.directionY = true;
-        this.center = heightR / 2;
         this.direction = "sleep";
     }
 
@@ -298,22 +296,22 @@ function court() {
     ctx.fillRect(0, 0, cnvW, cnvH);
 }
 
-function isBorder (element) {
-    if (element.positionY <= element.radius) {
-        element.positionY = element.radius;
-        element.collisionY();
+function isBorder (gameElement) {
+    if (gameElement.positionY <= gameElement.radius) {
+        gameElement.positionY = gameElement.radius;
+        gameElement.collisionY();
     };
-    if (element.positionY >= cnv.height - element.radius) {
-        element.positionY = cnv.height - element.radius;
-        element.collisionY();
+    if (gameElement.positionY >= cnvH - gameElement.radius) {
+        gameElement.positionY = cnvH - gameElement.radius;
+        gameElement.collisionY();
     }
-    if (element.positionX <= element.radius) {
-        element.positionX = element.radius;
-        element.collisionX();
+    if (gameElement.positionX <= gameElement.radius) {
+        gameElement.positionX = gameElement.radius;
+        gameElement.collisionX();
     };
-    if (element.positionX >= cnv.width - element.radius) {
-        element.positionX = cnv.width - element.radius;
-        element.collisionX();
+    if (gameElement.positionX >= cnvW - gameElement.radius) {
+        gameElement.positionX = cnvW - gameElement.radius;
+        gameElement.collisionX();
     }
 };
 
