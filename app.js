@@ -10,6 +10,7 @@ const heightRocket = 150;
 const deltaRocket = 30;
 let interval = 15;
 let collisionElements = [];
+let newGameElements = [];
 
 class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2) {
@@ -17,8 +18,8 @@ class CollisionElement {
         this.Element2 = Element2;
         this.directionEl1 = directionEl1;
         this.directionEl2 = directionEl2;
-    }
-}
+    };
+};
 
 class Ball {
     constructor (radius, color, positionX, positionY, speedX, speedY){
@@ -29,7 +30,7 @@ class Ball {
         this.speedX = speedX;
         this.speedY = speedY;
         this.vector = Math.sqrt(Math.pow(this.speedY, 2) + Math.pow(this.speedX, 2));
-        }
+    };
 
     draw() {
         ctx.beginPath();
@@ -38,19 +39,40 @@ class Ball {
         ctx.fill(); 
         ctx.closePath();
         this.move();
-      }
+    };
 
     move() {
         this.positionX += this.speedX;
         this.positionY += this.speedY;
-      }
+    };
+
+    isBorder() {
+        if (this.positionY <= this.radius) {
+            this.positionY = this.radius;
+            this.collisionY();
+        };
+        if (this.positionY >= cnvH - this.radius) {
+            this.positionY = cnvH - this.radius;
+            this.collisionY();
+        }
+        if (this.positionX < 0) {
+            for (let gameEl of gameElements) {
+                if (gameEl !== this) newGameElements.push(gameEl);
+            }
+        };
+        if (this.positionX > cnvW) {
+            for (let gameEl of gameElements) {
+                if (gameEl !== this) newGameElements.push(gameEl);
+            }
+        }
+    }
 
     direction() {
         if (this.speedX >= 0 && this.speedY >= 0 ) return "leftTop";
         if (this.speedX <= 0 && this.speedY >= 0 ) return "rightTop";
         if (this.speedX >= 0 && this.speedY <= 0 ) return "leftBottom";
         if (this.speedX <= 0 && this.speedY <= 0 ) return "rightBottom";
-    }
+    };
 
     isContact() {
         for (let i = 0; i <= gameElements.length - 1; i++) {
@@ -61,7 +83,7 @@ class Ball {
             let deltaY = this.positionY - e.positionY;
             let distance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
             if (distance <= 2 * this.radius) {
-                console.log(this.constructor.name + " - " + e.constructor.name);
+                // console.log(this.constructor.name + " - " + e.constructor.name);
                 let newDeltaX = Math.round(2 * this.radius * deltaX / distance);
                 let newDeltaY = Math.round(2 * this.radius * deltaY / distance);
                 if (Math.sqrt(Math.pow(newDeltaX, 2) + Math.pow(newDeltaY, 2)) <= 2 * this.radius) {
@@ -74,8 +96,8 @@ class Ball {
                 }
                 let thisDeltaX = Math.floor((newDeltaX - deltaX) / 2);
                 let thisDeltaY = Math.floor((newDeltaY - deltaY) / 2);
-                let alfa = Math.acos((this.speedX * e.speedX + this.speedY * e.speedY)/(this.vector * e.vector)) * 180 / Math.PI;
-                console.log(alfa);
+                // let alfa = Math.acos((this.speedX * e.speedX + this.speedY * e.speedY)/(this.vector * e.vector)) * 180 / Math.PI;
+                // console.log(alfa);
                 this.positionX += thisDeltaX;
                 this.positionY += thisDeltaY;
                 e.positionX = this.positionX - newDeltaX;
@@ -86,12 +108,12 @@ class Ball {
                         if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
                             collisionElements.push(new CollisionElement(this, e, this.direction(), e.direction()));
                             break;
-                        } 
-                    }
+                        };
+                    };
                 };
-            }
-        }
-    }
+            };
+        };
+    };
 
     reaction(collisionElement) {
         if (this.direction() == "leftTop") {
@@ -143,7 +165,7 @@ class Ball {
                     collisionElement.Element2.speedX = tempX;
                     collisionElement.Element2.speedY = tempY;
                     break;
-            } 
+            };
         } else if (this.direction() == "rightBottom") {
             switch (collisionElement.Element2.direction()){
                 case "leftTop":
@@ -168,7 +190,7 @@ class Ball {
                     collisionElement.Element2.speedX = tempX;
                     collisionElement.Element2.speedY = tempY;
                     break;
-            }
+            };
         } else if (this.direction() == "leftBottom") {
             switch (collisionElement.Element2.direction()){
                 case "rightTop":
@@ -193,17 +215,18 @@ class Ball {
                     collisionElement.Element2.speedX = tempX;
                     collisionElement.Element2.speedY = tempY;
                     break;
-            }
-        }
-    }
+            };
+        };
+    };
 
-      collisionX() {
-        this.speedX *= -1;
-      }
+    collisionX() {
+      this.speedX *= -1;
+    };
 
-      collisionY() {
-        this.speedY *= -1;
-      }
+    collisionY() {
+      this.speedY *= -1;
+    };
+
 }
 
 class  Rocket {
@@ -217,30 +240,33 @@ class  Rocket {
         this.directionX = true;
         this.directionY = true;
         this.direction = "sleep";
-    }
+    };
 
     sleep() {
         setTimeout(()=>{
             this.direction = "sleep";
-            console.log(this.direction);
+            // console.log(this.direction);
         }, 1000);
-    }
+    };
 
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
-    }
+    };
 
     moveUp() {
         this.positionY -= this.speed;
         this.direction = "bottom";
         if (this.positionY <= 0) this.positionY = 0;
-    }
+    };
 
     moveDown() {
         this.positionY += this.speed;
         this.direction = "top";
         if (this.positionY >= cnvH - this.height) this.positionY = cnvH - this.height;
+    };
+
+    isBorder() {
     }
 
     isContact() {
@@ -252,7 +278,7 @@ class  Rocket {
             if ((deltaY <= e.radius) && (deltaY >= -(this.height + e.radius))) {
                 if (deltaX <= 0) {
                     if (deltaX > -(e.radius + this.width)) {
-                        console.log(this.constructor.name + " - " + e.constructor.name);
+                        // console.log(this.constructor.name + " - " + e.constructor.name);
                         e.positionX = this.positionX + this.width + e.radius;
                         if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                         else {
@@ -263,10 +289,10 @@ class  Rocket {
                                 } 
                             }
                         };
-                    }
+                    };
                 } else {
                     if (deltaX <= e.radius) {
-                        console.log(this.constructor.name + " - " + e.constructor.name);
+                        // console.log(this.constructor.name + " - " + e.constructor.name);
                         e.positionX = this.positionX - e.radius;
                         if (collisionElements.length == 0) collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                         else {
@@ -274,46 +300,27 @@ class  Rocket {
                                 if (((this!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==e))||((e!==collisionElements[i].Element2)&&(collisionElements[i].Element1!==this))){
                                     collisionElements.push(new CollisionElement(this, e, this.direction, e.direction()));
                                     break;
-                                } 
-                            }
+                                }; 
+                            };
                         };
-                    }
-                }
-            }
-        }
-    }
+                    };
+                };
+            };
+        };
+    };
 
     reaction(collisionElement) {
         if (collisionElement.directionEl1 == "bottom" && (collisionElement.directionEl2 == "leftTop" || collisionElement.directionEl2 == "rightTop")) collisionElement.Element2.collisionY();
         if (collisionElement.directionEl1 == "top" && (collisionElement.directionEl2 == "leftBottom" || collisionElement.directionEl2 == "rightBottom")) collisionElement.Element2.collisionY();
         collisionElement.Element2.collisionX();
-        console.log(collisionElement.directionEl1);
-    }
-}
+    };
+};
 
 function court() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, cnvW, cnvH);
-}
-
-function isBorder (gameElement) {
-    if (gameElement.positionY <= gameElement.radius) {
-        gameElement.positionY = gameElement.radius;
-        gameElement.collisionY();
-    };
-    if (gameElement.positionY >= cnvH - gameElement.radius) {
-        gameElement.positionY = cnvH - gameElement.radius;
-        gameElement.collisionY();
-    }
-    if (gameElement.positionX <= gameElement.radius) {
-        gameElement.positionX = gameElement.radius;
-        gameElement.collisionX();
-    };
-    if (gameElement.positionX >= cnvW - gameElement.radius) {
-        gameElement.positionX = cnvW - gameElement.radius;
-        gameElement.collisionX();
-    }
 };
+
 
 const ball1 = new Ball(radiusBall, 'white', 143, 250, -5, 5);
 const ball3 = new Ball(radiusBall, 'green', 150, 280, 6, 3);
@@ -331,7 +338,7 @@ const ball16 = new Ball(radiusBall, 'green', 156, 68, -5, 5);
 const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 250);
 const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
 
-const gameElements = [];
+let gameElements = [];
 
 
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
@@ -403,48 +410,49 @@ const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
 gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
 
 
-function start(gameElements) {
+function start(elements) {
     court();
-    gameElements.forEach(element => {
-        isBorder(element);
-        // element.isContact();
+    elements.forEach(element => {
+        element.isBorder();
         element.draw();
     });
-    gameElements.forEach(element => {
+    elements.forEach(element => {
         element.isContact();
-        // element.draw();
     });
-    if (collisionElements.length > 0) console.log(collisionElements);
     collisionElements.forEach(element => {
         element.Element1.reaction(element);
     });
     collisionElements = [];
-}
+    if (newGameElements.length > 0 ) {
+        gameElements = newGameElements;
+        newGameElements = [];
+    }
+};
 
 
 function game() {
     start(gameElements);
-}
+};
 
 
 let myInterval = setInterval(game, interval);
 
-window.addEventListener('keydown', (event) => {
-    console.log(event.code);
+document.addEventListener('keydown', (event) => {
+    // console.log(event.code);
     if (event.code === "KeyW") {
         playerRocket.moveUp();
         playerRocket.sleep();
     } else if (event.code === "KeyS") {
         playerRocket.moveDown();
         playerRocket.sleep();
-    }
+    };
     if (event.code === "ArrowUp") {
         computerRocket.moveUp();
         computerRocket.sleep();
     } else if (event.code === "ArrowDown") {
         computerRocket.moveDown();
         computerRocket.sleep();
-    }
+    };
     if (event.code === "Space") {
         clearInterval(myInterval);
     };
@@ -454,13 +462,11 @@ window.addEventListener('keydown', (event) => {
     if (event.code === "NumpadAdd") {
         clearInterval(myInterval);
         if (interval > 5) interval -= 5;
-        console.log(interval);
         myInterval = setInterval(game, interval);
     };
     if (event.code === "NumpadSubtract") {
         clearInterval(myInterval);
         interval += 5;
-        console.log(interval);
         myInterval = setInterval(game, interval);
     };
   });
