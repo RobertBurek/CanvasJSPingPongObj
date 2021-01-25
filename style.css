@@ -25,5 +25,7 @@ div {
     align-items: center;
     text-align: center;
     font-size: 50px;
+    font-style: italic;
+    font-weight: bold;
     margin: 50px;
 }

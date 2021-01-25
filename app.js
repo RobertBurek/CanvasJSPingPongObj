@@ -2,6 +2,9 @@ const cnv = document.querySelector('canvas');
 
 const ctx = cnv.getContext('2d');
 
+const divPointsPlayer = document.getElementById("pointsPlayer");
+const divPointsComputer = document.getElementById("pointsComputer");
+
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
 const radiusBall = 8;
@@ -59,6 +62,7 @@ class Ball {
         }
         if (this.positionX < 0) {
             poinsComputer += 1;
+            divPointsComputer.innerHTML = poinsComputer;
             console.log("Computer: " + poinsComputer);
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
@@ -66,6 +70,7 @@ class Ball {
         };
         if (this.positionX > cnvW) {
             poinsPlayer += 1;
+            divPointsPlayer.innerHTML = poinsPlayer;
             console.log("Player: " + poinsPlayer);
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
