@@ -63,7 +63,8 @@ class Ball {
         if (this.positionX < 0) {
             poinsComputer += 1;
             divPointsComputer.innerHTML = poinsComputer;
-            console.log("Computer: " + poinsComputer);
+            divPointsComputer.classList.toggle("boom");
+            divPointsComputer.classList.toggle("baam");
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
             }
@@ -71,7 +72,8 @@ class Ball {
         if (this.positionX > cnvW) {
             poinsPlayer += 1;
             divPointsPlayer.innerHTML = poinsPlayer;
-            console.log("Player: " + poinsPlayer);
+            divPointsPlayer.classList.toggle("boom");
+            divPointsPlayer.classList.toggle("baam");
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
             }
