@@ -15,3 +15,15 @@ body{
 canvas {
     border: 3px solid #fff;
 }
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div {
+    align-items: center;
+    text-align: center;
+    font-size: 50px;
+    margin: 50px;
+}
