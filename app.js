@@ -9,6 +9,8 @@ const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
 let interval = 15;
+let poinsPlayer = 0;
+let poinsComputer = 0;
 let collisionElements = [];
 let newGameElements = [];
 
@@ -56,11 +58,15 @@ class Ball {
             this.collisionY();
         }
         if (this.positionX < 0) {
+            poinsComputer += 1;
+            console.log("Computer: " + poinsComputer);
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
             }
         };
         if (this.positionX > cnvW) {
+            poinsPlayer += 1;
+            console.log("Player: " + poinsPlayer);
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
             }
