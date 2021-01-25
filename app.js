@@ -257,16 +257,16 @@ class  Rocket {
     moveUp() {
         this.positionY -= this.speed;
         this.direction = "bottom";
-        if (this.positionY <= 0) this.positionY = 0;
     };
 
     moveDown() {
         this.positionY += this.speed;
         this.direction = "top";
-        if (this.positionY >= cnvH - this.height) this.positionY = cnvH - this.height;
     };
 
     isBorder() {
+        if (this.positionY <= 0) this.positionY = 0;
+        if (this.positionY >= cnvH - this.height) this.positionY = cnvH - this.height;
     }
 
     isContact() {
