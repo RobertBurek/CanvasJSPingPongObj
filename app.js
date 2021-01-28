@@ -483,3 +483,7 @@ document.addEventListener('keydown', (event) => {
         myInterval = setInterval(game, interval);
     };
   });
+
+  cnv.addEventListener("mousemove", (event) => {
+    playerRocket.positionY =  event.clientY - cnv.offsetTop - playerRocket.height / 2;
+  });
