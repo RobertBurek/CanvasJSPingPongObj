@@ -5,15 +5,34 @@
 }
 
 body{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
     height: 100vh;
     background-color: rgb(177, 177, 177);
 }
 
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 85vh;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 15vh;
+}
+
 canvas {
     border: 3px solid #fff;
+}
+
+button{
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+    width: 15%;
+    text-align: center;
 }
 
 div {
