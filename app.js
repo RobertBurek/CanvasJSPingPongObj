@@ -357,8 +357,8 @@ let gameElements = [];
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
 // gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
 // gameElements.push(playerRocket, computerRocket, ball1);
-gameElements.push(playerRocket, computerRocket);
-// gameElements.push(computerRocket, playerRocket, ball1);
+// gameElements.push(playerRocket, computerRocket);
+gameElements.push(computerRocket, playerRocket, ball1);
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
 // gameElements.push(playerRocket, computerRocket);
@@ -382,7 +382,7 @@ const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 // Test rightTop
 const ball2RT = new Ball(radiusBall, 'white', 150, 300, -6, 3);
@@ -394,7 +394,7 @@ const ball2LB = new Ball(radiusBall, 'yellow', 70, 350, 6, -6);
 // gameElements.push(ball2RT, ball2LT);//ok +x -y   // inna reakcja !!!
 // gameElements.push(ball2RT, ball2RB);//ok +x -y
 // gameElements.push(ball2RT, ball2LB);//ok +x =y    // inna reakcja!!!
-gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
+// gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
 
 
 // Test leftBottom
@@ -407,7 +407,7 @@ const ball3RT = new Ball(radiusBall, 'yellow', 850, 50, -6, 5);
 // gameElements.push(ball3LB, ball3LT);//ok +x +y
 // gameElements.push(ball3LB, ball3RB);//ok -x -y
 // gameElements.push(ball3LB, ball3RT);//ok -x +y
-gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie leftBottom
+// gameElements.push(ball3LB, ball3LB2, ball3LT, ball3RB, ball3RT);//wszystkie leftBottom
 
 
 // Test rightBottom
@@ -420,7 +420,19 @@ const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
 // gameElements.push(ball4RB, ball4LT);//ok +x +y
 // gameElements.push(ball4RB, ball4LB);//ok +x -y
 // gameElements.push(ball4RB, ball4RT);//ok -x +y
-gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
+// gameElements.push(ball4RB, ball4RB2, ball4LT, ball4LB, ball4RT);//wszystkie rightBottom
+
+function AIcomputer (elements) {
+    elements.forEach(element => {
+        if (element.constructor.name == "Ball") {
+            if ((element.direction() == "leftTop") || (element.direction() == "leftBottom")) {
+                let deltaY = computerRocket.positionY - element.positionY;
+                if (deltaY > 0) computerRocket.positionY -= computerRocket.speed;
+                else computerRocket.positionY += computerRocket.speed;
+            }
+        }
+    })
+}
 
 
 function start(elements) {
@@ -440,6 +452,7 @@ function start(elements) {
         gameElements = newGameElements;
         newGameElements = [];
     }
+    AIcomputer(elements);
 };
 
 
