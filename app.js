@@ -4,6 +4,9 @@ const ctx = cnv.getContext('2d');
 
 const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
+const easyLevel = document.getElementById("latwy");
+const mediumLevel = document.getElementById("sredni");
+const hardLevel = document.getElementById("trudny");
 
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
@@ -16,6 +19,7 @@ let poinsPlayer = 0;
 let poinsComputer = 0;
 let collisionElements = [];
 let newGameElements = [];
+let reactionMoment = 0.5;
 
 class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2) {
@@ -27,7 +31,7 @@ class CollisionElement {
 };
 
 class Ball {
-    constructor (radius, color, positionX, positionY, speedX, speedY){
+    constructor (radius, color, positionX, positionY, speedX, speedY) {
         this.color = color;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -357,8 +361,8 @@ let gameElements = [];
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
 // gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
 // gameElements.push(playerRocket, computerRocket, ball1);
-// gameElements.push(playerRocket, computerRocket);
-gameElements.push(computerRocket, playerRocket, ball1);
+gameElements.push(playerRocket, computerRocket);
+// gameElements.push(computerRocket, playerRocket, ball1);
 
 // gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
 // gameElements.push(playerRocket, computerRocket);
@@ -382,7 +386,7 @@ const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 // Test rightTop
 const ball2RT = new Ball(radiusBall, 'white', 150, 300, -6, 3);
@@ -425,8 +429,8 @@ const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
 function AIcomputer (elements) {
     elements.forEach(element => {
         if (element.constructor.name == "Ball") {
-            if ((element.direction() == "leftTop") || (element.direction() == "leftBottom")) {
-                let deltaY = computerRocket.positionY - element.positionY;
+            if (((element.direction() == "leftTop") || (element.direction() == "leftBottom")) && (element.positionX > cnvW * reactionMoment)) {
+                let deltaY = computerRocket.positionY - element.positionY + computerRocket.height / 2;
                 if (deltaY > 0) computerRocket.positionY -= computerRocket.speed;
                 else computerRocket.positionY += computerRocket.speed;
             }
@@ -499,4 +503,22 @@ document.addEventListener('keydown', (event) => {
 
   cnv.addEventListener("mousemove", (event) => {
     playerRocket.positionY =  event.clientY - cnv.offsetTop - playerRocket.height / 2;
+  });
+
+  easyLevel.addEventListener("click", () => {
+    playerRocket.height = heightRocket * 1.2;
+    computerRocket.height = heightRocket * 0.8;
+    reactionMoment = 0.7;
+  });
+
+  mediumLevel.addEventListener("click", () => {
+    playerRocket.height = heightRocket
+    computerRocket.height = heightRocket;
+    reactionMoment = 0.5;
+  });
+
+  hardLevel.addEventListener("click", () => {
+    playerRocket.height = heightRocket * 0.8;
+    computerRocket.height = heightRocket * 1.2;
+    reactionMoment = 0.3;
   });
