@@ -4,9 +4,9 @@ const ctx = cnv.getContext('2d');
 
 const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
-const easyLevel = document.getElementById("latwy");
-const mediumLevel = document.getElementById("sredni");
-const hardLevel = document.getElementById("trudny");
+const easyLevel = document.getElementById("easy");
+const mediumLevel = document.getElementById("medium");
+const hardLevel = document.getElementById("hard");
 
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
@@ -19,7 +19,7 @@ let poinsPlayer = 0;
 let poinsComputer = 0;
 let collisionElements = [];
 let newGameElements = [];
-let reactionMoment = 0.5;
+let reactionMoment = cnvW * 0.5;
 
 class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2) {
@@ -429,7 +429,7 @@ const ball4RT = new Ball(radiusBall, 'yellow', 751, 150, -6, 5);
 function AIcomputer (elements) {
     elements.forEach(element => {
         if (element.constructor.name == "Ball") {
-            if (((element.direction() == "leftTop") || (element.direction() == "leftBottom")) && (element.positionX > cnvW * reactionMoment)) {
+            if (((element.direction() == "leftTop") || (element.direction() == "leftBottom")) && (element.positionX > reactionMoment)) {
                 let deltaY = computerRocket.positionY - element.positionY + computerRocket.height / 2;
                 if (deltaY > 0) computerRocket.positionY -= computerRocket.speed;
                 else computerRocket.positionY += computerRocket.speed;
@@ -508,17 +508,20 @@ document.addEventListener('keydown', (event) => {
   easyLevel.addEventListener("click", () => {
     playerRocket.height = heightRocket * 1.2;
     computerRocket.height = heightRocket * 0.8;
-    reactionMoment = 0.7;
+    reactionMoment = cnvW * 0.75;
+    computerRocket.speed = 3;
   });
 
   mediumLevel.addEventListener("click", () => {
     playerRocket.height = heightRocket
     computerRocket.height = heightRocket;
-    reactionMoment = 0.5;
+    reactionMoment = cnvW * 0.5;
+    computerRocket.speed = 4;
   });
 
   hardLevel.addEventListener("click", () => {
     playerRocket.height = heightRocket * 0.8;
     computerRocket.height = heightRocket * 1.2;
-    reactionMoment = 0.3;
+    reactionMoment = cnvW * 0.25;
+    computerRocket.speed = 5;
   });

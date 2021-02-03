@@ -33,6 +33,7 @@ button{
     font-weight: bold;
     width: 15%;
     text-align: center;
+    background-color: rgb(177, 177, 177);
 }
 
 div {
