@@ -327,6 +327,8 @@ class  Rocket {
     };
 
     reaction(collisionElement) {
+        collisionElement.Element2.speedX *= 1.05;
+        collisionElement.Element2.speedY *= 1.05;
         if (collisionElement.directionEl1 == "bottom" && (collisionElement.directionEl2 == "leftTop" || collisionElement.directionEl2 == "rightTop")) collisionElement.Element2.collisionY();
         if (collisionElement.directionEl1 == "top" && (collisionElement.directionEl2 == "leftBottom" || collisionElement.directionEl2 == "rightBottom")) collisionElement.Element2.collisionY();
         collisionElement.Element2.collisionX();
