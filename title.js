@@ -31,12 +31,12 @@ function draw() {
     ctxR.textBaseline = "middle";
      
     render3dText(ctx, title, cnv.width / 2, cnv.height / 2, 6);
-    ctxL.fillText("0", cnvL.width / 2, cnvL.height / 2);
+    // boomText(ctxL, "0", cnvL.width / 2, cnvL.height / 2, 20);
     ctxR.fillText("0", cnvR.width / 2, cnvR.height / 2);
 }
  
 function render3dText(ctx, text, x, y, textDepth) {
-    var i;
+    let i;
     for (i = 0; i < textDepth; i++) {
         ctx.fillText(text, x - i, y - i);
     }
@@ -49,5 +49,19 @@ function render3dText(ctx, text, x, y, textDepth) {
     ctx.shadowOffsetY = textDepth + 2;
     ctx.fillText(text, x - i, y - i);
 }
+
+let step = 0;
+
+let boomTextRun = function boomText(){
+        step +=1;
+        let fontSize = (50 + step) + "px Verdana";
+        ctxL.font = fontSize;
+        ctxR.font = fontSize;
+        ctxL.fillText("0", cnvL.width / 2, cnvL.height / 2 );
+        ctxR.fillText("0", cnvR.width / 2, cnvR.height / 2 );
+        if (step >= 50) clearInterval(titleRun);
+}
+
+let titleRun = setInterval(boomTextRun, 1);
 
 draw();
