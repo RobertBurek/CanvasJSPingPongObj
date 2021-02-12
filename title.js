@@ -7,32 +7,26 @@ const ctxR = cnvR.getContext('2d');
 
 cnv.width = 1200;
 cnv.height = 600;
-cnvL.width = 100;
-cnvL.height = 100;
-cnvR.width = 100;
-cnvR.height = 100;
+cnvL.width = 200;
+cnvL.height = 200;
+cnvR.width = 200;
+cnvR.height = 200;
 
 const title = "Ping   Pong";
 
+function offset(ctx) {
+    ctx.fillStyle =  "white";
+    ctx.fillRect(0, 0, cnvL.width, cnvL.height); // zmien na wspólne wartości H i V
+};
 
 
-function draw() {
-    ctx.font = "120px Verdana";
+
+function drawTitle() {
+    ctx.font = "bold 120px Verdana";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctxL.font = "50px Verdana";
-    ctxL.fillStyle = "black";
-    ctxL.textAlign = "center";
-    ctxL.textBaseline = "middle";
-    ctxR.font = "50px Verdana";
-    ctxR.fillStyle = "black";
-    ctxR.textAlign = "center";
-    ctxR.textBaseline = "middle";
-     
     render3dText(ctx, title, cnv.width / 2, cnv.height / 2, 6);
-    // boomText(ctxL, "0", cnvL.width / 2, cnvL.height / 2, 20);
-    ctxR.fillText("0", cnvR.width / 2, cnvR.height / 2);
 }
  
 function render3dText(ctx, text, x, y, textDepth) {
@@ -53,15 +47,23 @@ function render3dText(ctx, text, x, y, textDepth) {
 let step = 0;
 
 let boomTextRun = function boomText(){
-        step +=1;
-        let fontSize = (50 + step) + "px Verdana";
-        ctxL.font = fontSize;
-        ctxR.font = fontSize;
-        ctxL.fillText("0", cnvL.width / 2, cnvL.height / 2 );
-        ctxR.fillText("0", cnvR.width / 2, cnvR.height / 2 );
-        if (step >= 50) clearInterval(titleRun);
+    offset(ctxL);
+    offset(ctxR);
+    step +=5;
+    let fontSize = "bold " + (10 + step) + "px Verdana";
+    ctxL.font = fontSize;
+    ctxL.fillStyle = "black";
+    ctxL.textAlign = "center";
+    ctxL.textBaseline = "middle";
+    ctxL.fillText("0", cnvL.width / 2, cnvL.height / 2 );
+    ctxR.font = fontSize;
+    ctxR.fillStyle = "black";
+    ctxR.textAlign = "center";
+    ctxR.textBaseline = "middle";
+    ctxR.fillText("0", cnvR.width / 2, cnvR.height / 2 );
+    if (step >= 150) clearInterval(titleRun);
 }
 
 let titleRun = setInterval(boomTextRun, 1);
 
-draw();
+drawTitle();
