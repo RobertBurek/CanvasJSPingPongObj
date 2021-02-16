@@ -45,6 +45,7 @@ function render3dText(ctx, text, x, y, textDepth) {
 }
 
 let step = 0;
+let countdown = 3;
 
 let boomTextRun = function boomText(){
     // offset(ctxL);
@@ -55,26 +56,29 @@ let boomTextRun = function boomText(){
     ctxL.fillStyle = "black";
     ctxL.textAlign = "center";
     ctxL.textBaseline = "middle";
-    ctxL.fillText("0", cnvL.width / 2, cnvL.height / 2 );
+    ctxL.fillText(countdown, cnvL.width / 2, cnvL.height / 2 );
     ctxR.font = fontSize;
     ctxR.fillStyle = "black";
     ctxR.textAlign = "center";
     ctxR.textBaseline = "middle";
-    ctxR.fillText("0", cnvR.width / 2, cnvR.height / 2 );
+    ctxR.fillText(countdown, cnvR.width / 2, cnvR.height / 2 );
     if (step == 50) offset(ctxL);
     if (step == 100) offset(ctxL);
     if (step == 150) offset(ctxL);
     if (step == 195) offset(ctxL);
     if (step >= 200) clearInterval(titleRun);
+    
 }
 
 let titleRun = setInterval(boomTextRun, 1);
 
 function run() {
+    if (countdown > 0) countdown -= 1;
     step = 0;
     titleRun = setInterval(boomTextRun, 1);
+
 }
 
-setInterval(run,2000);
+setInterval(run,1000);
 
 drawTitle();
