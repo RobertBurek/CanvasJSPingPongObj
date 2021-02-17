@@ -45,40 +45,50 @@ function render3dText(ctx, text, x, y, textDepth) {
 }
 
 let step = 0;
-let countdown = 3;
+let countDown = 3;
 
 let boomTextRun = function boomText(){
-    // offset(ctxL);
+    offset(ctxL);
     offset(ctxR);
-    step +=5;
+    if (countDown == "GO") step += 20;
+        else step += 5;
     let fontSize = "bold " + (10 + step) + "px Verdana";
     ctxL.font = fontSize;
     ctxL.fillStyle = "black";
     ctxL.textAlign = "center";
     ctxL.textBaseline = "middle";
-    ctxL.fillText(countdown, cnvL.width / 2, cnvL.height / 2 );
+    ctxL.fillText(countDown, cnvL.width / 2, cnvL.height / 2 );
     ctxR.font = fontSize;
     ctxR.fillStyle = "black";
     ctxR.textAlign = "center";
     ctxR.textBaseline = "middle";
-    ctxR.fillText(countdown, cnvR.width / 2, cnvR.height / 2 );
-    if (step == 50) offset(ctxL);
-    if (step == 100) offset(ctxL);
-    if (step == 150) offset(ctxL);
-    if (step == 195) offset(ctxL);
-    if (step >= 200) clearInterval(titleRun);
+    ctxR.fillText(countDown, cnvR.width / 2, cnvR.height / 2 );
+    // if (step == 50) offset(ctxL);
+    // if (step == 100) offset(ctxL);
+    // if (step == 150) offset(ctxL);
+    // if (step == 195) offset(ctxL);
+    if (step >= 200 && countDown != "GO") clearInterval(titleRun);
+    if (step >= 200 && countDown == "GO") {
+        if (step >= 1000) {
+            clearInterval(titleRun);
+            step = 100;
+            countDown = 0;
+            boomText();
+        }
+    }
     
 }
 
 let titleRun = setInterval(boomTextRun, 1);
 
 function run() {
-    if (countdown > 0) countdown -= 1;
+    if (countDown > 1) countDown -= 1;
+    else countDown = "GO";
     step = 0;
     titleRun = setInterval(boomTextRun, 1);
-
+    if (countDown == "GO") clearInterval(start);
 }
 
-setInterval(run,1000);
+let start = setInterval(run,1000);
 
 drawTitle();
