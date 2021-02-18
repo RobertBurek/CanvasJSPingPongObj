@@ -1,5 +1,6 @@
-const cnv = document.querySelector('canvas');
-
+// const cnv = document.querySelector('canvas');
+// const ctx = cnv.getContext('2d');
+const cnv = document.getElementById('court');
 const ctx = cnv.getContext('2d');
 
 const divPointsPlayer = document.getElementById("pointsPlayer");
