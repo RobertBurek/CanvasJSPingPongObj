@@ -83,7 +83,7 @@ let boomTextRun = function boom(){
 
 let boomPointsPlayer = function boom(){
     offset(ctxL);
-    offset(ctxR);
+    // offset(ctxR);
     if (pointsPlayer == "GO") step += 30;
         else step += 5;
     let fontSize = "bold " + (10 + step) + "px Verdana";
@@ -92,23 +92,17 @@ let boomPointsPlayer = function boom(){
     ctxL.textAlign = "center";
     ctxL.textBaseline = "middle";
     ctxL.fillText(pointsPlayer, cnvL.width / 2, cnvL.height / 2 );
-    ctxR.font = fontSize;
-    ctxR.fillStyle = "black";
-    ctxR.textAlign = "center";
-    ctxR.textBaseline = "middle";
-    ctxR.fillText(pointsComputer, cnvR.width / 2, cnvR.height / 2 );
     // if (step == 50) offset(ctxL);
     // if (step == 100) offset(ctxL);
     // if (step == 150) offset(ctxL);
     // if (step == 195) offset(ctxL);
-    // if (step >= 200) clearInterval(titleRun);
+    if (step >= 200) clearInterval(boomPoints);
     // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
-    if (step >= 200 && poinsPlayer == "GO") {
+    if (step >= 200 && pointsPlayer == "GO") {
         if (step >= 1000) {
-            clearInterval(titleRun);
+            clearInterval(boomPoints);
             step = 100;
-            poinsPlayer = 0;
-            poinsComputer = 0;
+            pointsPlayer = 0;
             boom();
         }
     }

@@ -77,7 +77,7 @@ class Ball {
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
-            boomPoints = setInterval(boomPointsPlayer,1);
+            boomPoints = setInterval(boomPointsPlayer, 1);
             // titleRun = setInterval(boomTextRun, 1);
             divPointsPlayer.innerHTML = pointsPlayer;
             divPointsPlayer.classList.toggle("boom");
