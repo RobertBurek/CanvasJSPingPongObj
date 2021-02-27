@@ -45,35 +45,36 @@ function offset(ctx) {
 // }
 
 let step = 0;
-let countDown = "GO";
+// let countDown = "GO";
 
 let boomTextRun = function boomText(){
     offset(ctxL);
     offset(ctxR);
-    if (countDown == "GO") step += 30;
+    if (poinsPlayer == "GO") step += 30;
         else step += 5;
     let fontSize = "bold " + (10 + step) + "px Verdana";
     ctxL.font = fontSize;
     ctxL.fillStyle = "black";
     ctxL.textAlign = "center";
     ctxL.textBaseline = "middle";
-    ctxL.fillText(countDown, cnvL.width / 2, cnvL.height / 2 );
+    ctxL.fillText(poinsPlayer, cnvL.width / 2, cnvL.height / 2 );
     ctxR.font = fontSize;
     ctxR.fillStyle = "black";
     ctxR.textAlign = "center";
     ctxR.textBaseline = "middle";
-    ctxR.fillText(countDown, cnvR.width / 2, cnvR.height / 2 );
+    ctxR.fillText(poinsComputer, cnvR.width / 2, cnvR.height / 2 );
     // if (step == 50) offset(ctxL);
     // if (step == 100) offset(ctxL);
     // if (step == 150) offset(ctxL);
     // if (step == 195) offset(ctxL);
     // if (step >= 200) clearInterval(titleRun);
     // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
-    if (step >= 200 && countDown == "GO") {
+    if (step >= 200 && poinsPlayer == "GO") {
         if (step >= 1000) {
             clearInterval(titleRun);
             step = 100;
-            countDown = 0;
+            poinsPlayer = 0;
+            poinsComputer = 0;
             boomText();
         }
     }
