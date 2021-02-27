@@ -109,8 +109,33 @@ let boomPointsPlayer = function boom(){
     
 }
 
+function boomm(points,ctxL){
+    let to = setInterval( () => {
+        offset(ctxL);
+        if (pointsPlayer == "GO") step += 30;
+            else step += 5;
+        let fontSize = "bold " + (10 + step) + "px Verdana";
+        ctxL.font = fontSize;
+        ctxL.fillStyle = "black";
+        ctxL.textAlign = "center";
+        ctxL.textBaseline = "middle";
+        ctxL.fillText(points, cnvL.width / 2, cnvL.height / 2 );
+
+        if (step >= 200) clearInterval(to);
+        // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
+        if (step >= 200 && pointsPlayer == "GO") {
+            if (step >= 1000) {
+                clearInterval(to);
+                step = 100;
+                pointsPlayer = 0;
+                this;
+            }
+        }
+    },1);
+}
+
 // let titleRun = setInterval(boomTextRun, 1);
-let boomPoints = setInterval(boomPointsPlayer, 1);
+// let boomPoints = setInterval(boomm(), 1);
 
 // function run() {
 //     // if (countDown > 1) countDown -= 1;

@@ -16,8 +16,8 @@ const widthRocket = 20;
 const heightRocket = 150;
 const deltaRocket = 30;
 let interval = 15;
-let pointsPlayer = "GO";
-let pointsComputer = "GO";
+let pointsPlayer = 0;
+let pointsComputer = 0;
 let collisionElements = [];
 let newGameElements = [];
 let reactionMoment = cnvW * 0.5;
@@ -67,6 +67,7 @@ class Ball {
         }
         if (this.positionX < 0) {
             pointsComputer += 1;
+            boomm(pointsComputer,ctxR);
             // titleRun = setInterval(boomTextRun, 1);
             divPointsComputer.innerHTML = pointsComputer;
             divPointsComputer.classList.toggle("boom");
@@ -77,7 +78,8 @@ class Ball {
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
-            boomPoints = setInterval(boomPointsPlayer, 1);
+            // boomPoints = setInterval(boomm(), 1);
+            boomm(pointsPlayer,ctxL);
             // titleRun = setInterval(boomTextRun, 1);
             divPointsPlayer.innerHTML = pointsPlayer;
             divPointsPlayer.classList.toggle("boom");
