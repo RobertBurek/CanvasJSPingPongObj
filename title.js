@@ -45,12 +45,12 @@ function offset(ctx) {
 // }
 
 let step = 0;
-let countDown = 3;
+let countDown = "GO";
 
 let boomTextRun = function boomText(){
     offset(ctxL);
     offset(ctxR);
-    if (countDown == "GO") step += 20;
+    if (countDown == "GO") step += 30;
         else step += 5;
     let fontSize = "bold " + (10 + step) + "px Verdana";
     ctxL.font = fontSize;
@@ -67,7 +67,8 @@ let boomTextRun = function boomText(){
     // if (step == 100) offset(ctxL);
     // if (step == 150) offset(ctxL);
     // if (step == 195) offset(ctxL);
-    if (step >= 200 && countDown != "GO") clearInterval(titleRun);
+    // if (step >= 200) clearInterval(titleRun);
+    // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
     if (step >= 200 && countDown == "GO") {
         if (step >= 1000) {
             clearInterval(titleRun);
@@ -81,14 +82,15 @@ let boomTextRun = function boomText(){
 
 let titleRun = setInterval(boomTextRun, 1);
 
-function run() {
-    if (countDown > 1) countDown -= 1;
-    else countDown = "GO";
-    step = 0;
-    titleRun = setInterval(boomTextRun, 1);
-    if (countDown == "GO") clearInterval(startGame);
-}
+// function run() {
+//     // if (countDown > 1) countDown -= 1;
+//     // else countDown = "GO";
+//     step = 0;
+//     titleRun = setInterval(boomTextRun, 1);
+//     if (countDown == "GO") countDown = 0;
+//     // clearInterval(startGame);
+// }
 
-let startGame = setInterval(run,1000);
+// let startGame = setInterval(run,1000);
 
 // drawTitle();
