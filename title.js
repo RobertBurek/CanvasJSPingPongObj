@@ -47,22 +47,22 @@ function offset(ctx) {
 let step = 0;
 // let countDown = "GO";
 
-let boomTextRun = function boomText(){
+let boomTextRun = function boom(){
     offset(ctxL);
     offset(ctxR);
-    if (poinsPlayer == "GO") step += 30;
+    if (pointsPlayer == "GO") step += 30;
         else step += 5;
     let fontSize = "bold " + (10 + step) + "px Verdana";
     ctxL.font = fontSize;
     ctxL.fillStyle = "black";
     ctxL.textAlign = "center";
     ctxL.textBaseline = "middle";
-    ctxL.fillText(poinsPlayer, cnvL.width / 2, cnvL.height / 2 );
+    ctxL.fillText(pointsPlayer, cnvL.width / 2, cnvL.height / 2 );
     ctxR.font = fontSize;
     ctxR.fillStyle = "black";
     ctxR.textAlign = "center";
     ctxR.textBaseline = "middle";
-    ctxR.fillText(poinsComputer, cnvR.width / 2, cnvR.height / 2 );
+    ctxR.fillText(pointsComputer, cnvR.width / 2, cnvR.height / 2 );
     // if (step == 50) offset(ctxL);
     // if (step == 100) offset(ctxL);
     // if (step == 150) offset(ctxL);
@@ -75,13 +75,48 @@ let boomTextRun = function boomText(){
             step = 100;
             poinsPlayer = 0;
             poinsComputer = 0;
-            boomText();
+            boom();
         }
     }
     
 }
 
-let titleRun = setInterval(boomTextRun, 1);
+let boomPointsPlayer = function boom(){
+    offset(ctxL);
+    offset(ctxR);
+    if (pointsPlayer == "GO") step += 30;
+        else step += 5;
+    let fontSize = "bold " + (10 + step) + "px Verdana";
+    ctxL.font = fontSize;
+    ctxL.fillStyle = "black";
+    ctxL.textAlign = "center";
+    ctxL.textBaseline = "middle";
+    ctxL.fillText(pointsPlayer, cnvL.width / 2, cnvL.height / 2 );
+    ctxR.font = fontSize;
+    ctxR.fillStyle = "black";
+    ctxR.textAlign = "center";
+    ctxR.textBaseline = "middle";
+    ctxR.fillText(pointsComputer, cnvR.width / 2, cnvR.height / 2 );
+    // if (step == 50) offset(ctxL);
+    // if (step == 100) offset(ctxL);
+    // if (step == 150) offset(ctxL);
+    // if (step == 195) offset(ctxL);
+    // if (step >= 200) clearInterval(titleRun);
+    // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
+    if (step >= 200 && poinsPlayer == "GO") {
+        if (step >= 1000) {
+            clearInterval(titleRun);
+            step = 100;
+            poinsPlayer = 0;
+            poinsComputer = 0;
+            boom();
+        }
+    }
+    
+}
+
+// let titleRun = setInterval(boomTextRun, 1);
+let boomPoints = setInterval(boomPointsPlayer, 1);
 
 // function run() {
 //     // if (countDown > 1) countDown -= 1;
