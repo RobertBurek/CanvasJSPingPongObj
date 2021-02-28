@@ -109,22 +109,20 @@ let boomPointsPlayer = function boom(){
     
 }
 
-function boomm(points, contex, step, minSize, maxSize){
+function boom(text, canvas, step, minSize, maxSize){
+    contex = canvas.getContext('2d');
     let size = minSize;
     let to = setInterval( () => {
         offset(contex);
-        // if (pointsPlayer == "GO") step += 30;
-        //     else step += 5;
         size += step;
         let fontSize = "bold " + (10 + size) + "px Verdana";
-        // console.log(size);
         contex.font = fontSize;
         contex.fillStyle = "black";
         contex.textAlign = "center";
         contex.textBaseline = "middle";
-        contex.fillText(points, contex.width / 2, contex.height / 2 );
+        contex.fillText(text, canvas.width / 2, canvas.height / 2 );
         if (size >= maxSize) clearInterval(to);
-    }, 1 );
+    }, 1);
 }
 
 function boommm(points, canvas){
