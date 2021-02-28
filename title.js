@@ -56,5 +56,5 @@ function boom(text, canvas, step, minSize, maxSize){
         contex.textBaseline = "middle";
         contex.fillText(text, canvas.width / 2, canvas.height / 2 );
         if (size >= maxSize) clearInterval(to);
-    }, 1);
+        }, 1);
 }

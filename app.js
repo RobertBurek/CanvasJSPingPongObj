@@ -444,6 +444,8 @@ function AIcomputer (elements) {
     })
 }
 
+boom('GO', cnv, 30, 0, 1200);
+
 
 function start(elements) {
     court();
