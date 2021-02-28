@@ -68,8 +68,6 @@ class Ball {
         if (this.positionX < 0) {
             pointsComputer += 1;
             boom(pointsComputer, cnvR, 5, 0, 200);
-            // boommm(pointsComputer, cnvR);
-            // titleRun = setInterval(boomTextRun, 1);
             divPointsComputer.innerHTML = pointsComputer;
             divPointsComputer.classList.toggle("boom");
             divPointsComputer.classList.toggle("baam");
@@ -79,10 +77,7 @@ class Ball {
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
-            // boomPoints = setInterval(boomm(), 1);
             boom(pointsPlayer, cnvL, 5, 0, 200);
-            // boommm(pointsPlayer, cnvL);
-            // titleRun = setInterval(boomTextRun, 1);
             divPointsPlayer.innerHTML = pointsPlayer;
             divPointsPlayer.classList.toggle("boom");
             divPointsPlayer.classList.toggle("baam");

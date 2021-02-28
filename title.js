@@ -16,10 +16,8 @@ const title = "Ping   Pong";
 
 function offset(ctx) {
     ctx.fillStyle =  "white";
-    ctx.fillRect(0, 0, cnvL.width, cnvL.height); // zmien na wspólne wartości H i V
+    ctx.fillRect(0, 0, cnvL.width, cnvL.height);
 };
-
-
 
 // function drawTitle() {
 //     ctx.font = "bold 120px Verdana";
@@ -44,71 +42,6 @@ function offset(ctx) {
 //     ctx.fillText(text, x - i, y - i);
 // }
 
-let step = 0;
-// let countDown = "GO";
-
-let boomTextRun = function boom(){
-    offset(ctxL);
-    offset(ctxR);
-    if (pointsPlayer == "GO") step += 30;
-        else step += 5;
-    let fontSize = "bold " + (10 + step) + "px Verdana";
-    ctxL.font = fontSize;
-    ctxL.fillStyle = "black";
-    ctxL.textAlign = "center";
-    ctxL.textBaseline = "middle";
-    ctxL.fillText(pointsPlayer, cnvL.width / 2, cnvL.height / 2 );
-    ctxR.font = fontSize;
-    ctxR.fillStyle = "black";
-    ctxR.textAlign = "center";
-    ctxR.textBaseline = "middle";
-    ctxR.fillText(pointsComputer, cnvR.width / 2, cnvR.height / 2 );
-    // if (step == 50) offset(ctxL);
-    // if (step == 100) offset(ctxL);
-    // if (step == 150) offset(ctxL);
-    // if (step == 195) offset(ctxL);
-    // if (step >= 200) clearInterval(titleRun);
-    // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
-    if (step >= 200 && poinsPlayer == "GO") {
-        if (step >= 1000) {
-            clearInterval(titleRun);
-            step = 100;
-            poinsPlayer = 0;
-            poinsComputer = 0;
-            boom();
-        }
-    }
-    
-}
-
-let boomPointsPlayer = function boom(){
-    offset(ctxL);
-    // offset(ctxR);
-    if (pointsPlayer == "GO") step += 30;
-        else step += 5;
-    let fontSize = "bold " + (10 + step) + "px Verdana";
-    ctxL.font = fontSize;
-    ctxL.fillStyle = "black";
-    ctxL.textAlign = "center";
-    ctxL.textBaseline = "middle";
-    ctxL.fillText(pointsPlayer, cnvL.width / 2, cnvL.height / 2 );
-    // if (step == 50) offset(ctxL);
-    // if (step == 100) offset(ctxL);
-    // if (step == 150) offset(ctxL);
-    // if (step == 195) offset(ctxL);
-    if (step >= 200) clearInterval(boomPoints);
-    // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
-    if (step >= 200 && pointsPlayer == "GO") {
-        if (step >= 1000) {
-            clearInterval(boomPoints);
-            step = 100;
-            pointsPlayer = 0;
-            boom();
-        }
-    }
-    
-}
-
 function boom(text, canvas, step, minSize, maxSize){
     contex = canvas.getContext('2d');
     let size = minSize;
@@ -124,38 +57,3 @@ function boom(text, canvas, step, minSize, maxSize){
         if (size >= maxSize) clearInterval(to);
     }, 1);
 }
-
-function boommm(points, canvas){
-    contex = canvas.getContext('2d');
-    let to = setInterval( () => {
-        offset(contex);
-        step += 5;
-        let fontSize = "bold " + (10 + step) + "px Verdana";
-        console.log(fontSize);
-        contex.font = fontSize;
-        contex.fillStyle = "black";
-        contex.textAlign = "center";
-        contex.textBaseline = "middle";
-        contex.fillText(points, canvas.width / 2, canvas.height / 2 );
-        if (step >= 200) {
-            clearInterval(to);
-            step = 0;
-        }
-    }, 1 );
-}
-
-// let titleRun = setInterval(boomTextRun, 1);
-// let boomPoints = setInterval(boomm(), 1);
-
-// function run() {
-//     // if (countDown > 1) countDown -= 1;
-//     // else countDown = "GO";
-//     step = 0;
-//     titleRun = setInterval(boomTextRun, 1);
-//     if (countDown == "GO") countDown = 0;
-//     // clearInterval(startGame);
-// }
-
-// let startGame = setInterval(run,1000);
-
-// drawTitle();
