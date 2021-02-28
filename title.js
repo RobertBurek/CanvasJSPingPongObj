@@ -109,29 +109,41 @@ let boomPointsPlayer = function boom(){
     
 }
 
-function boomm(points,ctxL){
+function boomm(points, contex, step, minSize, maxSize){
+    let size = minSize;
     let to = setInterval( () => {
-        offset(ctxL);
-        if (pointsPlayer == "GO") step += 30;
-            else step += 5;
-        let fontSize = "bold " + (10 + step) + "px Verdana";
-        ctxL.font = fontSize;
-        ctxL.fillStyle = "black";
-        ctxL.textAlign = "center";
-        ctxL.textBaseline = "middle";
-        ctxL.fillText(points, cnvL.width / 2, cnvL.height / 2 );
+        offset(contex);
+        // if (pointsPlayer == "GO") step += 30;
+        //     else step += 5;
+        size += step;
+        let fontSize = "bold " + (10 + size) + "px Verdana";
+        // console.log(size);
+        contex.font = fontSize;
+        contex.fillStyle = "black";
+        contex.textAlign = "center";
+        contex.textBaseline = "middle";
+        contex.fillText(points, contex.width / 2, contex.height / 2 );
+        if (size >= maxSize) clearInterval(to);
+    }, 1 );
+}
 
-        if (step >= 200) clearInterval(to);
-        // if (step >= 200 && countDown != "GO") clearInterval(titleRun);
-        if (step >= 200 && pointsPlayer == "GO") {
-            if (step >= 1000) {
-                clearInterval(to);
-                step = 100;
-                pointsPlayer = 0;
-                this;
-            }
+function boommm(points, canvas){
+    contex = canvas.getContext('2d');
+    let to = setInterval( () => {
+        offset(contex);
+        step += 5;
+        let fontSize = "bold " + (10 + step) + "px Verdana";
+        console.log(fontSize);
+        contex.font = fontSize;
+        contex.fillStyle = "black";
+        contex.textAlign = "center";
+        contex.textBaseline = "middle";
+        contex.fillText(points, canvas.width / 2, canvas.height / 2 );
+        if (step >= 200) {
+            clearInterval(to);
+            step = 0;
         }
-    },1);
+    }, 1 );
 }
 
 // let titleRun = setInterval(boomTextRun, 1);
