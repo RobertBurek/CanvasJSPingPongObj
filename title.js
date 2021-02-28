@@ -14,9 +14,10 @@ cnvR.height = 200;
 
 const title = "Ping   Pong";
 
-function offset(ctx) {
-    ctx.fillStyle =  "white";
-    ctx.fillRect(0, 0, cnvL.width, cnvL.height);
+function offset(canvas) {
+    context = canvas.getContext('2d');
+    context.fillStyle =  "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
 };
 
 // function drawTitle() {
@@ -46,7 +47,7 @@ function boom(text, canvas, step, minSize, maxSize){
     contex = canvas.getContext('2d');
     let size = minSize;
     let to = setInterval( () => {
-        offset(contex);
+        offset(canvas);
         size += step;
         let fontSize = "bold " + (10 + size) + "px Verdana";
         contex.font = fontSize;
