@@ -383,28 +383,28 @@ gameElements.push(playerRocket, computerRocket);
 
 
 //Test leftTop
-const ball1LT = new Ball(radiusBall, 'white', 145, 250, 6, 6);
-const ball1LT2 = new Ball(radiusBall, 'blue', 150, 280, 6, 3);
-const ball1RB = new Ball(radiusBall, 'lime', 192, 280, -6, -4);
-const ball1LB = new Ball(radiusBall, 'red', 150, 320, 5, -4);
-const ball1RT = new Ball(radiusBall, 'yellow', 212, 250, -6, 5);
+const ball1LT = new Ball(radiusBall, 'white', 445, 250, 6, 6);
+const ball1LT2 = new Ball(radiusBall, 'blue', 450, 280, 6, 3);
+const ball1RB = new Ball(radiusBall, 'lime', 492, 280, -6, -4);
+const ball1LB = new Ball(radiusBall, 'red', 450, 320, 5, -4);
+const ball1RT = new Ball(radiusBall, 'yellow', 512, 250, -6, 5);
 // gameElements.push(ball1LT, ball1LT2);//ok -x -y
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 // Test rightTop
-const ball2RT = new Ball(radiusBall, 'white', 150, 300, -6, 3);
-const ball2RT2 = new Ball(radiusBall, 'red', 148, 270, -6, 6);
-const ball2LT = new Ball(radiusBall, 'lime', 70, 300, 5, 5);
-const ball2RB = new Ball(radiusBall, 'blue', 148, 380, -6, -6);
-const ball2LB = new Ball(radiusBall, 'yellow', 70, 350, 6, -6);
+const ball2RT = new Ball(radiusBall, 'white', 650, 300, -6, 3);
+const ball2RT2 = new Ball(radiusBall, 'red', 648, 270, -6, 6);
+const ball2LT = new Ball(radiusBall, 'lime', 570, 300, 5, 5);
+const ball2RB = new Ball(radiusBall, 'blue', 648, 380, -6, -6);
+const ball2LB = new Ball(radiusBall, 'yellow', 570, 350, 6, -6);
 // gameElements.push(ball2RT, ball2RT2);//ok +x +y
 // gameElements.push(ball2RT, ball2LT);//ok +x -y   // inna reakcja !!!
 // gameElements.push(ball2RT, ball2RB);//ok +x -y
 // gameElements.push(ball2RT, ball2LB);//ok +x =y    // inna reakcja!!!
-// gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
+gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
 
 
 // Test leftBottom
