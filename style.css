@@ -36,6 +36,17 @@ button{
     background-color: rgb(177, 177, 177);
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+button:focus {
+    border-color:rgb(177, 177, 177);
+    outline-color:rgb(177, 177, 177);
+    cursor: none;
+    color: rgb(59, 61, 61);
+  }
+
 div {
     font-size: 50px;
     font-style: italic;

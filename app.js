@@ -7,6 +7,7 @@ const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
 const easyLevel = document.getElementById("easy");
 const mediumLevel = document.getElementById("medium");
+mediumLevel.focus();
 const hardLevel = document.getElementById("hard");
 
 const cnvW = cnv.width = 1200;
