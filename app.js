@@ -9,6 +9,8 @@ const easyLevel = document.getElementById("easy");
 const mediumLevel = document.getElementById("medium");
 mediumLevel.focus();
 const hardLevel = document.getElementById("hard");
+const startButton = document.getElementById("start");
+let currentlyLevel = mediumLevel;
 
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
@@ -519,6 +521,7 @@ document.addEventListener('keydown', (event) => {
     computerRocket.height = heightRocket * 0.8;
     reactionMoment = cnvW * 0.75;
     computerRocket.speed = 3;
+    currentlyLevel = easyLevel;
   });
 
   mediumLevel.addEventListener("click", () => {
@@ -526,6 +529,7 @@ document.addEventListener('keydown', (event) => {
     computerRocket.height = heightRocket;
     reactionMoment = cnvW * 0.5;
     computerRocket.speed = 4;
+    currentlyLevel = mediumLevel;
   });
 
   hardLevel.addEventListener("click", () => {
@@ -533,4 +537,11 @@ document.addEventListener('keydown', (event) => {
     computerRocket.height = heightRocket * 1.2;
     reactionMoment = cnvW * 0.25;
     computerRocket.speed = 5;
+    currentlyLevel = hardLevel;
+  });
+
+  startButton.addEventListener("click", () => {
+    console.log("tu jestem");
+    currentlyLevel.focus;
+    console.log(currentlyLevel);
   });
