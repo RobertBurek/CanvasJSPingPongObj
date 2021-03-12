@@ -27,6 +27,10 @@ canvas {
     border: 3px solid #fff;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #court:hover {
     cursor: crosshair;
 }
@@ -40,14 +44,18 @@ canvas {
     background-color: rgb(177, 177, 177);
 }
 
-.menuButton:hover {
-    cursor: pointer;
+.focusLevel:hover {
+    cursor: none;
 }
 
-.menuButton:focus {
+/* button:hover {
+    cursor: pointer;
+} */
+
+.focusLevel {
     border-color:rgb(177, 177, 177);
     outline-color:rgb(177, 177, 177);
-    cursor: none;
+    /* cursor: none; */
     color: rgb(59, 61, 61);
   }
 
