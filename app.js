@@ -444,38 +444,8 @@ function AIcomputer (elements) {
             }
         }
     })
-}
-
-boom('GO', cnv, 30, 0, 1200);
-
-
-function start(elements) {
-    court();
-    elements.forEach(element => {
-        element.isBorder();
-        element.draw();
-    });
-    elements.forEach(element => {
-        element.isContact();
-    });
-    collisionElements.forEach(element => {
-        element.Element1.reaction(element);
-    });
-    collisionElements = [];
-    if (newGameElements.length > 0 ) {
-        gameElements = newGameElements;
-        newGameElements = [];
-    }
-    AIcomputer(elements);
 };
 
-
-function game() {
-    start(gameElements);
-};
-
-
-let myInterval = setInterval(game, interval);
 
 document.addEventListener('keydown', (event) => {
     // console.log(event.code);
@@ -547,6 +517,42 @@ document.addEventListener('keydown', (event) => {
     focusLevelClass(hardLevel);
   });
 
+
+  function start(elements) {
+    court();
+    elements.forEach(element => {
+        element.isBorder();
+        element.draw();
+    });
+    elements.forEach(element => {
+        element.isContact();
+    });
+    collisionElements.forEach(element => {
+        element.Element1.reaction(element);
+    });
+    collisionElements = [];
+    if (newGameElements.length > 0 ) {
+        gameElements = newGameElements;
+        newGameElements = [];
+    }
+    AIcomputer(elements);
+};
+
+
+function game() {
+    start(gameElements);
+};
+
+let myInterval;
+court();
+gameElements.forEach(element => {
+    element.isBorder();
+    element.draw();
+});
+
   startButton.addEventListener("click", () => {
+    startButton.classList.add("stop");
     console.log("tu jestem");
+    boom('GO', cnv, 30, 0, 1200);
+    myInterval = setInterval(game, interval);
   });
