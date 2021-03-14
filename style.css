@@ -69,8 +69,18 @@ div {
 
 .run {
     position: absolute;
-    left: 43%;
-    top: 40%;
+    left: 45%;
+    top: 50%;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+    width: 10%;
+    text-align: center;
+    background-color: rgb(177, 177, 177);
+}
+
+.stop {
+    display: none;
 }
 
 .boom {
