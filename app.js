@@ -69,7 +69,7 @@ class Ball {
         }
         if (this.positionX < 0) {
             pointsComputer += 1;
-            boom(pointsComputer, cnvR, 5, 0, 200);
+            baam(pointsComputer, cnvR, 5, 0, 200);
             divPointsComputer.innerHTML = pointsComputer;
             divPointsComputer.classList.toggle("boom");
             divPointsComputer.classList.toggle("baam");
@@ -463,9 +463,9 @@ document.addEventListener('keydown', (event) => {
         computerRocket.moveDown();
         computerRocket.sleep();
     };
-    if (event.code === "Space") {
-        clearInterval(myInterval);
-    };
+    // if (event.code === "Space") {
+    //     clearInterval(myInterval);
+    // };
     if (event.code === "KeyA") {
         myInterval = setInterval(game, interval);
     };
@@ -550,9 +550,9 @@ gameElements.forEach(element => {
     element.draw();
 });
 
-  startButton.addEventListener("click", () => {
-    startButton.classList.add("stop");
-    console.log("tu jestem");
-    boom('GO', cnv, 30, 0, 1200);
-    myInterval = setInterval(game, interval);
+startButton.addEventListener("click", () => {
+   startButton.classList.add("stop");
+   console.log("tu jestem");
+   boom('GO', cnv, 30, 100, 500);
+   myInterval = setInterval(game, interval);
   });
