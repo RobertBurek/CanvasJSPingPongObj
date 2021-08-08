@@ -1,16 +1,11 @@
-// const cnv = document.querySelector('canvas');
-// const ctx = cnv.getContext('2d');
 const cnv = document.getElementById('court');
 const ctx = cnv.getContext('2d');
-
 const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
 const easyLevel = document.getElementById("easy");
 const mediumLevel = document.getElementById("medium");
-// mediumLevel.focus();
 const hardLevel = document.getElementById("hard");
 const startButton = document.getElementById("start");
-
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
 const radiusBall = 8;
@@ -23,6 +18,7 @@ let pointsComputer = 0;
 let collisionElements = [];
 let newGameElements = [];
 let reactionMoment = cnvW * 0.5;
+let myInterval;
 
 class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2) {
@@ -479,46 +475,45 @@ document.addEventListener('keydown', (event) => {
         interval += 5;
         myInterval = setInterval(game, interval);
     };
-  });
+});
 
-  cnv.addEventListener("mousemove", (event) => {
+cnv.addEventListener("mousemove", (event) => {
     playerRocket.positionY =  event.clientY - cnv.offsetTop - playerRocket.height / 2;
-  });
+});
 
-  function focusLevelClass(element){
+function focusLevelClass(element){
     easyLevel.classList.remove("focusLevel");
     mediumLevel.classList.remove("focusLevel");
     hardLevel.classList.remove("focusLevel");
     element.classList.add("focusLevel");
-  }
+};
 
-  easyLevel.addEventListener("click", () => {
-    playerRocket.height = heightRocket * 1.2;
-    computerRocket.height = heightRocket * 0.8;
-    reactionMoment = cnvW * 0.75;
-    computerRocket.speed = 3;
-    currentlyLevel = easyLevel;
-    focusLevelClass(easyLevel);
-  });
+easyLevel.addEventListener("click", () => {
+  playerRocket.height = heightRocket * 1.2;
+  computerRocket.height = heightRocket * 0.8;
+  reactionMoment = cnvW * 0.75;
+  computerRocket.speed = 3;
+  currentlyLevel = easyLevel;
+  focusLevelClass(easyLevel);
+});
 
-  mediumLevel.addEventListener("click", () => {
-    playerRocket.height = heightRocket
-    computerRocket.height = heightRocket;
-    reactionMoment = cnvW * 0.5;
-    computerRocket.speed = 4;
-    focusLevelClass(mediumLevel);
-  });
+mediumLevel.addEventListener("click", () => {
+  playerRocket.height = heightRocket
+  computerRocket.height = heightRocket;
+  reactionMoment = cnvW * 0.5;
+  computerRocket.speed = 4;
+  focusLevelClass(mediumLevel);
+});
 
-  hardLevel.addEventListener("click", () => {
-    playerRocket.height = heightRocket * 0.8;
-    computerRocket.height = heightRocket * 1.2;
-    reactionMoment = cnvW * 0.25;
-    computerRocket.speed = 5;
-    focusLevelClass(hardLevel);
-  });
+hardLevel.addEventListener("click", () => {
+  playerRocket.height = heightRocket * 0.8;
+  computerRocket.height = heightRocket * 1.2;
+  reactionMoment = cnvW * 0.25;
+  computerRocket.speed = 5;
+  focusLevelClass(hardLevel);
+});
 
-
-  function start(elements) {
+function start(elements) {
     court();
     elements.forEach(element => {
         element.isBorder();
@@ -538,12 +533,11 @@ document.addEventListener('keydown', (event) => {
     AIcomputer(elements);
 };
 
-
 function game() {
     start(gameElements);
 };
 
-let myInterval;
+
 court();
 gameElements.forEach(element => {
     element.isBorder();
@@ -558,4 +552,4 @@ startButton.addEventListener("click", () => {
    console.log("kliknąłem start");
    boom('GO', cnv, 30, 100, 500);
    myInterval = setInterval(game, interval);
-  });
+});
