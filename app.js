@@ -263,7 +263,6 @@ class  Rocket {
     sleep() {
         setTimeout(()=>{
             this.direction = "sleep";
-            // console.log(this.direction);
         }, 1000);
     };
 
