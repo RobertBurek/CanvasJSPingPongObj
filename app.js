@@ -550,9 +550,12 @@ gameElements.forEach(element => {
     element.draw();
 });
 
+boom(pointsPlayer, cnvL, 5, 0, 200);
+baam(pointsComputer, cnvR, 5, 0, 200);
+
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");
-   console.log("tu jestem");
+   console.log("kliknąłem start");
    boom('GO', cnv, 30, 100, 500);
    myInterval = setInterval(game, interval);
   });
