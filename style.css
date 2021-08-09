@@ -45,11 +45,26 @@ button:hover {
     background-color: rgb(177, 177, 177);
 }
 
+.nextButtonBlue{
+    background-color: blue;
+}
+.nextButtonRed{
+    background-color: red;
+}
+.nextButtonYellow{
+    background-color: yellow;
+}
+.nextButtonWhite{
+    background-color: white;
+}
+.nextButtonLime{
+    background-color: lime;
+}
+
 .nextButton{
     font-size: 15px;
     font-style: italic;
     font-weight: bold;
-    background-color: blue;
     color: white;
     width: 100px;
     padding: 5px;
