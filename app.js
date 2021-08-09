@@ -513,10 +513,8 @@ hardLevel.addEventListener("click", () => {
   focusLevelClass(hardLevel);
 });
 
-// nextBall.classList.toggle("nextButtonBlue");
-// nextBall.classList.toggle("nextButtonYellow");
-// nextBall.classList.toggle("nextButtonLime");
-nextBall.classList.toggle("nextButtonRed");
+const listColorNextBall = ["nextButtonBlue", "nextButtonYellow", "nextButtonLime", "nextButtonRed"];
+nextBall.classList.toggle(listColorNextBall[0]);
 
 function start(elements) {
     court();
