@@ -66,9 +66,9 @@ class Ball {
         if (this.positionX < 0) {
             pointsComputer += 1;
             baam(pointsComputer, cnvR, 5, 0, 200);
-            divPointsComputer.innerHTML = pointsComputer;
-            divPointsComputer.classList.toggle("boom");
-            divPointsComputer.classList.toggle("baam");
+            // divPointsComputer.innerHTML = pointsComputer;
+            // divPointsComputer.classList.toggle("boom");
+            // divPointsComputer.classList.toggle("baam");
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
             }
@@ -76,9 +76,9 @@ class Ball {
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
             boom(pointsPlayer, cnvL, 5, 0, 200);
-            divPointsPlayer.innerHTML = pointsPlayer;
-            divPointsPlayer.classList.toggle("boom");
-            divPointsPlayer.classList.toggle("baam");
+            // divPointsPlayer.innerHTML = pointsPlayer;
+            // divPointsPlayer.classList.toggle("boom");
+            // divPointsPlayer.classList.toggle("baam");
             for (let gameEl of gameElements) {
                 if (gameEl !== this) newGameElements.push(gameEl);
             }
