@@ -5,6 +5,7 @@ const divPointsComputer = document.getElementById("pointsComputer");
 const easyLevel = document.getElementById("easy");
 const mediumLevel = document.getElementById("medium");
 const hardLevel = document.getElementById("hard");
+const nextBall = document.getElementById("nextBall");
 const startButton = document.getElementById("start");
 const cnvW = cnv.width = 1200;
 const cnvH = cnv.height = 600;
@@ -511,6 +512,11 @@ hardLevel.addEventListener("click", () => {
   computerRocket.speed = 5;
   focusLevelClass(hardLevel);
 });
+
+// nextBall.classList.toggle("nextButtonBlue");
+// nextBall.classList.toggle("nextButtonYellow");
+// nextBall.classList.toggle("nextButtonLime");
+nextBall.classList.toggle("nextButtonRed");
 
 function start(elements) {
     court();

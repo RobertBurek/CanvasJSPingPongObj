@@ -47,25 +47,29 @@ button:hover {
 
 .nextButtonBlue{
     background-color: blue;
+    color: white;
 }
 .nextButtonRed{
     background-color: red;
+    color: white;
 }
 .nextButtonYellow{
     background-color: yellow;
+    color: black;
 }
 .nextButtonWhite{
     background-color: white;
+    color: black;
 }
 .nextButtonLime{
     background-color: lime;
+    color: black;
 }
 
 .nextButton{
     font-size: 15px;
     font-style: italic;
     font-weight: bold;
-    color: white;
     width: 100px;
     padding: 5px;
 }
