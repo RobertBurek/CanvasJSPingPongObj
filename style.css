@@ -21,6 +21,7 @@ body{
     align-items: center;
     justify-content: space-evenly;
     height: 15vh;
+    margin-left: 100px;
 }
 
 canvas {
@@ -42,6 +43,16 @@ button:hover {
     width: 15%;
     text-align: center;
     background-color: rgb(177, 177, 177);
+}
+
+.nextButton{
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+    width: 100px;
+    padding: 5px;
 }
 
 .focusLevel:hover {
