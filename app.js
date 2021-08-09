@@ -517,6 +517,11 @@ const listColorNextBall = ["nextButtonBlue", "nextButtonYellow", "nextButtonLime
 nextBall.classList.add("nextButton");
 nextBall.classList.toggle(listColorNextBall[Math.floor(Math.random() * 3)]);
 
+nextBall.addEventListener("click", () => {
+    nextBall.classList.add("nextButton");
+    nextBall.classList.toggle(listColorNextBall[Math.floor(Math.random() * 3)]);
+  });
+
 
 function start(elements) {
     court();
