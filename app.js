@@ -518,8 +518,12 @@ nextBall.classList.add("nextButton");
 nextBall.classList.toggle(listColorNextBall[Math.floor(Math.random() * 3)]);
 
 nextBall.addEventListener("click", () => {
+    // nextBall.classList.add("nextButton");
+    nextBall.classList.remove("nextButton","nextButtonBlue", "nextButtonYellow", "nextButtonLime", "nextButtonRed");
     nextBall.classList.add("nextButton");
     nextBall.classList.toggle(listColorNextBall[Math.floor(Math.random() * 3)]);
+    const newBall = new Ball(radiusBall, 'white', 750, 370, -6, -6);
+    gameElements.push(newBall);
   });
 
 
