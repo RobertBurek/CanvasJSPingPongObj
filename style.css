@@ -72,6 +72,7 @@ button:hover {
     font-weight: bold;
     width: 100px;
     padding: 5px;
+    background-color: lime;
 }
 
 .focusLevel:hover {

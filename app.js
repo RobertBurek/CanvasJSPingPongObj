@@ -513,17 +513,21 @@ hardLevel.addEventListener("click", () => {
   focusLevelClass(hardLevel);
 });
 
-const listColorNextBall = ["nextButtonBlue", "nextButtonYellow", "nextButtonLime", "nextButtonRed"];
-nextBall.classList.add("nextButton");
-nextBall.classList.toggle(listColorNextBall[Math.floor(Math.random() * 3)]);
+const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange"];
+var losowa = Math.floor(Math.random() * listColorNextBall.length);
+console.log(losowa);
+console.log(listColorNextBall.length);
+var colorNextBall = listColorNextBall[losowa];
+nextBall.style.background = colorNextBall;
 
 nextBall.addEventListener("click", () => {
-    // nextBall.classList.add("nextButton");
-    nextBall.classList.remove("nextButton","nextButtonBlue", "nextButtonYellow", "nextButtonLime", "nextButtonRed");
-    nextBall.classList.add("nextButton");
-    nextBall.classList.toggle(listColorNextBall[Math.floor(Math.random() * 3)]);
-    const newBall = new Ball(radiusBall, 'white', 750, 370, -6, -6);
+    nextBall.style.background = colorNextBall;
+    const newBall = new Ball(radiusBall, colorNextBall, 600, 300, -6, -6);
     gameElements.push(newBall);
+    losowa = Math.floor(Math.random() * listColorNextBall.length);
+    console.log(losowa);
+    colorNextBall = listColorNextBall[losowa];
+    nextBall.style.background = colorNextBall;
   });
 
 
