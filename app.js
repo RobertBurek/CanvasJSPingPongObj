@@ -522,10 +522,15 @@ nextBall.style.background = colorNextBall;
 
 nextBall.addEventListener("click", () => {
     nextBall.style.background = colorNextBall;
-    const newBall = new Ball(radiusBall, colorNextBall, 600, 300, -6, -6);
+    var x = Math.floor(Math.random() * 10);
+    if (Math.random() < 0.5) x = -1 * x; 
+    console.log(x);
+    var y = Math.floor(Math.random() * 10);
+    if (Math.random() < 0.5) y = -1 * y;
+    console.log(y);
+    const newBall = new Ball(radiusBall, colorNextBall, 600, 300, x, y);
     gameElements.push(newBall);
     losowa = Math.floor(Math.random() * listColorNextBall.length);
-    console.log(losowa);
     colorNextBall = listColorNextBall[losowa];
     nextBall.style.background = colorNextBall;
   });
