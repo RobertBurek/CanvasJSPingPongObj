@@ -513,7 +513,7 @@ hardLevel.addEventListener("click", () => {
   focusLevelClass(hardLevel);
 });
 
-const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange"];
+const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange", "Deeppink", "Greenyellow", "Gold"];
 var losowa = Math.floor(Math.random() * listColorNextBall.length);
 var colorNextBall = listColorNextBall[losowa];
 nextBall.style.background = colorNextBall;
