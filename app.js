@@ -515,18 +515,15 @@ hardLevel.addEventListener("click", () => {
 
 const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange"];
 var losowa = Math.floor(Math.random() * listColorNextBall.length);
-console.log(losowa);
-console.log(listColorNextBall.length);
 var colorNextBall = listColorNextBall[losowa];
 nextBall.style.background = colorNextBall;
 
 nextBall.addEventListener("click", () => {
-    nextBall.style.background = colorNextBall;
-    var x = Math.floor(Math.random() * 10);
-    if (Math.random() < 0.5) x = -1 * x; 
+    var x = Math.floor(Math.random() * 8) + 3;
+    if (Math.random() < 0.49) x = -1 * x; 
     console.log(x);
-    var y = Math.floor(Math.random() * 10);
-    if (Math.random() < 0.5) y = -1 * y;
+    var y = Math.floor(Math.random() * 8) + 3;
+    if (Math.random() < 0.49) y = -1 * y;
     console.log(y);
     const newBall = new Ball(radiusBall, colorNextBall, 600, 300, x, y);
     gameElements.push(newBall);
