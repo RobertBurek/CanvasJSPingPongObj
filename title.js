@@ -31,7 +31,7 @@ function boom(text, canvas, step, minSize, maxSize){
         let fontSize = "bold " + (10 + size) + "px Verdana";
         drawBoom(text, contexL, fontSize, canvas.width / 2, canvas.height / 2 + 10);
         if (size >= maxSize) clearInterval(to);
-        }, 1);
+    }, 1);
 }
 
 function baam(text, canvas, step, minSize, maxSize){
@@ -43,5 +43,5 @@ function baam(text, canvas, step, minSize, maxSize){
         let fontSize = "bold " + (10 + size) + "px Verdana";
         drawBoom(text, contexP, fontSize, canvas.width / 2, canvas.height / 2 + 10);
         if (size >= maxSize) clearInterval(to);
-        }, 1);
+    }, 1);
 }

@@ -21,7 +21,7 @@ body{
     align-items: center;
     justify-content: space-evenly;
     height: 15vh;
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }
 
 canvas {
@@ -45,7 +45,7 @@ button:hover {
     background-color: rgb(177, 177, 177);
 }
 
-.nextButtonBlue{
+/* .nextButtonBlue{
     background-color: blue;
     color: white;
 }
@@ -64,7 +64,7 @@ button:hover {
 .nextButtonLime{
     background-color: lime;
     color: black;
-}
+} */
 
 .nextButton{
     font-size: 15px;
@@ -126,7 +126,7 @@ div {
     -webkit-animation: baam 0.2s ease-in-out;
 }
 
-@keyframes boom
+/* @keyframes boom
 {
   0% { font-size: 50px; }
   100% { font-size: 180px; }
@@ -148,4 +148,4 @@ div {
 {
   0% { font-size: 50px; }
   100% { font-size: 180px; }
-}
+} */
