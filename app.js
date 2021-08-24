@@ -7,7 +7,8 @@ const mediumLevel = document.getElementById("medium");
 const hardLevel = document.getElementById("hard");
 const nextBall = document.getElementById("nextBall");
 const startButton = document.getElementById("start");
-var windowWidth, windowHeight;
+var windowWidth = 1200;
+var windowHeight = 600;
 if( typeof( window.innerWidth ) == 'number' ) {
     //Non-IE
     windowWidth = window.innerWidth;
