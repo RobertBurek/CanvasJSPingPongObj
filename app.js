@@ -22,7 +22,7 @@ if( typeof( window.innerWidth ) == 'number' ) {
     windowWidth = document.body.clientWidth;
     windowHeight = document.body.clientHeight;
   }
-  console.log(windowWidth);
+  console.log(windowWidth*0.75);
   console.log(windowHeight);
 // const cnvW = cnv.width = window.width*0.7;
 // const cnvH = cnv.height = cnvW/2;
@@ -30,7 +30,8 @@ const cnvW = cnv.width = windowWidth * 0.7;
 const cnvH = cnv.height = windowHeight * 0.8;
 const radiusBall = 8;
 const widthRocket = 20;
-const heightRocket = 150;
+// const heightRocket = 150;
+const heightRocket = cnvH / 4;
 const deltaRocket = 30;
 let interval = 15;
 let pointsPlayer = 0;
