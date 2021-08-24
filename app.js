@@ -7,8 +7,26 @@ const mediumLevel = document.getElementById("medium");
 const hardLevel = document.getElementById("hard");
 const nextBall = document.getElementById("nextBall");
 const startButton = document.getElementById("start");
-const cnvW = cnv.width = 1200;
-const cnvH = cnv.height = 600;
+var windowWidth, windowHeight;
+if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
+  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    windowWidth = document.documentElement.clientWidth;
+    windowHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    windowWidth = document.body.clientWidth;
+    windowHeight = document.body.clientHeight;
+  }
+  console.log(windowWidth);
+  console.log(windowHeight);
+// const cnvW = cnv.width = window.width*0.7;
+// const cnvH = cnv.height = cnvW/2;
+const cnvW = cnv.width = windowWidth * 0.7;
+const cnvH = cnv.height = windowHeight * 0.8;
 const radiusBall = 8;
 const widthRocket = 20;
 const heightRocket = 150;
