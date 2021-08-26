@@ -495,6 +495,10 @@ document.addEventListener('keydown', (event) => {
         interval += 5;
         myInterval = setInterval(game, interval);
     };
+    if (event.code === "F1") {
+        addNewBall();
+    };
+    console.log(event.code);
 });
 
 cnv.addEventListener("mousemove", (event) => {
@@ -538,18 +542,23 @@ var losowa = Math.floor(Math.random() * listColorNextBall.length);
 var colorNextBall = listColorNextBall[losowa];
 nextBall.style.background = colorNextBall;
 
-nextBall.addEventListener("click", () => {
+function addNewBall(){
     var x = Math.floor(Math.random() * 8) + 3;
     if (Math.random() < 0.49) x = -1 * x; 
-    console.log(x);
+    // console.log(x);
     var y = Math.floor(Math.random() * 8) + 3;
     if (Math.random() < 0.49) y = -1 * y;
-    console.log(y);
+    // console.log(y);
     const newBall = new Ball(radiusBall, colorNextBall, 600, 300, x, y);
     gameElements.push(newBall);
     losowa = Math.floor(Math.random() * listColorNextBall.length);
     colorNextBall = listColorNextBall[losowa];
     nextBall.style.background = colorNextBall;
+};
+
+
+nextBall.addEventListener("click", () => {
+    addNewBall();
   });
 
 
