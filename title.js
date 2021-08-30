@@ -1,13 +1,3 @@
-const cnvL = document.getElementById('pointsPlayer')
-const ctxL = cnvL.getContext('2d');
-const cnvR = document.getElementById('pointsComputer');
-const ctxR = cnvR.getContext('2d');
-
-cnvL.width = 200;
-cnvL.height = 200;
-cnvR.width = 200;
-cnvR.height = 200;
-
 function offset(canvas) {
     context = canvas.getContext('2d');
     context.fillStyle =  "white";

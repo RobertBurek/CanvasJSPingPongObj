@@ -1,12 +1,11 @@
 const cnv = document.getElementById('court');
 const ctx = cnv.getContext('2d');
-const divPointsPlayer = document.getElementById("pointsPlayer");
-const divPointsComputer = document.getElementById("pointsComputer");
-const easyLevel = document.getElementById("easy");
-const mediumLevel = document.getElementById("medium");
-const hardLevel = document.getElementById("hard");
-const nextBall = document.getElementById("nextBall");
-const startButton = document.getElementById("start");
+
+const cnvL = document.getElementById('pointsPlayer')
+const ctxL = cnvL.getContext('2d');
+const cnvR = document.getElementById('pointsComputer');
+const ctxR = cnvR.getContext('2d');
+
 var windowWidth = 1200;
 var windowHeight = 600;
 if( typeof( window.innerWidth ) == 'number' ) {
@@ -22,18 +21,33 @@ if( typeof( window.innerWidth ) == 'number' ) {
     windowWidth = document.body.clientWidth;
     windowHeight = document.body.clientHeight;
   }
-  console.log(windowWidth*0.75);
+  console.log(windowWidth);
+  console.log(windowWidth*0.70);
+  console.log(windowWidth*0.15);
   console.log(windowHeight);
 // const cnvW = cnv.width = window.width*0.7;
 // const cnvH = cnv.height = cnvW/2;
 const cnvW = cnv.width = windowWidth * 0.7;
 const cnvH = cnv.height = windowHeight * 0.8;
+
+cnvL.width = windowWidth * 0.14;
+cnvL.height = 200;
+cnvR.width = windowWidth * 0.14;
+cnvR.height = 200;
+
 const radiusBall = 8;
 const widthRocket = 20;
 // const heightRocket = 150;
 const heightRocket = cnvH / 4;
 const deltaRocket = 30;
 let interval = 15;
+const divPointsPlayer = document.getElementById("pointsPlayer");
+const divPointsComputer = document.getElementById("pointsComputer");
+const easyLevel = document.getElementById("easy");
+const mediumLevel = document.getElementById("medium");
+const hardLevel = document.getElementById("hard");
+const nextBall = document.getElementById("nextBall");
+const startButton = document.getElementById("start");
 let pointsPlayer = 0;
 let pointsComputer = 0;
 let collisionElements = [];
