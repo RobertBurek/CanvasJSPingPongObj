@@ -30,7 +30,7 @@ if( typeof( window.innerWidth ) == 'number' ) {
 const cnvW = cnv.width = windowWidth * 0.7;
 const cnvH = cnv.height = windowHeight * 0.8;
 
-cnvL.width = cnvL.height = cnvR.width = cnvR.height = windowWidth * 0.14;
+cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
 // cnvL.height = cnvL.width;
 // cnvR.width = windowWidth * 0.14;
 // cnvR.height = cnvL.width;
@@ -100,7 +100,7 @@ class Ball {
         }
         if (this.positionX < 0) {
             pointsComputer += 1;
-            baam(pointsComputer, cnvR, 5, 0, 200);
+            baam(pointsComputer, cnvR, 5, 0, maxSize);
             // divPointsComputer.innerHTML = pointsComputer;
             // divPointsComputer.classList.toggle("boom");
             // divPointsComputer.classList.toggle("baam");
@@ -110,7 +110,7 @@ class Ball {
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
-            boom(pointsPlayer, cnvL, 5, 0, 200);
+            boom(pointsPlayer, cnvL, 5, 0, maxSize);
             // divPointsPlayer.innerHTML = pointsPlayer;
             // divPointsPlayer.classList.toggle("boom");
             // divPointsPlayer.classList.toggle("baam");
