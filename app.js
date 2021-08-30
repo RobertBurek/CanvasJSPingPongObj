@@ -30,10 +30,10 @@ if( typeof( window.innerWidth ) == 'number' ) {
 const cnvW = cnv.width = windowWidth * 0.7;
 const cnvH = cnv.height = windowHeight * 0.8;
 
-cnvL.width = windowWidth * 0.14;
-cnvL.height = 200;
-cnvR.width = windowWidth * 0.14;
-cnvR.height = 200;
+cnvL.width = cnvL.height = cnvR.width = cnvR.height = windowWidth * 0.14;
+// cnvL.height = cnvL.width;
+// cnvR.width = windowWidth * 0.14;
+// cnvR.height = cnvL.width;
 
 const radiusBall = 8;
 const widthRocket = 20;
