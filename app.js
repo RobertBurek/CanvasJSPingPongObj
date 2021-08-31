@@ -608,8 +608,8 @@ gameElements.forEach(element => {
     element.draw();
 });
 
-boom(pointsPlayer, cnvL, 5, 0, 200);
-baam(pointsComputer, cnvR, 5, 0, 200);
+boom(pointsPlayer, cnvL, 5, 0, maxSize);
+baam(pointsComputer, cnvR, 5, 0, maxSize);
 
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");

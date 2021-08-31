@@ -15,28 +15,28 @@ function drawBoom(text, contex, font, width, height){
     contex.fillText(text, width, height);
 };
 
-function boom(text, canvas, step, minSize, maxSize){
+function boom(text, canvas, steep, minSize, maxSize){
     contexL = canvas.getContext('2d');
     let size = minSize;
     let to = setInterval( () => {
         offset(canvas);
-        size += step;
+        size += steep;
         let fontSize = "bold " + (10 + size) + "px Verdana";
         // if (text > 9) {fontSize = "bold " + Math.floor((10 + size) * 0.7) + "px Verdana";}
         drawBoom(text, contexL, fontSize, canvas.width / 2, canvas.height / 2 + 10);
-        if (size >= maxSize * 0.65) clearInterval(to);
+        if (size >= maxSize * 0.6) clearInterval(to);
     }, 1);
 }
 
-function baam(text, canvas, step, minSize, maxSize){
+function baam(text, canvas, steep, minSize, maxSize){
     contexP = canvas.getContext('2d');
     let size = minSize;
     let to = setInterval( () => {
         offset(canvas);
-        size += step;
+        size += steep;
         let fontSize = "bold " + (10 + size) + "px Verdana";
         // if (text > 9) {fontSize = "bold " + Math.floor((10 + size) * 0.7) + "px Verdana";}
         drawBoom(text, contexP, fontSize, canvas.width / 2, canvas.height / 2 + 10);
-        if (size >= maxSize * 0.65) clearInterval(to);
+        if (size >= maxSize * 0.6) clearInterval(to);
     }, 1);
 }
