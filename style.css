@@ -6,7 +6,8 @@
 
 body{
     height: 100vh;
-    background-color: rgb(177, 177, 177);
+    /* background-color: rgb(177, 177, 177); */
+    background-color: DarkGray;
 }
 
 .container {
@@ -24,7 +25,7 @@ body{
     /* margin-left: 100px; */
 }
 
-canvas {
+canvas#court {
     border: 3px solid #fff;
 }
 

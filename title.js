@@ -1,6 +1,9 @@
 function offset(canvas) {
     context = canvas.getContext('2d');
-    context.fillStyle =  "white";
+    // context.fillStyle =  "white";
+    context.fillStyle =  "DarkGray";
+
+    // context.fillStyle =  rgb(177, 177, 177);
     context.fillRect(0, 0, canvas.width, canvas.height);
 };
 
@@ -19,8 +22,9 @@ function boom(text, canvas, step, minSize, maxSize){
         offset(canvas);
         size += step;
         let fontSize = "bold " + (10 + size) + "px Verdana";
+        // if (text > 9) {fontSize = "bold " + Math.floor((10 + size) * 0.7) + "px Verdana";}
         drawBoom(text, contexL, fontSize, canvas.width / 2, canvas.height / 2 + 10);
-        if (size >= maxSize) clearInterval(to);
+        if (size >= maxSize * 0.65) clearInterval(to);
     }, 1);
 }
 
@@ -31,7 +35,8 @@ function baam(text, canvas, step, minSize, maxSize){
         offset(canvas);
         size += step;
         let fontSize = "bold " + (10 + size) + "px Verdana";
+        // if (text > 9) {fontSize = "bold " + Math.floor((10 + size) * 0.7) + "px Verdana";}
         drawBoom(text, contexP, fontSize, canvas.width / 2, canvas.height / 2 + 10);
-        if (size >= maxSize) clearInterval(to);
+        if (size >= maxSize * 0.65) clearInterval(to);
     }, 1);
 }

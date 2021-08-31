@@ -424,7 +424,7 @@ const ball1RT = new Ball(radiusBall, 'yellow', 512, 250, -6, 5);
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 // Test rightTop
 const ball2RT = new Ball(radiusBall, 'white', 650, 300, -6, 3);
