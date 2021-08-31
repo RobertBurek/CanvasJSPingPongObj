@@ -28,7 +28,9 @@ if( typeof( window.innerWidth ) == 'number' ) {
 // const cnvW = cnv.width = window.width*0.7;
 // const cnvH = cnv.height = cnvW/2;
 const cnvW = cnv.width = windowWidth * 0.7;
+const centerWidth = Math.floor(cnvW / 2);
 const cnvH = cnv.height = windowHeight * 0.8;
+const centerHeight = Math.floor(cnvH / 2);
 
 cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
 // cnvL.height = cnvL.width;
@@ -377,9 +379,9 @@ function court() {
 };
 
 
-const ball1 = new Ball(radiusBall, 'white', 143, 250, -5, 5);
-const ball3 = new Ball(radiusBall, 'green', 150, 280, 6, 3);
-const ball6 = new Ball(radiusBall, 'lime', 90, 330, -5, -6);
+const ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, -5, 5);
+const ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, 6, 3);
+const ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, -5, -6);
 const hBall = new Ball(radiusBall, 'white', 122, 330, -8, 0);
 const ball8 = new Ball(radiusBall, 'green', 140, 220, 6, 8);
 const ball9 = new Ball(radiusBall, 'lime', 780, 254, 4, 4);
@@ -394,15 +396,14 @@ const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 
 const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
 
 let gameElements = [];
+gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
 
-
+//Różne testy
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
 // gameElements.push(playerRocket, computerRocket, ball1, ball3, ball6, ball7, ball8);
 // gameElements.push(playerRocket, computerRocket, ball1);
-gameElements.push(playerRocket, computerRocket);
+// gameElements.push(playerRocket, computerRocket);
 // gameElements.push(computerRocket, playerRocket, hBall);
-
-// gameElements.push(ball1, playerRocket, computerRocket, ball2, ball3, ball4, ball5);
 // gameElements.push(playerRocket, computerRocket);
 // gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3, ball4, ball5, ball6, ball7,  ball8, ball9, ball10, ball11, ball12, ball13, ball14, ball15, ball16);
 // gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT, playerRocket, computerRocket);
@@ -424,7 +425,7 @@ const ball1RT = new Ball(radiusBall, 'yellow', 512, 250, -6, 5);
 // gameElements.push(ball1LT, ball1RB);//ok -x +y
 // gameElements.push(ball1LT, ball1LB);//ok +x -y
 // gameElements.push(ball1LT, ball1RT);//ok -x +y
-gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
+// gameElements.push(ball1LT, ball1LT2, ball1RB, ball1LB, ball1RT);//wszystkie leftTop
 
 // Test rightTop
 const ball2RT = new Ball(radiusBall, 'white', 650, 300, -6, 3);
@@ -436,7 +437,7 @@ const ball2LB = new Ball(radiusBall, 'yellow', 570, 350, 6, -6);
 // gameElements.push(ball2RT, ball2LT);//ok +x -y   // inna reakcja !!!
 // gameElements.push(ball2RT, ball2RB);//ok +x -y
 // gameElements.push(ball2RT, ball2LB);//ok +x =y    // inna reakcja!!!
-gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
+// gameElements.push(ball2RT, ball2RT2, ball2LT, ball2RB, ball2LB);//wszystkie rightTop
 
 
 // Test leftBottom
@@ -563,7 +564,7 @@ function addNewBall(){
     var y = Math.floor(Math.random() * 8) + 3;
     if (Math.random() < 0.49) y = -1 * y;
     // console.log(y);
-    const newBall = new Ball(radiusBall, colorNextBall, 600, 300, x, y);
+    const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, x, y);
     gameElements.push(newBall);
     losowa = Math.floor(Math.random() * listColorNextBall.length);
     colorNextBall = listColorNextBall[losowa];
