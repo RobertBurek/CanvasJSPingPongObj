@@ -21,16 +21,18 @@ if( typeof( window.innerWidth ) == 'number' ) {
     windowWidth = document.body.clientWidth;
     windowHeight = document.body.clientHeight;
   }
-  console.log(windowWidth);
-  console.log(windowWidth*0.70);
-  console.log(windowWidth*0.15);
-  console.log(windowHeight);
+
 // const cnvW = cnv.width = window.width*0.7;
 // const cnvH = cnv.height = cnvW/2;
-const cnvW = cnv.width = windowWidth * 0.7;
+const cnvW = cnv.width = Math.floor(windowWidth * 0.7);
 const centerWidth = Math.floor(cnvW / 2);
-const cnvH = cnv.height = windowHeight * 0.8;
+const cnvH = cnv.height = Math.floor(windowHeight * 0.8);
 const centerHeight = Math.floor(cnvH / 2);
+console.log(windowWidth);
+console.log(cnvW);
+console.log(windowHeight);
+console.log(cnvH);
+
 
 cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
 // cnvL.height = cnvL.width;
@@ -38,9 +40,10 @@ cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.
 // cnvR.height = cnvL.width;
 
 const radiusBall = 8;
-const widthRocket = 20;
+// const widthRocket = 20;
+const widthRocket = (Math.floor(cnvW / 60) + 5);
 // const heightRocket = 150;
-const heightRocket = cnvH / 4;
+const heightRocket = Math.floor(cnvH / 4);
 const deltaRocket = 30;
 let interval = 15;
 const divPointsPlayer = document.getElementById("pointsPlayer");
