@@ -39,11 +39,15 @@ cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.
 // cnvR.width = windowWidth * 0.14;
 // cnvR.height = cnvL.width;
 
+const menuButton = document.querySelector(".menuButton");
+menuButton.style.fontSize = "10px";
+
 const radiusBall = 8;
 // const widthRocket = 20;
 const widthRocket = (Math.floor(cnvW / 60) + 5);
 // const heightRocket = 150;
 const heightRocket = Math.floor(cnvH / 4);
+
 const deltaRocket = 30;
 let interval = 15;
 const divPointsPlayer = document.getElementById("pointsPlayer");
@@ -59,6 +63,15 @@ let collisionElements = [];
 let newGameElements = [];
 let reactionMoment = cnvW * 0.5;
 let myInterval;
+
+const fontSize = Math.floor(cnvH * 0.03);
+console.log(fontSize);
+const fontSizeText = "" + fontSize + "px";
+easyLevel.style.fontSize = fontSizeText;
+mediumLevel.style.fontSize = fontSizeText;
+hardLevel.style.fontSize = fontSizeText;
+nextBall.style.fontSize = fontSizeText;
+startButton.style.fontSize = fontSizeText;
 
 class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2) {
