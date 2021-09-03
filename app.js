@@ -526,7 +526,7 @@ document.addEventListener('keydown', (event) => {
         interval += 5;
         myInterval = setInterval(game, interval);
     };
-    if (event.code === "F1") {
+    if (event.code === "F2") {
         addNewBall();
     };
     console.log(event.code);
