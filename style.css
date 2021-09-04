@@ -21,7 +21,21 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 15vh;
+    height: 10vh;
+    /* margin-left: 100px; */
+}
+
+.title {
+    margin-left: auto;
+    margin-right: auto;
+    /* position: absolute; */
+    left: 45%;
+    /* top: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 5vh;
+    width: 10%;
     /* margin-left: 100px; */
 }
 
@@ -42,7 +56,7 @@ button:hover {
     font-style: italic;
     font-weight: bold;
     width: 15%;
-    text-align: center;
+    /* text-align: center; */
     background-color: rgb(177, 177, 177);
 }
 
@@ -68,13 +82,16 @@ button:hover {
 } */
 
 .nextButton{
+    width: 100%;
+    /* height: 5%; */
     font-size: 15px;
     font-style: italic;
     font-weight: bold;
-    width: 10%;
-    padding: 0.1%;
+    /* width: 5%; */
+    /* padding: 0.1%; */
     text-align: center;
     background-color: lime;
+    /* position: relative; */
 }
 
 .focusLevel:hover {
