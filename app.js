@@ -48,7 +48,8 @@ const widthRocket = (Math.floor(cnvW / 60) + 5);
 // const heightRocket = 150;
 const heightRocket = Math.floor(cnvH / 4);
 
-const deltaRocket = 30;
+// const deltaRocket = 30;
+const deltaRocket = widthRocket;
 let interval = 15;
 const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
