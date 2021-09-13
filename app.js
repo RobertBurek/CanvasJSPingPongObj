@@ -61,6 +61,7 @@ const startButton = document.getElementById("start");
 let pointsPlayer = 0;
 let pointsComputer = 0;
 let collisionElements = [];
+let gameElements = [];
 let newGameElements = [];
 let reactionMoment = cnvW * 0.5;
 let myInterval;
@@ -396,24 +397,31 @@ function court() {
 };
 
 
-const ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, -5, 5);
-const ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, 6, 3);
-const ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, -5, -6);
-const hBall = new Ball(radiusBall, 'white', 122, 330, -8, 0);
-const ball8 = new Ball(radiusBall, 'green', 140, 220, 6, 8);
-const ball9 = new Ball(radiusBall, 'lime', 780, 254, 4, 4);
-const ball10 = new Ball(radiusBall, 'yellow', 220, 387, 3, -5);
-const ball11 = new Ball(radiusBall, 'red', 790, 25, 5, 5);
-const ball12 = new Ball(radiusBall, 'blue', 458, 360, -6, -3);
-const ball13 = new Ball(radiusBall, 'lime', 620, 333, 4, 5);
-const ball14 = new Ball(radiusBall, 'yellow', 680, 222, -4, 3);
-const ball15 = new Ball(radiusBall, 'lime', 355, 111, 5, 4);
-const ball16 = new Ball(radiusBall, 'green', 156, 68, -5, 5);
-const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 250);
-const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
+// ElemtsGameStart:
+    var x = Math.floor(Math.random() * 8) + 3;
+    if (Math.random() < 0.49) x = -1 * x; 
+    var y = Math.floor(Math.random() * 8) + 3;
+    if (Math.random() < 0.49) y = -1 * y;
+    const ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, -5, 5);
+    const ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, 6, 3);
+    const ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, -5, -6);
+    const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 250);
+    const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
+    gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
 
-let gameElements = [];
-gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
+
+// Inne rózne ball:
+// const hBall = new Ball(radiusBall, 'white', 122, 330, -8, 0);
+// const ball8 = new Ball(radiusBall, 'green', 140, 220, 6, 8);
+// const ball9 = new Ball(radiusBall, 'lime', 780, 254, 4, 4);
+// const ball10 = new Ball(radiusBall, 'yellow', 220, 387, 3, -5);
+// const ball11 = new Ball(radiusBall, 'red', 790, 25, 5, 5);
+// const ball12 = new Ball(radiusBall, 'blue', 458, 360, -6, -3);
+// const ball13 = new Ball(radiusBall, 'lime', 620, 333, 4, 5);
+// const ball14 = new Ball(radiusBall, 'yellow', 680, 222, -4, 3);
+// const ball15 = new Ball(radiusBall, 'lime', 355, 111, 5, 4);
+// const ball16 = new Ball(radiusBall, 'green', 156, 68, -5, 5);
+
 
 //Różne testy
 // gameElements.push(ball1, ball3, ball6, ball7, ball8, playerRocket, computerRocket);
