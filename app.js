@@ -6,6 +6,8 @@ const ctxL = cnvL.getContext('2d');
 const cnvR = document.getElementById('pointsComputer');
 const ctxR = cnvR.getContext('2d');
 
+
+
 var windowWidth = 1200;
 var windowHeight = 600;
 if( typeof( window.innerWidth ) == 'number' ) {
@@ -57,6 +59,10 @@ const easyLevel = document.getElementById("easy");
 const mediumLevel = document.getElementById("medium");
 const hardLevel = document.getElementById("hard");
 const nextBall = document.getElementById("nextBall");
+const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange", "Deeppink", "Greenyellow", "Gold"];
+// var losowa = Math.floor(Math.random() * listColorNextBall.length);
+var colorNextBall = listColorNextBall[Math.floor(Math.random() * listColorNextBall.length)];
+nextBall.style.background = colorNextBall;
 const startButton = document.getElementById("start");
 let pointsPlayer = 0;
 let pointsComputer = 0;
@@ -396,15 +402,24 @@ function court() {
     ctx.fillRect(0, 0, cnvW, cnvH);
 };
 
+function returnXY(){
+    var x = Math.floor(Math.random() * 8) + 3;
+    if (Math.random() < 0.49) x = -1 * x;
+    return x;
+}
+
+function returnColor(){
+    return listColorNextBall[Math.floor(Math.random() * listColorNextBall.length)];
+}
+
 
 // ElemtsGameStart:
-    var x = Math.floor(Math.random() * 8) + 3;
-    if (Math.random() < 0.49) x = -1 * x; 
-    var y = Math.floor(Math.random() * 8) + 3;
-    if (Math.random() < 0.49) y = -1 * y;
-    const ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, -5, 5);
-    const ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, 6, 3);
-    const ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, -5, -6);
+    var ball1 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight - 10, returnXY(), returnXY());
+    var ball2 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight + 10, returnXY(), returnXY());
+    var ball3 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight, returnXY(), returnXY());
+    // var ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, returnXY(), returnXY());
+    // var ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, returnXY(), returnXY());
+    // var ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, returnXY(), returnXY());
     const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 250);
     const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
     gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
@@ -577,29 +592,27 @@ hardLevel.addEventListener("click", () => {
   focusLevelClass(hardLevel);
 });
 
-const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange", "Deeppink", "Greenyellow", "Gold"];
-var losowa = Math.floor(Math.random() * listColorNextBall.length);
-var colorNextBall = listColorNextBall[losowa];
-nextBall.style.background = colorNextBall;
+
 
 function addNewBall(){
-    var x = Math.floor(Math.random() * 8) + 3;
-    if (Math.random() < 0.49) x = -1 * x; 
+    // var x = Math.floor(Math.random() * 8) + 3;
+    // if (Math.random() < 0.49) x = -1 * x; 
     // console.log(x);
-    var y = Math.floor(Math.random() * 8) + 3;
-    if (Math.random() < 0.49) y = -1 * y;
+    // var y = Math.floor(Math.random() * 8) + 3;
+    // if (Math.random() < 0.49) y = -1 * y;
     // console.log(y);
-    const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, x, y);
+    const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, returnXY(), returnXY());
     gameElements.push(newBall);
-    losowa = Math.floor(Math.random() * listColorNextBall.length);
-    colorNextBall = listColorNextBall[losowa];
+    // losowa = Math.floor(Math.random() * listColorNextBall.length);
+    colorNextBall = returnColor();
     nextBall.style.background = colorNextBall;
 };
 
 
 nextBall.addEventListener("click", () => {
     addNewBall();
-  });
+  }
+);
 
 
 function start(elements) {
