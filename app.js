@@ -71,6 +71,7 @@ let gameElements = [];
 let newGameElements = [];
 let reactionMoment = cnvW * 0.5;
 let myInterval;
+let pause = false;
 
 const fontSize = Math.floor(cnvH * 0.03);
 console.log(fontSize);
@@ -534,9 +535,16 @@ document.addEventListener('keydown', (event) => {
         computerRocket.moveDown();
         computerRocket.sleep();
     };
-    // if (event.code === "Space") {
-    //     clearInterval(myInterval);
-    // };
+    if (event.code === "Space") {
+        console.log(pause);
+        if (!pause) {
+            clearInterval(myInterval);
+            pause = true;
+        } else {
+            myInterval = setInterval(game, interval);
+            pause = false;
+        }
+    };
     if (event.code === "KeyA") {
         myInterval = setInterval(game, interval);
     };
