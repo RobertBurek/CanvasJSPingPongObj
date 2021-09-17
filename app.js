@@ -38,19 +38,6 @@ let centerHeight; // = Math.floor(cnvH / 2);
 // cnvR.height = cnvL.width;
 
 
-function scackling(){
-    cnvW = cnv.width = Math.floor(windowWidth * 0.7);
-    centerWidth = Math.floor(cnvW / 2);
-    cnvH = cnv.height = Math.floor(windowHeight * 0.8);
-    centerHeight = Math.floor(cnvH / 2);
-    cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
-    console.log(windowWidth);
-    console.log(cnvW);
-    console.log(windowHeight);
-    console.log(cnvH);
-}
-scackling();
-
 const menuButton = document.querySelector(".menuButton");
 menuButton.style.fontSize = "10px";
 
@@ -84,14 +71,38 @@ let myInterval;
 let pause = false;
 let sizeChanged = false;
 
-const fontSize = Math.floor(cnvH * 0.03);
-console.log(fontSize);
-const fontSizeText = "" + fontSize + "px";
-easyLevel.style.fontSize = fontSizeText;
-mediumLevel.style.fontSize = fontSizeText;
-hardLevel.style.fontSize = fontSizeText;
-nextBall.style.fontSize = fontSizeText;
-startButton.style.fontSize = fontSizeText;
+let fontSize; // = Math.floor(cnvH * 0.03);
+// console.log(fontSize);
+let fontSizeText; // = "" + fontSize + "px";
+// easyLevel.style.fontSize = fontSizeText;
+// mediumLevel.style.fontSize = fontSizeText;
+// hardLevel.style.fontSize = fontSizeText;
+// nextBall.style.fontSize = fontSizeText;
+// startButton.style.fontSize = fontSizeText;
+
+function scackling(){
+    cnvW = cnv.width = Math.floor(windowWidth * 0.7);
+    centerWidth = Math.floor(cnvW / 2);
+    cnvH = cnv.height = Math.floor(windowHeight * 0.8);
+    centerHeight = Math.floor(cnvH / 2);
+    cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
+    fontSize = Math.floor(cnvH * 0.03);
+    // console.log(fontSize);
+    fontSizeText = "" + fontSize + "px";
+    easyLevel.style.fontSize = fontSizeText;
+    mediumLevel.style.fontSize = fontSizeText;
+    hardLevel.style.fontSize = fontSizeText;
+    nextBall.style.fontSize = fontSizeText;
+    startButton.style.fontSize = fontSizeText;
+    console.log(windowWidth);
+    console.log(cnvW);
+    console.log(windowHeight);
+    console.log(cnvH);
+    console.log("wielkość czcionki przycisków menu: " + fontSizeText);
+}
+scackling();
+
+
 
 class CollisionElement {
     constructor (Element1, Element2, directionEl1, directionEl2) {
