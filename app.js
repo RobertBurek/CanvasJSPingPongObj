@@ -26,10 +26,10 @@ if( typeof( window.innerWidth ) == 'number' ) {
 
 // const cnvW = cnv.width = window.width*0.7;
 // const cnvH = cnv.height = cnvW/2;
-const cnvW = cnv.width = Math.floor(windowWidth * 0.7);
-const centerWidth = Math.floor(cnvW / 2);
-const cnvH = cnv.height = Math.floor(windowHeight * 0.8);
-const centerHeight = Math.floor(cnvH / 2);
+let cnvW = cnv.width = Math.floor(windowWidth * 0.7);
+let centerWidth = Math.floor(cnvW / 2);
+let cnvH = cnv.height = Math.floor(windowHeight * 0.8);
+let centerHeight = Math.floor(cnvH / 2);
 console.log(windowWidth);
 console.log(cnvW);
 console.log(windowHeight);
@@ -72,6 +72,7 @@ let newGameElements = [];
 let reactionMoment = cnvW * 0.5;
 let myInterval;
 let pause = false;
+let sizeChanged = false;
 
 const fontSize = Math.floor(cnvH * 0.03);
 console.log(fontSize);
@@ -622,8 +623,33 @@ nextBall.addEventListener("click", () => {
   }
 );
 
+let windowWidthChanged;
+let windowHeightChanged;
+function checkingSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+        //Non-IE
+        windowWidthChanged = window.innerWidth;
+        windowHeightChanged = window.innerHeight;
+      } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+        //IE 6+ in 'standards compliant mode'
+        windowWidthChanged = document.documentElement.clientWidth;
+        windowHeightChanged = document.documentElement.clientHeight;
+      } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+        //IE 4 compatible
+        windowWidthChanged = document.body.clientWidth;
+        windowHeightChanged = document.body.clientHeight;
+      }
+    if ((windowWidthChanged !== windowWidth) || (windowHeightChanged !== windowHeight)) {
+        return true; 
+    } else 
+        return false;
+}
+
 
 function start(elements) {
+    if (checkingSize()) {
+        console.log("Zmieniono wielkość okna!");
+    }
     court();
     elements.forEach(element => {
         element.isBorder();
