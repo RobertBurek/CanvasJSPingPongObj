@@ -6,8 +6,6 @@ const ctxL = cnvL.getContext('2d');
 const cnvR = document.getElementById('pointsComputer');
 const ctxR = cnvR.getContext('2d');
 
-
-
 var windowWidth = 1200;
 var windowHeight = 600;
 if( typeof( window.innerWidth ) == 'number' ) {
@@ -26,20 +24,32 @@ if( typeof( window.innerWidth ) == 'number' ) {
 
 // const cnvW = cnv.width = window.width*0.7;
 // const cnvH = cnv.height = cnvW/2;
-let cnvW = cnv.width = Math.floor(windowWidth * 0.7);
-let centerWidth = Math.floor(cnvW / 2);
-let cnvH = cnv.height = Math.floor(windowHeight * 0.8);
-let centerHeight = Math.floor(cnvH / 2);
-console.log(windowWidth);
-console.log(cnvW);
-console.log(windowHeight);
-console.log(cnvH);
-
-
-cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
+let cnvW; // cnv.width = Math.floor(windowWidth * 0.7);
+let centerWidth;// = Math.floor(cnvW / 2);
+let cnvH; // = cnv.height = Math.floor(windowHeight * 0.8);
+let centerHeight; // = Math.floor(cnvH / 2);
+// console.log(windowWidth);
+// console.log(cnvW);
+// console.log(windowHeight);
+// console.log(cnvH);
+// cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
 // cnvL.height = cnvL.width;
 // cnvR.width = windowWidth * 0.14;
 // cnvR.height = cnvL.width;
+
+
+function scackling(){
+    cnvW = cnv.width = Math.floor(windowWidth * 0.7);
+    centerWidth = Math.floor(cnvW / 2);
+    cnvH = cnv.height = Math.floor(windowHeight * 0.8);
+    centerHeight = Math.floor(cnvH / 2);
+    cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
+    console.log(windowWidth);
+    console.log(cnvW);
+    console.log(windowHeight);
+    console.log(cnvH);
+}
+scackling();
 
 const menuButton = document.querySelector(".menuButton");
 menuButton.style.fontSize = "10px";
@@ -640,7 +650,7 @@ function checkingSize(){
         windowHeightChanged = document.body.clientHeight;
       }
     if ((windowWidthChanged !== windowWidth) || (windowHeightChanged !== windowHeight)) {
-        return true; 
+        return true;
     } else 
         return false;
 }
