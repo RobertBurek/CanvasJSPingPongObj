@@ -650,6 +650,9 @@ function checkingSize(){
         windowHeightChanged = document.body.clientHeight;
       }
     if ((windowWidthChanged !== windowWidth) || (windowHeightChanged !== windowHeight)) {
+        windowWidth = windowWidthChanged;
+        windowHeight = windowHeightChanged;
+        scackling();
         return true;
     } else 
         return false;
