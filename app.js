@@ -87,17 +87,16 @@ function scackling(){
     centerHeight = Math.floor(cnvH / 2);
     cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
     fontSize = Math.floor(cnvH * 0.03);
-    // console.log(fontSize);
     fontSizeText = "" + fontSize + "px";
     easyLevel.style.fontSize = fontSizeText;
     mediumLevel.style.fontSize = fontSizeText;
     hardLevel.style.fontSize = fontSizeText;
     nextBall.style.fontSize = fontSizeText;
     startButton.style.fontSize = fontSizeText;
-    console.log(windowWidth);
-    console.log(cnvW);
-    console.log(windowHeight);
-    console.log(cnvH);
+    console.log("szerokość okna: " + windowWidth);
+    console.log("szerokość boiska: " + cnvW);
+    console.log("wysokość okna: " + windowHeight);
+    console.log("wysokość boiska: " + cnvH);
     console.log("wielkość czcionki przycisków menu: " + fontSizeText);
 }
 scackling();
