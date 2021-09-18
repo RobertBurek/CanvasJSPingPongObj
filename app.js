@@ -464,6 +464,8 @@ function recountGameElements(){
     computerRocket.height = heightRocket;
     computerRocket.positionX = (cnvW - deltaRocket - widthRocket);
     computerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+    boom(pointsPlayer, cnvL, 5, 0, maxSize);
+    baam(pointsComputer, cnvR, 5, 0, maxSize);
 }
 
 
