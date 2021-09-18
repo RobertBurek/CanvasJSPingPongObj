@@ -452,6 +452,17 @@ function returnColor(){
     const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), (cnvH / 2 - heightRocket / 2));
     gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
 
+function recountGameElements(){
+    playerRocket.width = widthRocket;
+    playerRocket.height = heightRocket;
+    playerRocket.positionX = deltaRocket;
+    playerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+    computerRocket.width = widthRocket;
+    computerRocket.height = heightRocket;
+    computerRocket.positionX = (cnvW - deltaRocket - widthRocket);
+    computerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+}
+
 
 // Inne rózne ball:
 // const hBall = new Ball(radiusBall, 'white', 122, 330, -8, 0);
@@ -669,6 +680,7 @@ function checkingSize(){
         windowWidth = windowWidthChanged;
         windowHeight = windowHeightChanged;
         scackling();
+        recountGameElements();
         return true;
     } else 
         return false;
