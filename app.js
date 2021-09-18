@@ -646,15 +646,8 @@ hardLevel.addEventListener("click", () => {
 
 
 function addNewBall(){
-    // var x = Math.floor(Math.random() * 8) + 3;
-    // if (Math.random() < 0.49) x = -1 * x; 
-    // console.log(x);
-    // var y = Math.floor(Math.random() * 8) + 3;
-    // if (Math.random() < 0.49) y = -1 * y;
-    // console.log(y);
     const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, returnXY(), returnXY());
     gameElements.push(newBall);
-    // losowa = Math.floor(Math.random() * listColorNextBall.length);
     colorNextBall = returnColor();
     nextBall.style.background = colorNextBall;
 };
