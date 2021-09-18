@@ -132,39 +132,3 @@ div {
 .stop {
     display: none;
 }
-
-.boom {
-    animation-iteration-count: 1;
-    animation: boom 0.2s ease-in-out; 
-    -webkit-animation: boom 0.2s ease-in-out;
-}
-
-.baam {
-    animation-iteration-count: 1;
-    animation: baam 0.2s ease-in-out; 
-    -webkit-animation: baam 0.2s ease-in-out;
-}
-
-/* @keyframes boom
-{
-  0% { font-size: 50px; }
-  100% { font-size: 180px; }
-}
-
-@keyframes baam
-{
-  0% { font-size: 50px; }
-  100% { font-size: 180px; }
-}
-
-@-webkit-keyframes boom
-{
-  0% { font-size: 50px; }
-  100% { font-size: 180px; }
-}
-
-@-webkit-keyframes baam
-{
-  0% { font-size: 50px; }
-  100% { font-size: 180px; }
-} */
