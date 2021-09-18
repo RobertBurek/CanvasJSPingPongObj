@@ -22,33 +22,18 @@ if( typeof( window.innerWidth ) == 'number' ) {
     windowHeight = document.body.clientHeight;
   }
 
-// const cnvW = cnv.width = window.width*0.7;
-// const cnvH = cnv.height = cnvW/2;
-let cnvW; // cnv.width = Math.floor(windowWidth * 0.7);
-let centerWidth;// = Math.floor(cnvW / 2);
-let cnvH; // = cnv.height = Math.floor(windowHeight * 0.8);
-let centerHeight; // = Math.floor(cnvH / 2);
-// console.log(windowWidth);
-// console.log(cnvW);
-// console.log(windowHeight);
-// console.log(cnvH);
-// cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
-// cnvL.height = cnvL.width;
-// cnvR.width = windowWidth * 0.14;
-// cnvR.height = cnvL.width;
-
+let cnvW; 
+let centerWidth;
+let cnvH;
+let centerHeight; 
 
 const menuButton = document.querySelector(".menuButton");
 menuButton.style.fontSize = "10px";
 
-let radiusBall; // = 8;
-// const widthRocket = 20;
-let widthRocket; //= (Math.floor(cnvW / 60) + 5);
-// const heightRocket = 150;
-let heightRocket; //= Math.floor(cnvH / 4);
-
-// const deltaRocket = 30;
-let deltaRocket; // = widthRocket;
+let radiusBall;
+let widthRocket;
+let heightRocket;
+let deltaRocket;
 let interval = 15;
 const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
@@ -57,29 +42,24 @@ const mediumLevel = document.getElementById("medium");
 const hardLevel = document.getElementById("hard");
 const nextBall = document.getElementById("nextBall");
 const listColorNextBall = ["Blue", "Yellow", "Lime", "Red", "Green", "Gray", "White", "Orange", "Deeppink", "Greenyellow", "Gold"];
-// var losowa = Math.floor(Math.random() * listColorNextBall.length);
+
 var colorNextBall = listColorNextBall[Math.floor(Math.random() * listColorNextBall.length)];
 nextBall.style.background = colorNextBall;
+
 const startButton = document.getElementById("start");
 let pointsPlayer = 0;
 let pointsComputer = 0;
 let collisionElements = [];
 let gameElements = [];
 let newGameElements = [];
-let reactionMoment; // = cnvW * 0.5;
+let reactionMoment;
 let myInterval;
 let pause = false;
 let sizeChanged = false;
-
 let fontSizeH;
 let fontSizeW;
-// console.log(fontSize);
-let fontSizeText; // = "" + fontSize + "px";
-// easyLevel.style.fontSize = fontSizeText;
-// mediumLevel.style.fontSize = fontSizeText;
-// hardLevel.style.fontSize = fontSizeText;
-// nextBall.style.fontSize = fontSizeText;
-// startButton.style.fontSize = fontSizeText;
+let fontSizeText; 
+
 
 function scackling(){
     cnvW = cnv.width = Math.floor(windowWidth * 0.7);
