@@ -71,7 +71,8 @@ let myInterval;
 let pause = false;
 let sizeChanged = false;
 
-let fontSize; // = Math.floor(cnvH * 0.03);
+let fontSizeH;
+let fontSizeW;
 // console.log(fontSize);
 let fontSizeText; // = "" + fontSize + "px";
 // easyLevel.style.fontSize = fontSizeText;
@@ -91,8 +92,10 @@ function scackling(){
     heightRocket = Math.floor(cnvH / 4); //150
     deltaRocket = widthRocket;
     reactionMoment = cnvW * 0.5;
-    fontSize = Math.floor(cnvH * 0.03);
-    fontSizeText = "" + fontSize + "px";
+    fontSizeH = Math.floor(cnvH * 0.03);
+    fontSizeW = Math.floor(cnvW * 0.03);
+    if (fontSizeH > fontSizeW) fontSizeText = "" + fontSizeW + "px";
+    else fontSizeText = "" + fontSizeH + "px";
     easyLevel.style.fontSize = fontSizeText;
     mediumLevel.style.fontSize = fontSizeText;
     hardLevel.style.fontSize = fontSizeText;
