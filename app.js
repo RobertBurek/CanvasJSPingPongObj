@@ -41,14 +41,14 @@ let centerHeight; // = Math.floor(cnvH / 2);
 const menuButton = document.querySelector(".menuButton");
 menuButton.style.fontSize = "10px";
 
-const radiusBall = 8;
+let radiusBall; // = 8;
 // const widthRocket = 20;
-const widthRocket = (Math.floor(cnvW / 60) + 5);
+let widthRocket; //= (Math.floor(cnvW / 60) + 5);
 // const heightRocket = 150;
-const heightRocket = Math.floor(cnvH / 4);
+let heightRocket; //= Math.floor(cnvH / 4);
 
 // const deltaRocket = 30;
-const deltaRocket = widthRocket;
+let deltaRocket; // = widthRocket;
 let interval = 15;
 const divPointsPlayer = document.getElementById("pointsPlayer");
 const divPointsComputer = document.getElementById("pointsComputer");
@@ -66,7 +66,7 @@ let pointsComputer = 0;
 let collisionElements = [];
 let gameElements = [];
 let newGameElements = [];
-let reactionMoment = cnvW * 0.5;
+let reactionMoment; // = cnvW * 0.5;
 let myInterval;
 let pause = false;
 let sizeChanged = false;
@@ -86,6 +86,11 @@ function scackling(){
     cnvH = cnv.height = Math.floor(windowHeight * 0.8);
     centerHeight = Math.floor(cnvH / 2);
     cnvL.width = cnvL.height = cnvR.width = cnvR.height = maxSize = windowWidth * 0.14;
+    radiusBall = 8;
+    widthRocket = (Math.floor(cnvW / 60) + 5); //20
+    heightRocket = Math.floor(cnvH / 4); //150
+    deltaRocket = widthRocket;
+    reactionMoment = cnvW * 0.5;
     fontSize = Math.floor(cnvH * 0.03);
     fontSizeText = "" + fontSize + "px";
     easyLevel.style.fontSize = fontSizeText;
@@ -99,6 +104,7 @@ function scackling(){
     console.log("wysokość boiska: " + cnvH);
     console.log("wielkość czcionki przycisków menu: " + fontSizeText);
 }
+
 scackling();
 
 
@@ -442,8 +448,8 @@ function returnColor(){
     // var ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, returnXY(), returnXY());
     // var ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, returnXY(), returnXY());
     // var ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, returnXY(), returnXY());
-    const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, 250);
-    const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), 150);
+    const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, (cnvH / 2 - heightRocket / 2));
+    const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), (cnvH / 2 - heightRocket / 2));
     gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
 
 
