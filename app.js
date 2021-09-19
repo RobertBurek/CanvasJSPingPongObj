@@ -80,11 +80,11 @@ function scackling(){
     hardLevel.style.fontSize = fontSizeText;
     nextBall.style.fontSize = fontSizeText;
     startButton.style.fontSize = fontSizeText;
-    console.log("szerokość okna: " + windowWidth);
-    console.log("szerokość boiska: " + cnvW);
+    // console.log("szerokość okna: " + windowWidth);
+    // console.log("szerokość boiska: " + cnvW);
     console.log("wysokość okna: " + windowHeight);
     console.log("wysokość boiska: " + cnvH);
-    console.log("wielkość czcionki przycisków menu: " + fontSizeText);
+    // console.log("wielkość czcionki przycisków menu: " + fontSizeText);
 }
 
 scackling();
@@ -427,13 +427,46 @@ function recountGameElements(){
     playerRocket.width = widthRocket;
     playerRocket.height = heightRocket;
     playerRocket.positionX = deltaRocket;
-    playerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+    // playerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+    playerRocket.positionY = playerRocket.positionY - playerRocket.positionY * multiplierHeight;
     computerRocket.width = widthRocket;
     computerRocket.height = heightRocket;
     computerRocket.positionX = (cnvW - deltaRocket - widthRocket);
-    computerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+    // computerRocket.positionY = (cnvH / 2 - heightRocket / 2);
+    computerRocket.positionY = computerRocket.positionY - computerRocket.positionY * multiplierHeight;
     boom(pointsPlayer, cnvL, 5, 0, maxSize);
     baam(pointsComputer, cnvR, 5, 0, maxSize);
+}
+
+let windowWidthChanged;
+let windowHeightChanged;
+let multiplierWidth;
+let multiplierHeight;
+function checkingSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+        //Non-IE
+        windowWidthChanged = window.innerWidth;
+        windowHeightChanged = window.innerHeight;
+      } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+        //IE 6+ in 'standards compliant mode'
+        windowWidthChanged = document.documentElement.clientWidth;
+        windowHeightChanged = document.documentElement.clientHeight;
+      } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+        //IE 4 compatible
+        windowWidthChanged = document.body.clientWidth;
+        windowHeightChanged = document.body.clientHeight;
+      }
+    if ((windowWidthChanged !== windowWidth) || (windowHeightChanged !== windowHeight)) {
+        multiplierWidth = windowWidth / windowWidthChanged;
+        multiplierHeight = (windowHeight - windowHeightChanged) / windowHeight;
+        console.log(multiplierHeight);
+        windowWidth = windowWidthChanged;
+        windowHeight = windowHeightChanged;
+        scackling();
+        recountGameElements();
+        return true;
+    } else 
+        return false;
 }
 
 
@@ -546,31 +579,6 @@ nextBall.addEventListener("click", () => {
   }
 );
 
-let windowWidthChanged;
-let windowHeightChanged;
-function checkingSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-        //Non-IE
-        windowWidthChanged = window.innerWidth;
-        windowHeightChanged = window.innerHeight;
-      } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-        //IE 6+ in 'standards compliant mode'
-        windowWidthChanged = document.documentElement.clientWidth;
-        windowHeightChanged = document.documentElement.clientHeight;
-      } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-        //IE 4 compatible
-        windowWidthChanged = document.body.clientWidth;
-        windowHeightChanged = document.body.clientHeight;
-      }
-    if ((windowWidthChanged !== windowWidth) || (windowHeightChanged !== windowHeight)) {
-        windowWidth = windowWidthChanged;
-        windowHeight = windowHeightChanged;
-        scackling();
-        recountGameElements();
-        return true;
-    } else 
-        return false;
-}
 
 
 function start(elements) {
