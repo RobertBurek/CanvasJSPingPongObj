@@ -418,13 +418,10 @@ function returnColor(){
 }
 
 
-// ElemtsGameStart:
+// ElementsGameStart:
     var ball1 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight - 10, returnXY(), returnXY());
     var ball2 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight + 10, returnXY(), returnXY());
     var ball3 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight, returnXY(), returnXY());
-    // var ball1 = new Ball(radiusBall, 'white', centerWidth, centerHeight - 10, returnXY(), returnXY());
-    // var ball2 = new Ball(radiusBall, 'red', centerWidth, centerHeight + 10, returnXY(), returnXY());
-    // var ball3 = new Ball(radiusBall, 'lime', centerWidth, centerHeight, returnXY(), returnXY());
     const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, (cnvH / 2 - heightRocket / 2));
     const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), (cnvH / 2 - heightRocket / 2));
     gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
