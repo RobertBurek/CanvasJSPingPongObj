@@ -51,7 +51,6 @@ let pointsPlayer = 0;
 let pointsComputer = 0;
 let collisionElements = [];
 let gameElements = [];
-let newGameElements = [];
 let reactionMoment;
 let myInterval;
 let pause = false;
@@ -138,18 +137,12 @@ class Ball {
         if (this.positionX < 0) {
             pointsComputer += 1;
             baam(pointsComputer, cnvR, 5, 0, maxSize);
-            // for (let gameEl of gameElements) {
-            //     if (gameEl !== this) newGameElements.push(gameEl);
-            // }
             var indexThis = gameElements.indexOf(this);
             gameElements.splice(indexThis, 1);
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
             boom(pointsPlayer, cnvL, 5, 0, maxSize);
-            // for (let gameEl of gameElements) {
-            //     if (gameEl !== this) newGameElements.push(gameEl);
-            // }
             var indexThis = gameElements.indexOf(this);
             gameElements.splice(indexThis, 1);
         }
@@ -596,12 +589,6 @@ function start(elements) {
         element.Element1.reaction(element);
     });
     collisionElements = [];
-    // znacząca poprawka
-    // if (newGameElements.length > 0 ) {
-    //     gameElements = newGameElements;
-    //     newGameElements = [];
-    // }
-    //
     AIcomputer(elements);
 };
 
