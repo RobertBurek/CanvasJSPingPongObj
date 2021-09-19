@@ -8,7 +8,11 @@
 // const ball13 = new Ball(radiusBall, 'lime', 620, 333, 4, 5);
 // const ball14 = new Ball(radiusBall, 'yellow', 680, 222, -4, 3);
 // const ball15 = new Ball(radiusBall, 'lime', 355, 111, 5, 4);
-// const ball16 = new Ball(radiusBall, 'green', 156, 68, -5, 5);
+
+//Test pion i poziom
+// const ballH = new Ball(radiusBall, 'green', 400, 20, 0, 1);
+// const ballV = new Ball(radiusBall, 'blue', 20, 400, 1, 0);
+// gameElements.push(ballH, ballV);
 
 
 //Różne testy

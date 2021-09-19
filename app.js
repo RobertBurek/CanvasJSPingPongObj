@@ -82,8 +82,8 @@ function scackling(){
     startButton.style.fontSize = fontSizeText;
     // console.log("szerokość okna: " + windowWidth);
     // console.log("szerokość boiska: " + cnvW);
-    console.log("wysokość okna: " + windowHeight);
-    console.log("wysokość boiska: " + cnvH);
+    // console.log("wysokość okna: " + windowHeight);
+    // console.log("wysokość boiska: " + cnvH);
     // console.log("wielkość czcionki przycisków menu: " + fontSizeText);
 }
 
@@ -308,6 +308,10 @@ class Ball {
       this.speedY *= -1;
     };
 
+    convertPosiction(){
+        this.positionX = this.positionX - this.positionX * multiplierWidth;
+        this.positionY = this.positionY - this.positionY * multiplierHeight;
+    };
 }
 
 class  Rocket {
@@ -397,6 +401,8 @@ class  Rocket {
         if (collisionElement.directionEl1 == "top" && (collisionElement.directionEl2 == "leftBottom" || collisionElement.directionEl2 == "rightBottom")) collisionElement.Element2.collisionY();
         collisionElement.Element2.collisionX();
     };
+
+    convertPosiction(){};
 };
 
 function court() {
@@ -442,6 +448,7 @@ let windowWidthChanged;
 let windowHeightChanged;
 let multiplierWidth;
 let multiplierHeight;
+
 function checkingSize(){
     if( typeof( window.innerWidth ) == 'number' ) {
         //Non-IE
@@ -457,13 +464,16 @@ function checkingSize(){
         windowHeightChanged = document.body.clientHeight;
       }
     if ((windowWidthChanged !== windowWidth) || (windowHeightChanged !== windowHeight)) {
-        multiplierWidth = windowWidth / windowWidthChanged;
+        multiplierWidth =  (windowWidth - windowWidthChanged) / windowWidth;
         multiplierHeight = (windowHeight - windowHeightChanged) / windowHeight;
-        console.log(multiplierHeight);
+        // console.log(multiplierHeight);
         windowWidth = windowWidthChanged;
         windowHeight = windowHeightChanged;
         scackling();
         recountGameElements();
+        // gameElements.forEach(element => {
+        //     element.convertPosiction();
+        // });
         return true;
     } else 
         return false;
@@ -500,7 +510,7 @@ document.addEventListener('keydown', (event) => {
         computerRocket.sleep();
     };
     if (event.code === "Space") {
-        console.log(pause);
+        // console.log(pause);
         if (!pause) {
             clearInterval(myInterval);
             pause = true;
@@ -525,7 +535,7 @@ document.addEventListener('keydown', (event) => {
     if (event.code === "F2") {
         addNewBall();
     };
-    console.log(event.code);
+    // console.log(event.code);
 });
 
 cnv.addEventListener("mousemove", (event) => {
@@ -583,7 +593,10 @@ nextBall.addEventListener("click", () => {
 
 function start(elements) {
     if (checkingSize()) {
-        console.log("Zmieniono wielkość okna!");
+        // console.log("Zmieniono wielkość okna!");
+        elements.forEach(element => {
+            element.convertPosiction();
+        });
     }
     court();
     elements.forEach(element => {
@@ -616,7 +629,7 @@ baam(pointsComputer, cnvR, 5, 0, maxSize);
 
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");
-   console.log("kliknąłem start");
+//    console.log("kliknąłem start");
    boom('GO', cnv, 30, 100, 500);
    myInterval = setInterval(game, interval);
 });
