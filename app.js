@@ -57,7 +57,8 @@ let pause = false;
 let sizeChanged = false;
 let fontSizeH;
 let fontSizeW;
-let fontSizeText; 
+let fontSizeText;
+let gameOver = false;
 
 
 function scackling(){
@@ -139,12 +140,20 @@ class Ball {
             baam(pointsComputer, cnvR, 5, 0, maxSize);
             var indexThis = gameElements.indexOf(this);
             gameElements.splice(indexThis, 1);
+            if (pointsComputer >= 3) {
+                boom("GAME OVER", cnv, 3, 0, 150);
+                gameOver = true;
+            }
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
             boom(pointsPlayer, cnvL, 5, 0, maxSize);
             var indexThis = gameElements.indexOf(this);
             gameElements.splice(indexThis, 1);
+            if (pointsPlayer >= 3) {
+                baam("GAME OVER", cnv, 3, 0, 150);
+                gameOver = true;
+            }
         }
     }
 
@@ -611,6 +620,9 @@ function start(elements) {
     });
     collisionElements = [];
     AIcomputer(elements);
+    if (gameOver) {
+        clearInterval(myInterval);
+    }
 };
 
 function game() {
