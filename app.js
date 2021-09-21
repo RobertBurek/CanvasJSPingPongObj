@@ -455,7 +455,7 @@ function recountGameElements(){
     if (isClassFocusLevel(easyLevel)) {
         playerRocket.height = heightRocket * 1.2;
         computerRocket.height = heightRocket * 0.8;
-        reactionMoment = cnvW * 0.75;
+        reactionMoment = cnvW * 0.70;
     };
     if (isClassFocusLevel(mediumLevel)) {
         playerRocket.height = heightRocket
@@ -574,7 +574,7 @@ function focusLevelClass(element){
 easyLevel.addEventListener("click", () => {
   playerRocket.height = heightRocket * 1.2;
   computerRocket.height = heightRocket * 0.8;
-  reactionMoment = cnvW * 0.75;
+  reactionMoment = cnvW * 0.70;
   computerRocket.speed = 3;
   currentlyLevel = easyLevel;
   focusLevelClass(easyLevel);
