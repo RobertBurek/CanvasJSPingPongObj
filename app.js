@@ -584,7 +584,12 @@ hardLevel.addEventListener("click", () => {
   focusLevelClass(hardLevel);
 });
 
-
+function isClassFocusLevel(element){
+    if (element.className.indexOf("focusLevel") != -1){
+        return true;
+    } else 
+        return false;
+}
 
 function addNewBall(){
     const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, returnXY(), returnXY());
