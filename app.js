@@ -496,9 +496,6 @@ function checkingSize(){
         windowHeight = windowHeightChanged;
         scackling();
         recountGameElements();
-        // gameElements.forEach(element => {
-        //     element.convertPosiction();
-        // });
         return true;
     } else 
         return false;
@@ -623,18 +620,11 @@ nextBall.addEventListener("click", () => {
 
 function start(elements) {
     if (checkingSize()) {
-        // console.log("Zmieniono wielkość okna!");
         elements.forEach(element => {
             element.convertPosiction();
         });
     }
     if (run){
-        // if (checkingSize()) {
-        //     // console.log("Zmieniono wielkość okna!");
-        //     elements.forEach(element => {
-        //         element.convertPosiction();
-        //     });
-        // }
         court();
         elements.forEach(element => {
             element.isBorder();
@@ -665,11 +655,6 @@ function game() {
 };
 
 myInterval = setInterval(game, interval);
-// court();
-// gameElements.forEach(element => {
-//     element.isBorder();
-//     element.draw();
-// });
 
 boom(pointsPlayer, "black", cnvL, 5, 0, maxSize);
 baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
@@ -677,7 +662,5 @@ baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");
    run = true;
-//    console.log("kliknąłem start");
    boom('GO', "white", cnv, 20, 100, 500);
-//    myInterval = setInterval(game, interval);
 });
