@@ -318,7 +318,7 @@ class Ball {
       this.speedY *= -1;
     };
 
-    convertPosiction(){
+    convertPosition(){
         this.positionX = this.positionX - this.positionX * multiplierWidth;
         this.positionY = this.positionY - this.positionY * multiplierHeight;
     };
@@ -412,7 +412,25 @@ class  Rocket {
         collisionElement.Element2.collisionX();
     };
 
-    convertPosiction(){};
+    convertPosition(){
+        this.width = widthRocket;
+        this.height = heightRocket;
+        if (isClassFocusLevel(easyLevel)) {
+            playerRocket.height = heightRocket * 1.2;
+            computerRocket.height = heightRocket * 0.8;
+            reactionMoment = cnvW * 0.70;
+        };
+        if (isClassFocusLevel(mediumLevel)) {
+            playerRocket.height = heightRocket
+            computerRocket.height = heightRocket;
+            reactionMoment = cnvW * 0.5
+        };
+        if (isClassFocusLevel(hardLevel)) {
+            playerRocket.height = heightRocket * 0.8;
+            computerRocket.height = heightRocket * 1.2;
+            reactionMoment = cnvW * 0.25;
+        };
+    };
 };
 
 function court() {
@@ -440,33 +458,31 @@ function returnColor(){
     gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
 
 function recountGameElements(){
-    playerRocket.width = widthRocket;
-    playerRocket.height = heightRocket;
+    // playerRocket.width = widthRocket;
+    // playerRocket.height = heightRocket;
     playerRocket.positionX = deltaRocket;
-    // playerRocket.positionY = (cnvH / 2 - heightRocket / 2);
     playerRocket.positionY = playerRocket.positionY - playerRocket.positionY * multiplierHeight;
-    computerRocket.width = widthRocket;
-    computerRocket.height = heightRocket;
+    // computerRocket.width = widthRocket;
+    // computerRocket.height = heightRocket;
     computerRocket.positionX = (cnvW - deltaRocket - widthRocket);
-    // computerRocket.positionY = (cnvH / 2 - heightRocket / 2);
     computerRocket.positionY = computerRocket.positionY - computerRocket.positionY * multiplierHeight;
     boom(pointsPlayer, "black", cnvL, 5, 0, maxSize);
     baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
-    if (isClassFocusLevel(easyLevel)) {
-        playerRocket.height = heightRocket * 1.2;
-        computerRocket.height = heightRocket * 0.8;
-        reactionMoment = cnvW * 0.70;
-    };
-    if (isClassFocusLevel(mediumLevel)) {
-        playerRocket.height = heightRocket
-        computerRocket.height = heightRocket;
-        reactionMoment = cnvW * 0.5
-    };
-    if (isClassFocusLevel(hardLevel)) {
-        playerRocket.height = heightRocket * 0.8;
-        computerRocket.height = heightRocket * 1.2;
-        reactionMoment = cnvW * 0.25;
-    };
+    // if (isClassFocusLevel(easyLevel)) {
+    //     playerRocket.height = heightRocket * 1.2;
+    //     computerRocket.height = heightRocket * 0.8;
+    //     reactionMoment = cnvW * 0.70;
+    // };
+    // if (isClassFocusLevel(mediumLevel)) {
+    //     playerRocket.height = heightRocket
+    //     computerRocket.height = heightRocket;
+    //     reactionMoment = cnvW * 0.5
+    // };
+    // if (isClassFocusLevel(hardLevel)) {
+    //     playerRocket.height = heightRocket * 0.8;
+    //     computerRocket.height = heightRocket * 1.2;
+    //     reactionMoment = cnvW * 0.25;
+    // };
 }
 
 let windowWidthChanged;
@@ -621,7 +637,7 @@ nextBall.addEventListener("click", () => {
 function start(elements) {
     if (checkingSize()) {
         elements.forEach(element => {
-            element.convertPosiction();
+            element.convertPosition();
         });
     }
     if (run){
