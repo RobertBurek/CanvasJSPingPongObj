@@ -59,6 +59,7 @@ let fontSizeH;
 let fontSizeW;
 let fontSizeText;
 let gameOver = false;
+let run = false;
 
 
 function scackling(){
@@ -137,21 +138,21 @@ class Ball {
         }
         if (this.positionX < 0) {
             pointsComputer += 1;
-            baam(pointsComputer, cnvR, 5, 0, maxSize);
+            baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
             var indexThis = gameElements.indexOf(this);
             gameElements.splice(indexThis, 1);
-            if (pointsComputer >= 3) {
-                boom("GAME OVER", cnv, 3, 0, 150);
+            if (pointsComputer >= 99) {
+                boom("GAME OVER", "red", cnv, 3, 0, 150);
                 gameOver = true;
             }
         };
         if (this.positionX > cnvW) {
             pointsPlayer += 1;
-            boom(pointsPlayer, cnvL, 5, 0, maxSize);
+            boom(pointsPlayer, "black", cnvL, 5, 0, maxSize);
             var indexThis = gameElements.indexOf(this);
             gameElements.splice(indexThis, 1);
-            if (pointsPlayer >= 3) {
-                baam("GAME OVER", cnv, 3, 0, 150);
+            if (pointsPlayer >= 99) {
+                baam("GAME OVER", "red", cnv, 3, 0, 150);
                 gameOver = true;
             }
         }
@@ -449,8 +450,8 @@ function recountGameElements(){
     computerRocket.positionX = (cnvW - deltaRocket - widthRocket);
     // computerRocket.positionY = (cnvH / 2 - heightRocket / 2);
     computerRocket.positionY = computerRocket.positionY - computerRocket.positionY * multiplierHeight;
-    boom(pointsPlayer, cnvL, 5, 0, maxSize);
-    baam(pointsComputer, cnvR, 5, 0, maxSize);
+    boom(pointsPlayer, "black", cnvL, 5, 0, maxSize);
+    baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
 }
 
 let windowWidthChanged;
@@ -607,21 +608,35 @@ function start(elements) {
             element.convertPosiction();
         });
     }
-    court();
-    elements.forEach(element => {
-        element.isBorder();
-        element.draw();
-    });
-    elements.forEach(element => {
-        element.isContact();
-    });
-    collisionElements.forEach(element => {
-        element.Element1.reaction(element);
-    });
-    collisionElements = [];
-    AIcomputer(elements);
-    if (gameOver) {
-        clearInterval(myInterval);
+    if (run){
+        // if (checkingSize()) {
+        //     // console.log("Zmieniono wielkość okna!");
+        //     elements.forEach(element => {
+        //         element.convertPosiction();
+        //     });
+        // }
+        court();
+        elements.forEach(element => {
+            element.isBorder();
+            element.draw();
+        });
+        elements.forEach(element => {
+            element.isContact();
+        });
+        collisionElements.forEach(element => {
+            element.Element1.reaction(element);
+        });
+        collisionElements = [];
+        AIcomputer(elements);
+        if (gameOver) {
+            clearInterval(myInterval);
+        }
+    } else {
+        court();
+        gameElements.forEach(element => {
+            element.isBorder();
+            if (element.constructor.name == "Rocket") element.draw();
+        });
     }
 };
 
@@ -629,19 +644,20 @@ function game() {
     start(gameElements);
 };
 
+myInterval = setInterval(game, interval);
+// court();
+// gameElements.forEach(element => {
+//     element.isBorder();
+//     element.draw();
+// });
 
-court();
-gameElements.forEach(element => {
-    element.isBorder();
-    element.draw();
-});
-
-boom(pointsPlayer, cnvL, 5, 0, maxSize);
-baam(pointsComputer, cnvR, 5, 0, maxSize);
+boom(pointsPlayer, "black", cnvL, 5, 0, maxSize);
+baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
 
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");
+   run = true;
 //    console.log("kliknąłem start");
-   boom('GO', cnv, 30, 100, 500);
-   myInterval = setInterval(game, interval);
+   boom('GO', "white", cnv, 20, 100, 500);
+//    myInterval = setInterval(game, interval);
 });
