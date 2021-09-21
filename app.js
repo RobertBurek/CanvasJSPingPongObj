@@ -452,6 +452,21 @@ function recountGameElements(){
     computerRocket.positionY = computerRocket.positionY - computerRocket.positionY * multiplierHeight;
     boom(pointsPlayer, "black", cnvL, 5, 0, maxSize);
     baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
+    if (isClassFocusLevel(easyLevel)) {
+        playerRocket.height = heightRocket * 1.2;
+        computerRocket.height = heightRocket * 0.8;
+        reactionMoment = cnvW * 0.75;
+    };
+    if (isClassFocusLevel(mediumLevel)) {
+        playerRocket.height = heightRocket
+        computerRocket.height = heightRocket;
+        reactionMoment = cnvW * 0.5
+    };
+    if (isClassFocusLevel(hardLevel)) {
+        playerRocket.height = heightRocket * 0.8;
+        computerRocket.height = heightRocket * 1.2;
+        reactionMoment = cnvW * 0.25;
+    };
 }
 
 let windowWidthChanged;
