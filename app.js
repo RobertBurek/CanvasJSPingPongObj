@@ -450,9 +450,9 @@ function returnColor(){
 
 
 // ElementsGameStart:
-    var ball1 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight - 10, returnXY(), returnXY());
-    var ball2 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight + 10, returnXY(), returnXY());
-    var ball3 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight, returnXY(), returnXY());
+    var ball1 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight - 20, 0, 0);
+    var ball2 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight + 20, 0, 0);
+    var ball3 = new Ball(radiusBall, returnColor(), centerWidth, centerHeight, 0, 0);
     const playerRocket = new Rocket(widthRocket, heightRocket, 'blue', deltaRocket, (cnvH / 2 - heightRocket / 2));
     const computerRocket = new Rocket(widthRocket, heightRocket, 'red', (cnvW - deltaRocket - widthRocket), (cnvH / 2 - heightRocket / 2));
     gameElements.push(playerRocket, computerRocket, ball1, ball2, ball3);
@@ -642,7 +642,8 @@ function start(elements) {
         court();
         gameElements.forEach(element => {
             element.isBorder();
-            if (element.constructor.name == "Rocket") element.draw();
+            // if (element.constructor.name == "Rocket") 
+            element.draw();
         });
     }
 };
