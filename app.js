@@ -438,7 +438,7 @@ function court() {
     ctx.fillRect(0, 0, cnvW, cnvH);
 };
 
-function returnXY(){
+function returnSpeedXY(){
     var x = Math.floor(Math.random() * 8) + 3;
     if (Math.random() < 0.49) x = -1 * x;
     return x;
@@ -601,7 +601,7 @@ function isClassFocusLevel(element){
 }
 
 function addNewBall(){
-    const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, returnXY(), returnXY());
+    const newBall = new Ball(radiusBall, colorNextBall, centerWidth, centerHeight, returnSpeedXY(), returnSpeedXY());
     gameElements.push(newBall);
     colorNextBall = returnColor();
     nextBall.style.background = colorNextBall;
@@ -660,8 +660,8 @@ baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");
    gameElements.forEach(element => {
-       element.speedX = returnXY();
-       element.speedY = returnXY();
+       element.speedX = returnSpeedXY();
+       element.speedY = returnSpeedXY();
    });
    run = true;
    boom('GO', "white", cnv, 20, 100, 500);
