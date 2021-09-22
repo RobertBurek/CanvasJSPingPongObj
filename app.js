@@ -659,6 +659,10 @@ baam(pointsComputer, "black", cnvR, 5, 0, maxSize);
 
 startButton.addEventListener("click", () => {
    startButton.classList.add("stop");
+   gameElements.forEach(element => {
+       element.speedX = returnXY();
+       element.speedY = returnXY();
+   });
    run = true;
    boom('GO', "white", cnv, 20, 100, 500);
 });
